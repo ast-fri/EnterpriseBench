@@ -164,6 +164,12 @@ Experience automated task creation across different enterprise domains:
     <li><strong>JSON Export:</strong> Download generated tasks for evaluation</li>
   </ul>
   
+  <div class="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/nKsPsowAugA" 
+            title="EnterpriseBench Task Generation" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+  </div>
   <p><strong>Demo Video:</strong> Watch how EnterpriseBench automatically generates Search-type tasks for the Engineering department using GitHub data sources.</p>
 </div>
 
@@ -180,6 +186,12 @@ Test agent capabilities on information retrieval and analysis tasks:
     <li><strong>Performance Analytics:</strong> Detailed metrics and failure analysis</li>
   </ul>
   
+  <div class="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/abiH1fzN3CE" 
+            title="Simulating the Enterprise: LLM Agents at Work" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+  </div>
   <p><strong>Demo Video:</strong> See an agent formulate plans, select tools, and complete search tasks within the enterprise simulation.</p>
 </div>
 
@@ -196,6 +208,12 @@ Evaluate agent performance on standard business operations:
     <li><strong>Error Handling:</strong> Test agent responses to edge cases and errors</li>
   </ul>
   
+  <div class="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/TmHOhBErRCE" 
+            title="Simulating the Enterprise: LLM Agents Sending a Mail" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+  </div>
   <p><strong>Demo Video:</strong> Watch an IT employee use an agent to draft and send an email regarding a ticket issue, demonstrating CRUD operations in action.</p>
 </div>
 
