@@ -5,7 +5,6 @@ title: "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterp
 
 <div class="nav-menu">
 <header class="header">
-      <h1>Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterprise Environments</h1>
       <div class="author-list-formal">
         <div class="author-names">
           Harsh Vishwakarma<span class="sup">1,&#42;</span>,
@@ -361,7 +360,7 @@ If you use EnterpriseBench in your research, please cite our work:
 
 ```bibtex
 @inproceedings{enterprisebench2025,
-    title = "EnterpriseBench: Evaluating {LLM} Agents in Simulated Enterprise Environments",
+    title = "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterprise Environments",
      author = "Vishwakarma, Harsh  and
       Agarwal, Ankush  and
       Ojas,F , Patil  and
@@ -371,8 +370,8 @@ If you use EnterpriseBench in your research, please cite our work:
     month = nov,
     year = "2025",
     address = "Suzhou, Suzhou",
-    publisher = "Association for Computational Linguistics",
-    note = "Under Review"
+    publisher = "Empirical Methods in Natural Language Processing",
+   
 }
 ```
 
