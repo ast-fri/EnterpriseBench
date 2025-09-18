@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "EnterpriseBench: Evaluating LLM Agents in Simulated Enterprise Environments"
+title: "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterprise Environments"
 ---
 
 <div class="nav-menu">
@@ -47,7 +47,8 @@ Enterprise environments are characterized by:
 
 **EnterpriseBench** addresses these gaps by providing the first comprehensive framework specifically designed for enterprise LLM agent evaluation.
 
-![EnterpriseBench Agent Workflow](assets/images/agent_workflow.png)
+
+![EnterpriseBench Agent Workflow](assets/images/Enterprise Workflow.png)
 *Figure 1: EnterpriseBench agent workflow showing the complete task execution process from user query through planning, execution, and task completion within the enterprise environment.*
 
 ## EnterpriseBench Framework {#framework}
@@ -68,14 +69,25 @@ EnterpriseBench consists of three core components working together to provide co
 - **Performance Metrics**: Comprehensive evaluation criteria for agent assessment
 - **Interactive Interfaces**: Streamlit-powered demos for real-time evaluation
 
+#### 3. **Dual Evaluation Framework**
+- **Search Tasks**: Information retrieval, conversation analysis, and database queries
+- **CRUD Tasks**: Create, Read, Update, Delete operations on enterprise data
+- **Performance Metrics**: Comprehensive evaluation criteria for agent assessment
+- **Interactive Interfaces**: Streamlit-powered demos for real-time evaluation
 
 
 ## Supported Domains {#domains}
 
 EnterpriseBench covers comprehensive business domains with authentic data and realistic task scenarios:
 
-![EnterpriseBench Data Sources](assets/images/data_sources_table.png)
-*Table 1: EnterpriseBench data sources across different enterprise applications, showing the variety and scale of synthetic business data used for agent evaluation.*
+| Domain | Description | Task Types | Data Sources |
+|--------|-------------|------------|--------------|
+| **🏢 Human Resources** | Employee management, recruitment, policies | Search, CRUD, Communication | Employee records, resumes, policies |
+| **💻 IT Service Management** | Helpdesk, incident management, system administration | Search, CRUD, Troubleshooting | Tickets, incident reports, system logs |
+| **🤝 Customer Relations** | Customer support, sales, relationship management | Search, CRUD, Analysis | Support conversations, orders, reviews |
+| **⚙️ Software Engineering** | Code management, issue tracking, collaboration | Search, CRUD, Code Review | GitHub repositories, issues, discussions |
+| **📊 Business Operations** | Project management, partnerships, strategic planning | Search, CRUD, Analysis | Client records, partnerships, POCs |
+| **📧 Enterprise Communications** | Email systems, collaboration tools, social platforms | Search, CRUD, Communication | Email threads, chat logs, social posts |
 
 
 
@@ -220,20 +232,20 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 <tr style="background-color: #f0fff0;">
 <td><strong>Llama-3.1-8B</strong></td>
 <td>0.10</td>
-<td>0.14</td>
-<td>0.16</td>
+<td>0.15</td>
+<td>0.15</td>
 <td style="background-color: #f0f0f0;">0.34</td>
-<td>0.10</td>
+<td>0.07</td>
 <td>0.14</td>
 <td>0.16</td>
 <td style="background-color: #f0f0f0;"><strong>0.34</strong></td>
 </tr>
 <tr style="background-color: #f0fff0;">
 <td><strong>Llama-3.3-70B</strong></td>
-<td>0.24</td>
-<td>0.25</td>
-<td>0.28</td>
-<td style="background-color: #f0f0f0;">0.48</td>
+<td>0.20</td>
+<td>0.27</td>
+<td>0.30</td>
+<td style="background-color: #f0f0f0;">0.47</td>
 <td>0.24</td>
 <td>0.25</td>
 <td>0.28</td>
@@ -243,10 +255,6 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 </table>
 </div>
 
-*Performance comparison across different LLM models using LangChain and DSPy frameworks, evaluated by GPT-4 and Gemini 2.5 Pro. Gold Planning represents the upper bound performance with optimal task planning.*
-
-![EnterpriseBench Performance Analysis](assets/images/performance_comparison.png)
-*Figure 2: Performance comparison charts showing (a) LangChain ReAct performance across different domains and (b) DSPy ReAct performance across different domains for various LLM models.*
 
 ## Interactive Demos {#demos}
 
@@ -318,58 +326,6 @@ Evaluate agent performance on standard business operations:
   <p><strong>Demo Video:</strong> Watch an IT employee use an agent to draft and send an email regarding a ticket issue, demonstrating CRUD operations in action.</p>
 </div>
 
-## Implementation Details {#implementation}
-
-### Getting Started
-
-EnterpriseBench is designed for easy setup and immediate use:
-
-```bash
-# Clone the repository
-git clone https://github.com/ast-fri/EnterpriseBench.git
-cd EnterpriseBench
-
-# Set up environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-cd Code
-pip install -r requirements.txt
-
-# Configure API keys
-# Create .env files with your AWS and Azure credentials
-
-# Run demos
-cd TaskGeneration && streamlit run task_gen_app.py
-cd ../Simulation/SearchEvaluation && streamlit run search_demo.py
-cd ../CrudEvaluation && streamlit run crud_demo.py
-```
-
-### Technical Requirements
-
-- **Python 3.10+**: Modern Python environment
-- **API Access**: AWS and Azure AI credentials for LLM integration
-- **Streamlit**: Interactive web interface framework
-- **Scalable Storage**: Organized data structure supporting various task types
-
-### Integration Options
-
-EnterpriseBench supports multiple integration approaches:
-
-- **Standalone Evaluation**: Use provided demos for immediate testing
-- **API Integration**: Integrate with existing agent frameworks
-- **Custom Extensions**: Add new domains or task types
-- **Batch Processing**: Evaluate multiple agents systematically
-
-### Data Infrastructure
-
-Our enterprise sandbox includes:
-
-- **10+ Business Domains**: Comprehensive coverage of enterprise functions
-- **Realistic Relationships**: Authentic data interconnections
-- **Scalable Architecture**: Supports various evaluation scenarios
-- **Privacy Compliance**: Synthetic data with realistic characteristics
 
 ## Authors {#authors}
 
