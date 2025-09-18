@@ -7,17 +7,17 @@ title: "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterp
 <header class="header">
       <div class="author-list-formal">
         <div class="author-names">
-          Harsh Vishwakarma<span class="sup">1,&#42;</span>,
-          Ankush Agarwal<span class="sup">1,&#42;</span>,
-          Ojas F. Patil<span class="sup">1</span>,
-          Chaitanya Devaguptapu<span class="sup">1</span>
-          Mahesh Chandran<span class="sup">1</span>
+          Harsh Vishwakarma<sup>1,*</sup>,  
+          Ankush Agarwal<sup>1,*</sup>,  
+          Ojas F. Patil<sup>1</sup>,  
+          Chaitanya Devaguptapu<sup>1</sup>,  
+          Mahesh Chandran<sup>1</sup>
         </div>
         <div class="affiliations">
-          <span class="sup">1</span>Fujitsu Research India &nbsp;&nbsp;
+          <sup>1</sup>Fujitsu Research India &nbsp;&nbsp;
         </div>
         <div class="author-footnote">
-          <span class="sup">&#42;</span>Equal contribution &nbsp;&nbsp;
+          <sup>*</sup>Equal contribution &nbsp;&nbsp;
         </div>
       </div>
       <div class="links-section">
