@@ -259,6 +259,38 @@ img + em {
     border-radius: 8px;
 }
 
+/* Performance Table Styling */
+.performance-table {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+}
+
+.performance-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    background: white;
+}
+
+.performance-table th,
+.performance-table td {
+    padding: 8px 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.performance-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.performance-table td strong {
+    color: var(--primary-color);
+}
+
 /* Buttons and CTAs */
 .btn {
     display: inline-block;
