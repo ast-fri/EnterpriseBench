@@ -4,6 +4,29 @@ title: "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterp
 ---
 
 <div class="nav-menu">
+<header class="header">
+      <h1>Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterprise Environments</h1>
+      <div class="author-list-formal">
+        <div class="author-names">
+          Harsh Vishwakarma<span class="sup">1,&#42;</span>,
+          Ankush Agarwal<span class="sup">1,&#42;</span>,
+          Ojas F. Patil<span class="sup">1</span>,
+          Chaitanya Devaguptapu<span class="sup">1</span>
+          Mahesh Chandran<span class="sup">1</span>
+        </div>
+        <div class="affiliations">
+          <span class="sup">1</span>Fujitsu Research India &nbsp;&nbsp;
+        </div>
+        <div class="author-footnote">
+          <span class="sup">&#42;</span>Equal contribution &nbsp;&nbsp;
+        </div>
+      </div>
+      <div class="links-section">
+        <a href="https://github.com/ast-fri/EnterpriseBench" class="link-button github"><span>📄</span> GitHub</a>
+        <a href="https://huggingface.co/datasets/AST-FRI/needles-in-images" class="link-button huggingface"><span>🤗</span> Hugging Face</a>
+        <a href="https://aclanthology.org/2025.acl-long.1152/" class="link-button arxiv"><span>📚</span> Paper </a>
+      </div>
+    </header>
   <ul>
     <li><a href="#abstract">Abstract</a></li>
     <li><a href="#introduction">Introduction</a></li>
@@ -19,17 +42,16 @@ title: "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterp
 
 ## Abstract {#abstract}
 
-**EnterpriseBench** introduces a comprehensive framework for evaluating Large Language Model (LLM) agents within realistic enterprise environments. Unlike existing benchmarks that focus on isolated tasks, EnterpriseBench provides a complete ecosystem with authentic business data spanning **10+ enterprise domains** including HR, IT Service Management, Customer Relations, Software Engineering, and Business Operations. 
+Enterprise systems are crucial for enhancing productivity and decision-making among employees and customers. Integrating LLM based systems into enterprise systems enables intelligent automation, personalized experiences, and efficient information retrieval, driving operational efficiency and strategic growth. However, developing and evaluating such systems is challenging due to the inherent complexity of enterprise environments, where data is fragmented across multiple sources and governed by sophisticated access controls.
 
-Our framework features **automated task generation**, **dual evaluation modes** (Search and CRUD operations), and **interactive web interfaces** for comprehensive agent assessment. Through extensive evaluation across multiple domains, EnterpriseBench reveals significant gaps between current LLM agent capabilities and enterprise requirements, establishing new benchmarks for real-world AI deployment readiness.
+Our benchmark features **EnerpriseBench** which provides a **Enteprise Simulation Environment** along with **500 Realistic Tasks** for comprehensive agent assessment. Through extensive evaluation across multiple domains, EnterpriseBench reveals significant gaps between current LLM agent capabilities and enterprise requirements, establishing new benchmarks for real-world AI deployment readiness.
 
 <div class="highlight-box">
   <p><strong>🎯 Key Contributions:</strong></p>
   <ul>
     <li><strong>Realistic Enterprise Simulation:</strong> Comprehensive sandbox with authentic business data across 10+ domains</li>
+    <li><strong>Diverse Tasks across Domains:</strong> Search-based and CRUD-based task assessment across different domains</li>
     <li><strong>Automated Task Generation:</strong> Dynamic creation of enterprise tasks with configurable complexity</li>
-    <li><strong>Dual Evaluation Framework:</strong> Search-based and CRUD-based task assessment</li>
-    <li><strong>Interactive Demos:</strong> Streamlit-powered interfaces for easy agent testing and visualization</li>
   </ul>
 </div>
 
@@ -340,23 +362,21 @@ If you use EnterpriseBench in your research, please cite our work:
 ```bibtex
 @inproceedings{enterprisebench2025,
     title = "EnterpriseBench: Evaluating {LLM} Agents in Simulated Enterprise Environments",
-    author = "Anonymous Authors",
+     author = "Vishwakarma, Harsh  and
+      Agarwal, Ankush  and
+      Ojas,F , Patil  and
+      Devaguptapu, Chaitanya and
+      Chandran, Mahesh"
     booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
     month = nov,
     year = "2025",
-    address = "Miami, Florida, USA",
+    address = "Suzhou, Suzhou",
     publisher = "Association for Computational Linguistics",
     note = "Under Review"
 }
 ```
 
 ---
-
-<div class="text-center mt-large">
-  <a href="https://anonymous.4open.science/r/EnterpriseBench-87B1/" class="btn">📊 Access Dataset</a>
-  <a href="https://anonymous.4open.science/r/EnterpriseBench-87B1/" class="btn btn-secondary">💻 View Code</a>
-</div>
-
 <div class="highlight-box text-center">
   <h3>🚀 Ready to Evaluate Your LLM Agents?</h3>
   <p>EnterpriseBench provides the most comprehensive framework for testing LLM agents in realistic enterprise environments. Start evaluating today!</p>
