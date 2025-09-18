@@ -47,8 +47,8 @@ Enterprise environments are characterized by:
 
 **EnterpriseBench** addresses these gaps by providing the first comprehensive framework specifically designed for enterprise LLM agent evaluation.
 
-![EnterpriseBench Framework Overview](assets/images/architecture_diagram.png)
-*Figure 1: EnterpriseBench framework overview showing the integration of enterprise sandbox, automated task generation, and dual evaluation modes for comprehensive LLM agent assessment.*
+![EnterpriseBench Agent Workflow](assets/images/agent_workflow.png)
+*Figure 1: EnterpriseBench agent workflow showing the complete task execution process from user query through planning, execution, and task completion within the enterprise environment.*
 
 ## EnterpriseBench Framework {#framework}
 
@@ -62,13 +62,7 @@ EnterpriseBench consists of three core components working together to provide co
 - **Scalable Infrastructure**: Supports various task types and complexity levels
 - **Privacy-Compliant**: Synthetic data ensures privacy while maintaining realism
 
-#### 2. **Automated Task Generation System**
-- **Dynamic Creation**: Automatically generates tasks based on department and complexity requirements
-- **Configurable Parameters**: Customizable task types, difficulty levels, and domain focus
-- **JSON Output Format**: Structured task definitions for easy integration
-- **Cross-Domain Tasks**: Generates tasks spanning multiple business domains
-
-#### 3. **Dual Evaluation Framework**
+#### 2. **Dual Evaluation Framework**
 - **Search Tasks**: Information retrieval, conversation analysis, and database queries
 - **CRUD Tasks**: Create, Read, Update, Delete operations on enterprise data
 - **Performance Metrics**: Comprehensive evaluation criteria for agent assessment
@@ -80,14 +74,8 @@ EnterpriseBench consists of three core components working together to provide co
 
 EnterpriseBench covers comprehensive business domains with authentic data and realistic task scenarios:
 
-| Domain | Description | Task Types | Data Sources |
-|--------|-------------|------------|--------------|
-| **🏢 Human Resources** | Employee management, recruitment, policies | Search, CRUD, Communication | Employee records, resumes, policies |
-| **💻 IT Service Management** | Helpdesk, incident management, system administration | Search, CRUD, Troubleshooting | Tickets, incident reports, system logs |
-| **🤝 Customer Relations** | Customer support, sales, relationship management | Search, CRUD, Analysis | Support conversations, orders, reviews |
-| **⚙️ Software Engineering** | Code management, issue tracking, collaboration | Search, CRUD, Code Review | GitHub repositories, issues, discussions |
-| **📊 Business Operations** | Project management, partnerships, strategic planning | Search, CRUD, Analysis | Client records, partnerships, POCs |
-| **📧 Enterprise Communications** | Email systems, collaboration tools, social platforms | Search, CRUD, Communication | Email threads, chat logs, social posts |
+![EnterpriseBench Data Sources](assets/images/data_sources_table.png)
+*Table 1: EnterpriseBench data sources across different enterprise applications, showing the variety and scale of synthetic business data used for agent evaluation.*
 
 
 
@@ -113,17 +101,152 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 
 ### Performance Results
 
-**Table 3: EnterpriseBench Performance Results**
+**Table 3: EnterpriseBench Evaluation - Comparison of performance across agents using different models and planning strategies with LangChain and DSPy frameworks**
 
-| Model | Search Tasks | CRUD Tasks | Overall | Cross-Domain | Efficiency |
-|-------|-------------|------------|---------|--------------|------------|
-| **GPT-4** | 78.5% | 72.3% | 75.4% | 68.9% | 3.2 steps |
-| **GPT-3.5-Turbo** | 65.2% | 58.7% | 61.9% | 52.4% | 4.1 steps |
-| **Claude-3** | 74.1% | 69.8% | 71.9% | 64.2% | 3.5 steps |
-| **Gemini-Pro** | 69.3% | 63.5% | 66.4% | 58.7% | 3.8 steps |
-| **LLaMA-2-70B** | 58.9% | 51.2% | 55.0% | 45.3% | 4.7 steps |
+<div class="performance-table">
+<table>
+<thead>
+<tr>
+<th rowspan="2"><strong>Model</strong></th>
+<th colspan="4"><strong>GPT-4 Evaluator</strong></th>
+<th colspan="4"><strong>Gemini Evaluator</strong></th>
+</tr>
+<tr>
+<th><strong>w/o Planning</strong></th>
+<th><strong>CoT</strong></th>
+<th><strong>ReAct</strong></th>
+<th style="background-color: #f0f0f0;"><strong>w/ Gold Planning</strong></th>
+<th><strong>w/o Planning</strong></th>
+<th><strong>CoT</strong></th>
+<th><strong>ReAct</strong></th>
+<th style="background-color: #f0f0f0;"><strong>w/ Gold Planning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #e6f3ff;">
+<td colspan="9"><strong>LangChain Framework</strong></td>
+</tr>
+<tr style="background-color: #f0f8ff;">
+<td><strong>GPT-4o</strong></td>
+<td>0.29</td>
+<td>0.27</td>
+<td>0.32</td>
+<td style="background-color: #f0f0f0;"><strong>0.43</strong></td>
+<td>0.27</td>
+<td>0.28</td>
+<td>0.29</td>
+<td style="background-color: #f0f0f0;">0.34</td>
+</tr>
+<tr style="background-color: #f0f8ff;">
+<td><strong>Claude-3.5-Sonnet</strong></td>
+<td>0.31</td>
+<td>0.27</td>
+<td>0.28</td>
+<td style="background-color: #f0f0f0;">0.38</td>
+<td>0.32</td>
+<td>0.30</td>
+<td>0.30</td>
+<td style="background-color: #f0f0f0;"><strong>0.41</strong></td>
+</tr>
+<tr style="background-color: #f0f8ff;">
+<td><strong>o1-mini</strong></td>
+<td>0.31</td>
+<td>0.28</td>
+<td>0.35</td>
+<td style="background-color: #f0f0f0;"><strong>0.51</strong></td>
+<td>0.28</td>
+<td>0.27</td>
+<td>0.32</td>
+<td style="background-color: #f0f0f0;">0.47</td>
+</tr>
+<tr style="background-color: #f0f8ff;">
+<td><strong>Llama-3.1-8B</strong></td>
+<td>0.04</td>
+<td>0.06</td>
+<td><strong>0.14</strong></td>
+<td style="background-color: #f0f0f0;">0.20</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.09</td>
+<td style="background-color: #f0f0f0;"><strong>0.21</strong></td>
+</tr>
+<tr style="background-color: #f0f8ff;">
+<td><strong>Llama-3.3-70B</strong></td>
+<td>0.23</td>
+<td>0.22</td>
+<td>0.21</td>
+<td style="background-color: #f0f0f0;"><strong>0.40</strong></td>
+<td>0.24</td>
+<td>0.23</td>
+<td>0.23</td>
+<td style="background-color: #f0f0f0;">0.36</td>
+</tr>
+<tr style="background-color: #e6ffe6;">
+<td colspan="9"><strong>DSPy</strong></td>
+</tr>
+<tr style="background-color: #f0fff0;">
+<td><strong>GPT-4o</strong></td>
+<td>0.19</td>
+<td>0.32</td>
+<td>0.34</td>
+<td style="background-color: #f0f0f0;"><strong>0.50</strong></td>
+<td>0.25</td>
+<td>0.26</td>
+<td>0.27</td>
+<td style="background-color: #f0f0f0;">0.47</td>
+</tr>
+<tr style="background-color: #f0fff0;">
+<td><strong>Claude-3.5-Sonnet</strong></td>
+<td>0.19</td>
+<td>0.24</td>
+<td>0.30</td>
+<td style="background-color: #f0f0f0;"><strong>0.50</strong></td>
+<td>0.21</td>
+<td>0.29</td>
+<td>0.26</td>
+<td style="background-color: #f0f0f0;">0.44</td>
+</tr>
+<tr style="background-color: #f0fff0;">
+<td><strong>o1-mini</strong></td>
+<td>0.29</td>
+<td>0.33</td>
+<td>0.38</td>
+<td style="background-color: #f0f0f0;">0.62</td>
+<td>0.27</td>
+<td>0.32</td>
+<td>0.41</td>
+<td style="background-color: #f0f0f0;"><strong>0.63</strong></td>
+</tr>
+<tr style="background-color: #f0fff0;">
+<td><strong>Llama-3.1-8B</strong></td>
+<td>0.10</td>
+<td>0.14</td>
+<td>0.16</td>
+<td style="background-color: #f0f0f0;">0.34</td>
+<td>0.10</td>
+<td>0.14</td>
+<td>0.16</td>
+<td style="background-color: #f0f0f0;"><strong>0.34</strong></td>
+</tr>
+<tr style="background-color: #f0fff0;">
+<td><strong>Llama-3.3-70B</strong></td>
+<td>0.24</td>
+<td>0.25</td>
+<td>0.28</td>
+<td style="background-color: #f0f0f0;">0.48</td>
+<td>0.24</td>
+<td>0.25</td>
+<td>0.28</td>
+<td style="background-color: #f0f0f0;"><strong>0.48</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
 
-*Performance metrics show task completion rates across different evaluation modes. Cross-Domain measures success on tasks spanning multiple enterprise departments. Efficiency indicates average steps required for task completion.*
+*Performance comparison across different LLM models using LangChain and DSPy frameworks, evaluated by GPT-4 and Gemini 2.5 Pro. Gold Planning represents the upper bound performance with optimal task planning.*
+
+![EnterpriseBench Performance Analysis](assets/images/performance_comparison.png)
+*Figure 2: Performance comparison charts showing (a) LangChain ReAct performance across different domains and (b) DSPy ReAct performance across different domains for various LLM models.*
 
 ## Interactive Demos {#demos}
 
