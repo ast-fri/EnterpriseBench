@@ -22,8 +22,8 @@ title: "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterp
       </div>
       <div class="links-section">
         <a href="https://github.com/ast-fri/EnterpriseBench" class="link-button github"><span>📄</span> GitHub</a>
-        <a href="https://huggingface.co/datasets/AST-FRI/needles-in-images" class="link-button huggingface"><span>🤗</span> Hugging Face</a>
-        <a href="https://aclanthology.org/2025.acl-long.1152/" class="link-button arxiv"><span>📚</span> Paper </a>
+        <a href="https://huggingface.co/datasets/AST-FRI/EnterpriseBench" class="link-button huggingface"><span>🤗</span> Hugging Face</a>
+        <!-- <a href="https://aclanthology.org/2025.acl-long.1152/" class="link-button arxiv"><span>📚</span> Paper </a> -->
       </div>
     </header>
   <ul>
@@ -164,11 +164,11 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 <td>0.29</td>
 <td>0.27</td>
 <td>0.32</td>
-<td style="background-color: #f0f0f0;"><strong>0.43</strong></td>
+<td style="background-color: #f0f0f0;">0.43</td>
 <td>0.27</td>
 <td>0.28</td>
 <td>0.29</td>
-<td style="background-color: #f0f0f0;">0.34</td>
+<td style="background-color: #f0f0f0;">0.44</td>
 </tr>
 <tr style="background-color: #f0f8ff;">
 <td><strong>Claude-3.5-Sonnet</strong></td>
@@ -179,14 +179,14 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 <td>0.32</td>
 <td>0.30</td>
 <td>0.30</td>
-<td style="background-color: #f0f0f0;"><strong>0.41</strong></td>
+<td style="background-color: #f0f0f0;">0.41</td>
 </tr>
 <tr style="background-color: #f0f8ff;">
 <td><strong>o1-mini</strong></td>
 <td>0.31</td>
 <td>0.28</td>
 <td>0.35</td>
-<td style="background-color: #f0f0f0;"><strong>0.51</strong></td>
+<td style="background-color: #f0f0f0;">0.51</td>
 <td>0.28</td>
 <td>0.27</td>
 <td>0.32</td>
@@ -201,14 +201,14 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 <td>0.03</td>
 <td>0.04</td>
 <td>0.09</td>
-<td style="background-color: #f0f0f0;"><strong>0.21</strong></td>
+<td style="background-color: #f0f0f0;">0.21</td>
 </tr>
 <tr style="background-color: #f0f8ff;">
 <td><strong>Llama-3.3-70B</strong></td>
 <td>0.23</td>
 <td>0.22</td>
 <td>0.21</td>
-<td style="background-color: #f0f0f0;"><strong>0.40</strong></td>
+<td style="background-color: #f0f0f0;">0.40</td>
 <td>0.24</td>
 <td>0.23</td>
 <td>0.23</td>
@@ -222,7 +222,7 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 <td>0.19</td>
 <td>0.32</td>
 <td>0.34</td>
-<td style="background-color: #f0f0f0;"><strong>0.50</strong></td>
+<td style="background-color: #f0f0f0;">0.50</td>
 <td>0.25</td>
 <td>0.26</td>
 <td>0.27</td>
@@ -233,7 +233,7 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 <td>0.19</td>
 <td>0.24</td>
 <td>0.30</td>
-<td style="background-color: #f0f0f0;"><strong>0.50</strong></td>
+<td style="background-color: #f0f0f0;">0.50</td>
 <td>0.21</td>
 <td>0.29</td>
 <td>0.26</td>
@@ -248,7 +248,7 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 <td>0.27</td>
 <td>0.32</td>
 <td>0.41</td>
-<td style="background-color: #f0f0f0;"><strong>0.63</strong></td>
+<td style="background-color: #f0f0f0;">0.63</td>
 </tr>
 <tr style="background-color: #f0fff0;">
 <td><strong>Llama-3.1-8B</strong></td>
@@ -259,7 +259,7 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 <td>0.07</td>
 <td>0.14</td>
 <td>0.16</td>
-<td style="background-color: #f0f0f0;"><strong>0.34</strong></td>
+<td style="background-color: #f0f0f0;">0.34</td>
 </tr>
 <tr style="background-color: #f0fff0;">
 <td><strong>Llama-3.3-70B</strong></td>
@@ -270,7 +270,7 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 <td>0.24</td>
 <td>0.25</td>
 <td>0.28</td>
-<td style="background-color: #f0f0f0;"><strong>0.48</strong></td>
+<td style="background-color: #f0f0f0;">0.48</td>
 </tr>
 </tbody>
 </table>
@@ -369,7 +369,7 @@ If you use EnterpriseBench in your research, please cite our work:
     booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
     month = nov,
     year = "2025",
-    address = "Suzhou, Suzhou",
+    address = "Suzhou, China",
     publisher = "Empirical Methods in Natural Language Processing",
    
 }
