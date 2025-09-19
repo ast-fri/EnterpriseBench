@@ -69,7 +69,7 @@ Enterprise environments are characterized by:
 **EnterpriseBench** addresses these gaps by providing the first comprehensive framework specifically designed for enterprise LLM agent evaluation.
 
 
-![EnterpriseBench Agent Workflow](assets/images/Workflow.png)
+![EnterpriseBench Agent Workflow](assets/images/workflow_1.png)
 *Figure 1: EnterpriseBench agent workflow showing the complete task execution process from user query through planning, execution, and task completion within the enterprise environment.*
 
 ## EnterpriseBench Framework {#framework}
