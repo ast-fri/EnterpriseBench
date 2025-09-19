@@ -9,7 +9,7 @@ title: "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterp
         <div class="author-names">
           Harsh Vishwakarma<sup>1,*</sup>,  
           Ankush Agarwal<sup>1,*</sup>,  
-          Ojas F. Patil<sup>1</sup>,  
+          Ojas Patil<sup>1</sup>,  
           Chaitanya Devaguptapu<sup>1</sup>,  
           Mahesh Chandran<sup>1</sup>
         </div>
@@ -196,7 +196,7 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 <td><strong>Llama-3.1-8B</strong></td>
 <td>0.04</td>
 <td>0.06</td>
-<td><strong>0.14</strong></td>
+<td>0.14</td>
 <td style="background-color: #f0f0f0;">0.20</td>
 <td>0.03</td>
 <td>0.04</td>
