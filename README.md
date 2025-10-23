@@ -1,10 +1,14 @@
-# 🏢 EnterpriseBench: Evaluating LLM Agents in Simulated Enterprise Environments
+# <img src="assets/images/agent.png" alt="EnterpriseBench" width="50"/> Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterprise Environments
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
 
 EnterpriseBench is a comprehensive framework designed to evaluate Large Language Model (LLM) agents within realistic enterprise environments. It provides a complete ecosystem for generating, simulating, and evaluating enterprise tasks across multiple business domains including HR, IT, Sales, Software Engineering, and Business Operations.
+
+<p align="center">
+  <img src="assets/images/workflow.png" alt="EnterpriseBench Workflow" width="800"/>
+</p>
 
 ## 🌟 Key Features
 
@@ -27,7 +31,7 @@ EnterpriseBench is a comprehensive framework designed to evaluate Large Language
 
 1. **Clone the repository**
    ```bash
-   git clone https://anonymous.4open.science/r/EnterpriseBench-87B1.git
+   git clone https://github.com/ast-fri/EnterpriseBench.git
    cd EnterpriseBench
    ```
 
@@ -39,13 +43,12 @@ EnterpriseBench is a comprehensive framework designed to evaluate Large Language
 
 3. **Install dependencies**
    ```bash
-   cd Code
    pip install -r requirements.txt
    ```
 
 4. **Configure environment variables**
    Create `.env` files in the respective demo directories with your API keys:
-   ```bash
+   ```env
    AWS_KEY=your_aws_key_here
    AWS_SECRET_KEY=your_aws_secret_key_here
    AWS_REGION=your_aws_region_here
@@ -53,71 +56,47 @@ EnterpriseBench is a comprehensive framework designed to evaluate Large Language
    api_key_azure=your_azure_api_key_here
    ```
 
-### Running the Demos
+### Running the Demo
 
-#### 🎲 Task Generation Demo
 Generate enterprise tasks dynamically across different departments:
 ```bash
-cd "Code/TaskGeneration"
+cd Task_Generation
 streamlit run task_gen_app.py
-```
-
-#### 📝 CRUD Evaluation Demo
-Evaluate LLM agents on Create, Read, Update, Delete operations:
-```bash
-cd "Code/Simulation/CrudEvaluation"
-streamlit run crud_demo.py
-```
-
-#### 🔍 Search Evaluation Demo
-Test information retrieval and analysis capabilities:
-```bash
-cd "Code/Simulation/SearchEvaluation"
-streamlit run search_demo.py
 ```
 
 ## 📁 Repository Structure
 
 ```
 EnterpriseBench/
-├── 📂 Code/                           # Implementation and demos
-│   ├── 📂 TaskGeneration/             # Automated task generation system
-│   │   ├── 📂 Access_Control/         # Department-specific access controls
-│   │   ├── 📂 Business_and_Management/# Business domain task generators
-│   │   ├── 📂 Human_Resource_Management/ # HR-specific task generation
-│   │   ├── 📂 IT_Service_Management/  # IT service task generators
-│   │   ├── 📂 Customer_Relation_Management/ # CRM task generators
-│   │   ├── 📂 Enterprise_mail_system/ # Email system task generators
-│   │   ├── 📂 Collaboration_tools/    # Collaboration task generators
-│   │   ├── 📂 Workspace/              # Software engineering tasks
-│   │   ├── 📄 task_gen_app.py         # Main Streamlit application
-│   │   └── 📄 README.md               # Task generation documentation
-│   ├── 📂 Simulation/                 # Evaluation frameworks
-│   │   ├── 📂 CrudEvaluation/         # CRUD operation evaluation
-│   │   ├── 📂 SearchEvaluation/       # Search task evaluation
-│   │   └── 📄 README.md               # Simulation documentation
-│   ├── 📄 requirements.txt            # Python dependencies
-│   └── 📄 README.md                   # Code execution guide
-├── 📂 Data/                           # Enterprise sandbox data and tasks
-│   ├── 📂 EnterpriseSandbox/          # Realistic enterprise datasets
-│   │   ├── 📂 Business_and_Management/# Business records and partnerships
-│   │   ├── 📂 Human_Resource_Management/ # Employee records and HR data
-│   │   ├── 📂 IT_Service_Management/  # IT helpdesk and incident data
-│   │   ├── 📂 Customer_Relation_Management/ # Customer support and CRM
-│   │   ├── 📂 Enterprise_mail_system/ # Internal email communications
-│   │   ├── 📂 Collaboration_tools/    # Inter-departmental communications
-│   │   ├── 📂 Enterprise Social Platform/ # Corporate social network data
-│   │   ├── 📂 Policy_Documents/       # Company policies and guidelines
-│   │   ├── 📂 Workspace/              # Software development repositories
-│   │   └── 📂 Inazuma_Overflow/       # Internal Q&A platform
-│   ├── 📂 EnterpriseTasks/            # Pre-generated evaluation tasks
-│   │   ├── 📂 Business_Operations_Management/ # Business operation tasks
-│   │   ├── 📂 HR_System/              # Human resources tasks
-│   │   ├── 📂 IT_Solutions/           # IT service and support tasks
-│   │   ├── 📂 SWE/                    # Software engineering tasks
-│   │   └── 📂 Sales/                  # Sales and customer management tasks
-│   └── 📄 README.md                   # Data documentation
-└── 📄 README.md                       # This file
+├── 📂 assets/                         # Static assets and resources
+├── 📂 Business_and_Management/        # Business records and partnerships data
+├── 📂 Collaboration_tools/            # Inter-departmental communications data
+├── 📂 Customer_Relation_Management/   # Customer support and CRM data
+├── 📂 Enterprise_mail_system/         # Internal email communications data
+├── 📂 Enterprise Social Platform/     # Corporate social network data
+├── 📂 Human_Resource_Management/      # Employee records and HR data
+├── 📂 Inazuma_Overflow/               # Internal Q&A platform data
+├── 📂 IT_Service_Management/          # IT helpdesk and incident data
+├── 📂 Policy_Documents/               # Company policies and guidelines
+├── 📂 Workspace/                      # Software development repositories
+├── 📂 Task_Generation/                # Automated task generation system
+│   ├── 📂 Config/                     # Configuration files
+│   ├── 📂 Factories/                  # Task factory implementations
+│   ├── 📂 generators/                 # Task generators for different domains
+│   ├── 📂 Processors/                 # Task processing utilities
+│   ├── 📂 utils/                      # Helper functions and utilities
+│   ├── 📄 runner.py                   # Task generation runner
+│   ├── 📄 task_gen_app.py             # Streamlit application
+│   ├── 📄 tasks.json                  # Generated tasks (JSON format)
+│   └── 📄 tasks.jsonl                 # Generated tasks (JSONL format)
+├── 📂 _layouts/                       # Jekyll layout templates
+├── 📄 _config.yml                     # Jekyll configuration
+├── 📄 BLOG_README.md                  # Blog documentation
+├── 📄 Gemfile                         # Ruby dependencies
+├── 📄 index.md                        # Main index page
+├── 📄 LICENSE                         # License file
+├── 📄 README.md                       # This file
+└── 📄 test.ipynb                      # Testing notebook
 ```
 
 ## 🎯 Use Cases
@@ -168,13 +147,14 @@ EnterpriseBench/
 
 ## 🤝 Contributing
 
-We welcome contributions to EnterpriseBench! Please see our contributing guidelines for more information on how to:
+We welcome contributions to EnterpriseBench! Here's how you can help:
 
-- Report bugs and request features
-- Submit code improvements
-- Add new enterprise domains
-- Enhance evaluation metrics
-- Improve documentation
+- **Report bugs**: Open an issue describing the bug and how to reproduce it
+- **Request features**: Suggest new features or improvements via issues
+- **Submit pull requests**: Contribute code improvements, new domains, or enhanced metrics
+- **Improve documentation**: Help us make the docs clearer and more comprehensive
+
+Please ensure your contributions align with our coding standards and include appropriate tests.
 
 ## 📄 License
 
@@ -190,9 +170,31 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For questions, issues, or collaboration opportunities:
 
-- 📧 Create an issue in this repository
+- 📧 [Open an issue](https://github.com/ast-fri/EnterpriseBench/issues) in this repository
 - 💬 Join our community discussions
 - 📖 Check the detailed documentation in each component's README
+
+## 🔗 Links
+
+- **Repository**: [https://github.com/ast-fri/EnterpriseBench](https://github.com/ast-fri/EnterpriseBench)
+- **Documentation**: See README files in individual component directories
+- **Issues & Feedback**: [GitHub Issues](https://github.com/ast-fri/EnterpriseBench/issues)
+
+## 📝 Citation
+
+If you use EnterpriseBench in your research, please cite our paper:
+
+```bibtex
+@inproceedings{vishwakarma2025enterprisebench,
+  title = "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterprise Environments",
+  author = "Vishwakarma, Harsh and Agarwal, Ankush and Ojas, F, Patil and Devaguptapu, Chaitanya and Chandran, Mahesh",
+  booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+  month = nov,
+  year = "2025",
+  address = "Suzhou, China",
+  publisher = "Empirical Methods in Natural Language Processing"
+}
+```
 
 ---
 
