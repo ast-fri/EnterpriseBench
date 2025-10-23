@@ -1,0 +1,14 @@
+{
+  "source_paths": {
+    "Sales": "Customer_Relation_Management/sales.json",
+    "Product Sentiment": "Customer_Relation_Management/Product Sentiment/product_sentiment.json"
+  },
+  "goal_templates": [
+      "Retrieve the price, discount, and rating for [Product ID or Product Name].",
+      "How many customers reviewed thr product [Product Name]",
+      "Did Customer [Customer Name] liked the product [Product Name]",
+      "Fetch details (id, name, price, description) of [Product ID or Product Name] with the highest customer reviews.",
+      "List customers who reviewed [Product ID or Product Name] along with their feedback sentiment.",
+      "Verify if [Product ID or Product Name] has any positive reviews. (YES/NO)"
+  ]
+}

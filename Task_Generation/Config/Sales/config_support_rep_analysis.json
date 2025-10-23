@@ -1,0 +1,13 @@
+{
+    "source_paths": {
+      "Customer Support Chats": "Customer_Relation_Management/Customer Support/customer_support_chats.json"
+    },
+    "goal_templates":
+    [
+       "Fetch all solutions offered by support representative [Employee ID] to a customer [Customer ID]",
+      "Verify if support representative [Employee ID] proposed a replacement for [Product ID or Product Name] to customer [Customer ID or Customer Name]",
+      "Check if support representative [Employee ID] proposed a refund for [Product ID or Product Name] to customer [Customer ID or Customer Name]",
+      "What guidance was provided by support representative [Employee ID] for [Product ID or Product Name] to customer [Customer ID or Customer Name]?",
+      "Obtain the outcomes (e.g., replacement, advice) for all support interactions managed by [Employee ID]."
+    ] 
+  }

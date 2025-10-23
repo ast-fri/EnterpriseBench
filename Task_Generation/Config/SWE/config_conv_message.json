@@ -1,0 +1,10 @@
+{
+    "source_paths": {
+        "Conversations": "Collaboration_tools/conversations.json",
+      "Employee Data": "Human_Resource_Management/Employees/employees.json",
+      "GitHub": "Workspace/GitHub/GitHub.json"
+    },
+    "goal_templates": [
+      "Send a message[conversation details] to [recipient details] regarding [Conversation topic]."
+    ]
+}

@@ -1,0 +1,3509 @@
+import logging
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+
+class Utils:
+    def __init__(self, task_domain, task_category):
+        self.task_domain = task_domain
+        self.task_category = task_category
+        return
+    def get_ids(self):
+        task = {
+            "hr": {
+                "employees":["emp_0653","emp_1136","emp_0370","emp_0436","emp_0990","emp_0050","emp_0177","emp_0724","emp_0504","emp_0333","emp_0094","emp_1180","emp_0585","emp_0881","emp_0077","emp_0726","emp_0498","emp_1018","emp_0424","emp_0034","emp_0018","emp_0671","emp_0724","emp_0689","emp_1048","emp_0262","emp_0750","emp_1143","emp_0688","emp_0389","emp_1177",
+            ],
+                "conv":  ['emp_0761', 'emp_0248', 'emp_0922', 'emp_0731', 'emp_0542', 'emp_1251', 'emp_0545', 'emp_0923', 'emp_0041', 'emp_0139', 'emp_0656', 'emp_1115', 'emp_0152', 'emp_0372', 'emp_0041', 'emp_0545', 'emp_0787', 'emp_1134', 'emp_0410', 'emp_0785', "emp_0653", "emp_1136", "emp_0370", "emp_0244", "emp_0809", "emp_0369", "emp_1225", "emp_0962", "emp_0524" "emp_0566", "emp_0199", "emp_1225","emp_1134", "emp_1225","emp_0629", "emp_0407","emp_0152", "emp_1087","emp_0566", "emp_0199"]
+                },
+            "it": {
+                "tickets": ["emp_0436","emp_0990","emp_0050","emp_0183","emp_0536","emp_0760","emp_1024","emp_0089","emp_0389","emp_0555","emp_0990","emp_0441","emp_0325","emp_0462","emp_1048","emp_0262","emp_0750","emp_1143","emp_0688","emp_0389","emp_1177",
+            ],
+                "conv":['emp_0875', 'emp_0842', 'emp_0870', 'emp_0325', 'emp_0954', 'emp_0171', 'emp_0093', 'emp_1108', 'emp_0779', 'emp_0618', 'emp_0335', 'emp_0325', 'emp_1177', 'emp_0523', 'emp_0560', 'emp_0096', 'emp_0380', 'emp_0594', 'emp_1239', 'emp_0797', "emp_0436", "emp_0990","emp_0050", "emp_0821","emp_0441", "emp_0026","emp_1119", "emp_0908","emp_0325", "emp_0038","emp_0389", "emp_1177","emp_1143", "emp_0688","emp_0262", "emp_0750","emp_0462", "emp_1048","emp_0441", "emp_0325"]
+                },
+            "sales": {
+                "conv": [ "emp_0177", "emp_0724",
+                "emp_0504", "emp_1063",
+                "emp_0459", "emp_0689",
+                "emp_0296", "emp_0459",
+                "emp_0934", "emp_0896",
+                "emp_0056", "emp_0671",
+                "emp_0724", "emp_0285",
+                "emp_1038", "emp_0459",
+                "emp_1248", "emp_0599",
+                "emp_0459", "emp_0847"],
+                "support":["emp_0726","emp_0498","emp_1018","emp_0035","emp_0256","emp_0599","emp_0896","emp_0177","emp_0751","emp_0764","emp_0042","emp_0285","emp_0728","emp_0935","emp_0424","emp_0034","emp_0018","emp_0671","emp_0724","emp_0689",
+            ],
+                 "products": ["B07JW9H4J1","B098NS6PVG","B096MSW6CT","B08CF3B7N1","B08WRWPM22","B0B1YVCJ2Y","B09F6S8BT6","B08DCVRW98","B07YZG8PPY","B0BLV1GNLN","B0811VCGL5","B08C7TYHPB","B07SYYVP69","B0BDZWMGZ1","B078JT7LTD","B09WF4Q7B3","B00KIDSU8S","B0977CGNJJ","B015GX9Y0W",
+            ],
+                 "customers":["arout","anatr","furib","hilaa","savea","dumon","anton","hungo","hanar","quede","quick","bottm","welli","bergs","seves","lonep","queen","dracd","ottik","merep",
+            ]
+                 },
+            "manag": 
+                {"conv":["emp_0333","emp_0094","emp_1180","emp_0609","emp_0360","emp_0828","emp_0612","emp_0828","emp_0845","emp_0099",
+            ]
+                 },
+            "swe": 
+                {"github": ["emp_0569","emp_0883","emp_0535","emp_0813","emp_0515","emp_0461","emp_0850","emp_0776","emp_0236","emp_0843","emp_0430","emp_0978","emp_0008","emp_1069","emp_0930","emp_0475","emp_0863","emp_0111","emp_1102","emp_0350","emp_1078","emp_1106","emp_0646","emp_0610",
+            ], 
+                 "conv": ['emp_1064', 'emp_0728', 'emp_0238', 'emp_0212', 'emp_1250', 'emp_0784', 'emp_0225', 'emp_0519', 'emp_0407', 'emp_0906', 'emp_0066', 'emp_0109', 'emp_0766', 'emp_0302', 'emp_0409', 'emp_0911', 'emp_0012', 'emp_1110', 'emp_0691', 'emp_0342', "emp_0585", "emp_0881","emp_0077", "emp_0503","emp_1147", "emp_1078","emp_0543", "emp_0390","emp_0308", "emp_0827","emp_0127", "emp_0996","emp_0933", "emp_0642","emp_0280", "emp_0921","emp_0397", "emp_0726","emp_0441", "emp_0617"]},
+        }
+        items = task[self.task_domain][self.task_category]
+        result = []
+        
+        # For sales["product"] and sales["customer"], assign emp_id from sales["support"] by index
+        if self.task_domain == "sales" and self.task_category in ("products", "customers"):
+            support_ids = task["sales"]["support"]
+            for idx, id_value in enumerate(items):
+                emp_id = support_ids[idx] if idx < len(support_ids) else None  # Handle length mismatch
+                result.append({"id": id_value, "emp_id": emp_id})
+        else:
+            # For other categories: id = emp_id
+            for id_value in items:
+                result.append({"id": id_value, "emp_id": id_value})
+        return result
+    def get_tools(self):
+        mapping = {
+            "swe": {"github": self.get_swe_github_search_tools,"conv":self.get_swe_conversation_tools },
+            "sales": {"conv":self.get_sales_conversation_tools, "products": self.get_product_sales_tools, "customers": self.get_customer_tools, "support": self.get_support_rep_tools},
+            "hr": {"conv": self.get_hr_conversation_tools, "employees": self.get_employee_search_tools},
+            "it": {"conv": self.get_it_solutions_conversation_tools, "tickets": self.get_it_solutions_search_tools},
+            "manag": {"conv": self.get_business_operations_conversation_tools},
+            "doc": {"doc": self.get_doc_analysis_tools}
+        }
+        return mapping[self.task_domain][self.task_category]
+    def get_doc_analysis_tools(self):
+        return {
+            "name": "get_filtered_context()",
+            "description": "Applies filters to HR policy documents and provides structured, searchable outputs per document.",
+            "arguments": ["document_id (unique policy document identifier)"]
+        }
+    def get_swe_github_search_tools(self):
+        return [
+           {
+                "name": "fetch_employee_record",
+                "description": "Fetch employee data by various identifiers .",
+                "arguments": ["emp_id=None", "Name=None", "email=None", "category=None"],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee this employee reports to.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization, if applicable.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            },
+            {
+                "name": "llm",
+                "description": "Call the LLM to generate the arguments of tool calls",
+                "arguments": ["prompt"],
+                "return_type": "LLM output"
+            },
+            {
+                "name": "github_list_my_repositories",
+                "description": "Lists all GitHub repositories accessible to an employee.",
+                "arguments": ["emp_id"],
+                "return_type": {
+                    "repositories": [
+                        {
+                            "repo_name": "Name of the GitHub repository.",
+                            "creation_date": "Creation date of the repository.",
+                            "emp_id": "Employee ID of the repository owner.",
+                            "license": "License associated with the repository."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "github_list_issues_of_repository",
+                "description": "Lists all issues for a specified GitHub repository.",
+                "arguments": ["repo_name"],
+                "return_type": {
+                    "issues": [
+                        {
+                            "id": "Issue ID.",
+                            "title": "Title of the Issue.",
+                            "description": "Detailed description of the Issue.",
+                            "status": "Status of the issue (open/close).",
+                            "created_at": "Creation date of the Issue.",
+                            "patch": "Git diff patch to be applied on original repository code."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "github_create_repository",
+                "description": "Creates a new GitHub repository entry with specified metadata. Use llm tool to create the arguments only if not present",
+                "arguments": ["repo_name", "emp_id", "license=None", "creation_date=None"],
+                "return_type": {
+                    "repo_name": "Name of the newly created GitHub repository.",
+                    "emp_id": "Employee ID of the repository owner.",
+                    "license": "License associated with the repository.",
+                    "creation_date": "Creation date of the repository."
+                }
+            },
+            {
+                "name": "github_create_issue",
+                "description": "Creates a new issue in a specified GitHub repository. Use llm tool to create the arguments only if not present",
+                "arguments": ["repo_name", "id", "title", "description", "status", "created_at", "patch"],
+                "return_type": {
+                    "id": "ID of the created issue.",
+                    "repo_name": "Repository where the issue was created.",
+                    "title": "Title of the issue.",
+                    "description": "Detailed description of the issue.",
+                    "status": "Status of the issue (open/close).",
+                    "created_at": "Creation date of the issue.",
+                    "patch": "Git diff patch for the issue."
+                }
+            },
+            {
+                "name": "github_get_issue",
+                "description": "Retrieves details for a specific issue identified by issue ID within a repository. ",
+                "arguments": ["repo_name", "id"],
+                "return_type": {
+                    "id": "Issue ID.",
+                    "repo_name": "Repository name.",
+                    "title": "Title of the issue.",
+                    "description": "Detailed description of the issue.",
+                    "status": "Status of the issue (open/close).",
+                    "created_at": "Creation date of the issue.",
+                    "patch": "Git diff patch for the issue."
+                }
+            },
+            {
+                "name": "github_update_repository",
+                "description": "Updates metadata for an existing GitHub repository. Use llm tool to create the arguments only if not present",
+                "arguments": ["repo_name", "emp_id", "license=None", "creation_date=None"],
+                "return_type": {
+                    "repo_name": "Name of the updated GitHub repository.",
+                    "emp_id": "Employee ID associated with the repository.",
+                    "license": "Updated license for the repository.",
+                    "creation_date": "Updated creation date of the repository."
+                }
+            },
+            {
+                "name": "github_delete_repository",
+                "description": "Deletes a GitHub repository if access rights are verified.",
+                "arguments": ["repo_name", "emp_id"],
+                "return_type": {
+                    "success": "Boolean indicating if the repository was successfully deleted.",
+                    "repo_name": "Name of the deleted repository."
+                }
+            },
+            {
+                "name": "github_update_issue",
+                "description": "Updates an existing issue's details. Use llm tool to create the arguments only if not present",
+                "arguments": ["repo_name", "id", "title=None", "description=None", "status=None", "patch=None"],
+                "return_type": {
+                    "id": "ID of the updated issue.",
+                    "repo_name": "Repository name.",
+                    "title": "Updated title of the issue.",
+                    "description": "Updated description of the issue.",
+                    "status": "Updated status of the issue.",
+                    "patch": "Updated git diff patch for the issue."
+                }
+            },
+            {
+                "name": "github_delete_issue",
+                "description": "Deletes an issue in a repository if permissions allow.",
+                "arguments": ["repo_name", "id"],
+                "return_type": {
+                    "success": "Boolean indicating if the issue was successfully deleted.",
+                    "id": "ID of the deleted issue.",
+                    "repo_name": "Name of the repository containing the issue."
+                }
+            },
+            {
+                "name": "github_get_repository_contents",
+                "description": "Retrieves the files and metadata inside a specified GitHub repository.",
+                "arguments": ["repo_name", "path=None"],
+                "return_type": {
+                    "repo_name": "Name of the repository.",
+                    "path": "Path within the repository.",
+                    "copies": "Number of copies of the file.",
+                    "size": "Size of the file.",
+                    "code": "Content of the file.",
+                    "license": "License associated with the file or repository.",
+                    "hash": "Hash of the file content.",
+                    "language": "Programming language of the code files.",
+                    "emp_id": "Employee ID of the repository owner.",
+                    "creation_date": "Creation date of the repository."
+                }
+            },
+            {
+                "name": "send_message",
+                "description": "Initiate a new conversation thread between emp1 and emp2 within the software engineering team if the conversation ID does not already exist. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_emp_id", "recipient_emp_id", "conversation_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                   
+                    "sender_emp_id": "Employee ID of employee 1",
+                    "recipient_emp_id": "Employee ID of employee 2",
+                    "category": "Department category of the employees (e.g., Engineering, Finance, Management, Sales).",
+                    "date": "Date of the conversation"
+                    ,
+                    "text": "Modified content of the conversation protecting privacy."
+                }
+            },
+            
+            {
+                "name": "edit_message",
+                "description": "Update the content of an existing conversation entry if it exists between emp1 and emp2 within the software engineering team. Use llm tool to create the arguments only if not present",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                  
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "delete_message",
+                "description": "Delete an existing conversation entry between emp1 and emp2 if authorized and datasource is valid.",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "list_conversation_ids_between_employees",
+                "description": "Fetches all conversation IDs for conversations that exist between two employees.",
+                "arguments": ["sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_ids": [
+                        "List of unique conversation IDs representing all conversations between the two employees."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_conversation_by_id",
+                "description": "Retrieves the full conversation data based on a unique conversation ID, verifying access permissions.",
+                "arguments": ["conversation_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for the conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content preserving privacy."
+                }
+            },
+            {
+                "name": "read_email",
+                "description": "Reads a specific email in a thread based on the unique email_id.",
+                "arguments": ["email_id"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email (e.g., High).",
+                    "category": "Category of the email (e.g., INTERNAL).",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "create_email",
+                "description": "Creates a new email message, generating unique email and thread IDs, validating participants, and storing the email with proper metadata. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "sender_name", "recipient_email", "recipient_name", "date=''", "subject=''", "body=''", "importance='Normal'", "category='INTERNAL'", "signature=''", "confidentiality_notice=''"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "update_email",
+                "description": "Updates an existing email message’s subject, body, importance, category, signature, or confidentiality notice after verifying user authorization. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None", "subject=None", "body=None", "importance=None", "category=None", "signature=None", "confidentiality_notice=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "delete_email",
+                "description": "Deletes an email message by sender or recipient after verifying participation and permissions based on email ID and optionally thread ID.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "list_my_email_threads",
+                "description": "Lists all email threads for a given user's email address, optionally filtered by a date range or importance.",
+                "arguments": ["emp_id", "start_date=None", "end_date=None", "importance=None"],
+                "return_type": {
+                    "threads": [
+                        {
+                            "thread_id": "Unique identifier for the email thread.",
+                            "subject": "Subject line of the latest email in the thread.",
+                            "last_email_date": "Date and time of the most recent email in the thread.",
+                            "email_count": "Number of emails in the thread."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_thread_ids_between_sender_recipient",
+                "description": "Reads all thread IDs existing between a particular sender email and recipient email.",
+                "arguments": ["sender_email", "recipient_email"],
+                "return_type": {
+                    "thread_ids": [
+                        "List of unique thread IDs representing email conversations between the sender and recipient."
+                    ]
+                }
+            },
+            {
+                "name": "list_email_ids_in_thread",
+                "description": "Reads all email IDs belonging to a specific email thread using unique thread_id.",
+                "arguments": ["thread_id"],
+                "return_type": {
+                    "email_ids": [
+                        "List of unique email IDs contained in the specified thread."
+                    ]
+                }
+            }
+        ]
+    def get_swe_conversation_tools(self):
+        return [
+            {
+                "name": "llm",
+                "description": "Call the LLM to generate the contents only for create tasks",
+                "arguments": ["prompt"],
+                "return_type": "LLM output"
+            },
+            {
+                "name": "send_message",
+                "description": "Initiate a new conversation thread between emp1 and emp2 within the software engineering team if the conversation ID does not already exist. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_emp_id", "recipient_emp_id", "conversation_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees (e.g., Engineering, Finance, Management, Sales).",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified content of the conversation protecting privacy."
+                }
+            },
+            
+            {
+                "name": "edit_message",
+                "description": "Update the content of an existing conversation entry if it exists between emp1 and emp2 within the software engineering team. Use llm tool to create the arguments only if not present",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "delete_message",
+                "description": "Delete an existing conversation entry between emp1 and emp2 if authorized and datasource is valid.",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "list_conversation_ids_between_employees",
+                "description": "Fetches all conversation IDs for conversations that exist between two employees.",
+                "arguments": ["sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_ids": [
+                        "List of unique conversation IDs representing all conversations between the two employees."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_conversation_by_id",
+                "description": "Retrieves the full conversation data based on a unique conversation ID, verifying access permissions.",
+                "arguments": ["conversation_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for the conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content preserving privacy."
+                }
+            },
+            {
+                "name": "read_email",
+                "description": "Reads a specific email in a thread based on the unique email_id.",
+                "arguments": ["email_id"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email (e.g., High).",
+                    "category": "Category of the email (e.g., INTERNAL).",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "create_email",
+                "description": "Creates a new email message, generating unique email and thread IDs, validating participants, and storing the email with proper metadata. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "sender_name", "recipient_email", "recipient_name", "date=''", "subject=''", "body=''", "importance='Normal'", "category='INTERNAL'", "signature=''", "confidentiality_notice=''"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "update_email",
+                "description": "Updates an existing email message’s subject, body, importance, category, signature, or confidentiality notice after verifying user authorization. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None", "subject=None", "body=None", "importance=None", "category=None", "signature=None", "confidentiality_notice=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "delete_email",
+                "description": "Deletes an email message by sender or recipient after verifying participation and permissions based on email ID and optionally thread ID.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "list_my_email_threads",
+                "description": "Lists all email threads for a given user's email address, optionally filtered by a date range or importance.",
+                "arguments": ["emp_id", "start_date=None", "end_date=None", "importance=None"],
+                "return_type": {
+                    "threads": [
+                        {
+                            "thread_id": "Unique identifier for the email thread.",
+                            "subject": "Subject line of the latest email in the thread.",
+                            "last_email_date": "Date and time of the most recent email in the thread.",
+                            "email_count": "Number of emails in the thread."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_thread_ids_between_sender_recipient",
+                "description": "Reads all thread IDs existing between a particular sender email and recipient email.",
+                "arguments": ["sender_email", "recipient_email"],
+                "return_type": {
+                    "thread_ids": [
+                        "List of unique thread IDs representing email conversations between the sender and recipient."
+                    ]
+                }
+            },
+            {
+                "name": "list_email_ids_in_thread",
+                "description": "Reads all email IDs belonging to a specific email thread using unique thread_id.",
+                "arguments": ["thread_id"],
+                "return_type": {
+                    "email_ids": [
+                        "List of unique email IDs contained in the specified thread."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_employee_record",
+                "description": "Fetch employee data by various identifiers .",
+                "arguments": ["emp_id=None", "Name=None", "email=None", "category=None"],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee this employee reports to.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization, if applicable.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            },
+            {
+                "name": "github_list_my_repositories",
+                "description": "Lists all GitHub repositories accessible to an employee.",
+                "arguments": ["emp_id"],
+                "return_type": {
+                    "repositories": [
+                        {
+                            "repo_name": "Name of the GitHub repository.",
+                            "creation_date": "Creation date of the repository.",
+                            "emp_id": "Employee ID of the repository owner.",
+                            "license": "License associated with the repository."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "github_list_issues_of_repository",
+                "description": "Lists all issues for a specified GitHub repository.",
+                "arguments": ["repo_name"],
+                "return_type": {
+                    "issues": [
+                        {
+                            "id": "Issue ID.",
+                            "title": "Title of the Issue.",
+                            "description": "Detailed description of the Issue.",
+                            "status": "Status of the issue (open/close).",
+                            "created_at": "Creation date of the Issue.",
+                            "patch": "Git diff patch to be applied on original repository code."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "github_create_repository",
+                "description": "Creates a new GitHub repository entry with specified metadata. Use llm tool to create the arguments only if not present",
+                "arguments": ["repo_name", "emp_id", "license=None", "creation_date=None"],
+                "return_type": {
+                    "repo_name": "Name of the newly created GitHub repository.",
+                    "emp_id": "Employee ID of the repository owner.",
+                    "license": "License associated with the repository.",
+                    "creation_date": "Creation date of the repository."
+                }
+            },
+            {
+                "name": "github_create_issue",
+                "description": "Creates a new issue in a specified GitHub repository. Use llm tool to create the arguments only if not present",
+                "arguments": ["repo_name", "id", "title", "description", "status", "created_at"],
+                "return_type": {
+                    "id": "ID of the created issue.",
+                    "repo_name": "Repository where the issue was created.",
+                    "title": "Title of the issue.",
+                    "description": "Detailed description of the issue.",
+                    "status": "Status of the issue (open/close).",
+                    "created_at": "Creation date of the issue.",
+                    "patch": "Git diff patch for the issue."
+                }
+            },
+            {
+                "name": "github_get_issue",
+                "description": "Retrieves details for a specific issue identified by issue ID within a repository.",
+                "arguments": ["repo_name", "id"],
+                "return_type": {
+                    "id": "Issue ID.",
+                    "repo_name": "Repository name.",
+                    "title": "Title of the issue.",
+                    "description": "Detailed description of the issue.",
+                    "status": "Status of the issue (open/close).",
+                    "created_at": "Creation date of the issue.",
+                    "patch": "Git diff patch for the issue."
+                }
+            },
+            {
+                "name": "github_update_repository",
+                "description": "Updates metadata for an existing GitHub repository. Use llm tool to create the arguments only if not present",
+                "arguments": ["repo_name", "emp_id", "license=None", "creation_date=None"],
+                "return_type": {
+                    "repo_name": "Name of the updated GitHub repository.",
+                    "emp_id": "Employee ID associated with the repository.",
+                    "license": "Updated license for the repository.",
+                    "creation_date": "Updated creation date of the repository."
+                }
+            },
+            {
+                "name": "github_delete_repository",
+                "description": "Deletes a GitHub repository if access rights are verified.",
+                "arguments": ["repo_name", "emp_id"],
+                "return_type": {
+                    "success": "Boolean indicating if the repository was successfully deleted.",
+                    "repo_name": "Name of the deleted repository."
+                }
+            },
+            {
+                "name": "github_update_issue",
+                "description": "Updates an existing issue's details. Use llm tool to create the arguments only if not present",
+                "arguments": ["repo_name", "id", "title=None", "description=None", "status=None"],
+                "return_type": {
+                    "id": "ID of the updated issue.",
+                    "repo_name": "Repository name.",
+                    "title": "Updated title of the issue.",
+                    "description": "Updated description of the issue.",
+                    "status": "Updated status of the issue.",
+                    "patch": "Updated git diff patch for the issue."
+                }
+            },
+            {
+                "name": "github_delete_issue",
+                "description": "Deletes an issue in a repository if permissions allow.",
+                "arguments": ["repo_name", "id"],
+                "return_type": {
+                    "success": "Boolean indicating if the issue was successfully deleted.",
+                    "id": "ID of the deleted issue.",
+                    "repo_name": "Name of the repository containing the issue."
+                }
+            },
+            {
+                "name": "github_get_repository_contents",
+                "description": "Retrieves the files and metadata inside a specified GitHub repository.",
+                "arguments": ["repo_name", "path=None"],
+                "return_type": {
+                    "repo_name": "Name of the repository.",
+                    "path": "Path within the repository.",
+                    "copies": "Number of copies of the file.",
+                    "size": "Size of the file.",
+                    "code": "Content of the file.",
+                    "license": "License associated with the file or repository.",
+                    "hash": "Hash of the file content.",
+                    "language": "Programming language of the code files.",
+                    "emp_id": "Employee ID of the repository owner.",
+                    "creation_date": "Creation date of the repository."
+                }
+            }
+        ]
+    def get_support_rep_tools(self):
+        return [
+            {
+                "name": "fetch_employee_record",
+                "description": "Fetch employee data by various identifiers .",
+                "arguments": ["emp_id=None", "Name=None", "email=None", "category=None"],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee this employee reports to.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization, if applicable.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            },
+            {
+                "name": "llm",
+                "description": "Call the LLM to generate the contents only for create tasks",
+                "arguments": ["prompt"],
+                "return_type": "LLM output"
+            },
+            {
+                "name": "read_customer_support_chat",
+                "description": "Reads customer support chat data between employee and customer based on unique chat id.",
+                "arguments": ["chat_id","emp_id", "product_id=None", "customer_id=None"],
+                "return_type": {
+                    "chat_id": "Unique identifier for the support chat.",
+                    "product_id": "Unique product identifier.",
+                    "product_name": "Name of the product.",
+                    "customer_name": "Customer name.",
+                    "customer_id": "Unique customer identifier.",
+                    "emp_id": "Employee ID or support representative name.",
+                    "text": "Content of support conversation.",
+                    "interaction_date": "Date of the conversation."
+                }
+            },
+            {
+                "name": "create_customer_support_chat",
+                "description": "Records a new support interaction entry with associated employee, product, and customer details. Use llm tool to create the arguments only if not present",
+                "arguments": ["chat_id","emp_id", "product_id", "customer_id", "text", "interaction_date=''"],
+                "return_type": {
+                    "chat_id": "Unique identifier for the support chat.",
+                    "product_id": "Unique product ID.",
+                    "product_name": "Product name.",
+                    "customer_name": "Customer name.",
+                    "customer_id": "Customer ID.",
+                    "emp_id": "Support employee ID.",
+                    "text": "Support chat content.",
+                    "interaction_date": "Date of interaction."
+                }
+            },
+            {
+                "name": "update_customer_support_chat",
+                "description": "Updates an existing support chat record ensuring validity and access controls. Use llm tool to create the arguments only if not present",
+                "arguments": ["chat_id","emp_id", "product_id", "customer_id", "text", "interaction_date=''"],
+                "return_type": {
+                     "chat_id": "Unique identifier for the support chat.",
+                    "product_id": "Product ID.",
+                    "product_name": "Product name.",
+                    "customer_name": "Customer name.",
+                    "customer_id": "Customer ID.",
+                    "emp_id": "Employee ID.",
+                    "text": "Updated support content.",
+                    "interaction_date": "Updated interaction date."
+                }
+            },
+            {
+                "name": "delete_customer_support_chat",
+                "description": "Deletes a customer support chat record after verifying permissions.",
+                "arguments": ["chat_id","emp_id", "product_id", "customer_id"],
+                "return_type": {
+                    "chat_id": "Unique identifier for the support chat.",
+                    "product_id": "Product ID.",
+                    "product_name": "Product name.",
+                    "customer_name": "Customer name.",
+                    "customer_id": "Customer ID.",
+                    "emp_id": "Employee ID.",
+                    "text": "Deleted chat content.",
+                    "interaction_date": "Interaction date."
+                }
+            },
+            {
+                "name": "read_my_crm_chats",
+                "description": "Lists chat IDs handled by the employee with optional filters like date range.",
+                "arguments": ["emp_id", "start_date=None", "end_date=None"],
+                "return_type": {
+                    "chat_ids": [
+                        "List of unique chat message IDs handled by the employee."
+                    ]
+                }
+            },
+            {
+                "name": "list_customer_support_chats_by_product",
+                "description": "Lists customer support chat summaries filtered by product with essential details.",
+                "arguments": ["emp_id", "product_id", "start_date=None", "end_date=None"],
+                "return_type": {
+                    "chats": [
+                        {
+                            "chat_id": "Unique chat message ID.",
+                            "customer_id": "Customer unique identifier.",
+                            "customer_name": "Customer name.",
+                            "emp_id": "Employee handling the chat.",
+                            "interaction_date": "Date of chat interaction."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_customer_support_chats_by_customer",
+                "description": "Lists customer support chat summaries filtered by customer with key details.",
+                "arguments": ["emp_id", "customer_id", "start_date=None", "end_date=None"],
+                "return_type": {
+                    "chats": [
+                        {
+                            "chat_id": "Unique chat message ID.",
+                            "product_id": "Product associated with the chat.",
+                            "product_name": "Product name.",
+                            "emp_id": "Employee handling the chat.",
+                            "interaction_date": "Date of chat interaction."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "send_message",
+                "description": "Initiate a new conversation thread between emp1 and emp2 within the software engineering team if the conversation ID does not already exist. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_emp_id", "recipient_emp_id", "conversation_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees (e.g., Engineering, Finance, Management, Sales).",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified content of the conversation protecting privacy."
+                }
+            },
+            
+            {
+                "name": "edit_message",
+                "description": "Update the content of an existing conversation entry if it exists between emp1 and emp2 within the software engineering team. Use llm tool to create the arguments only if not present",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "delete_message",
+                "description": "Delete an existing conversation entry between emp1 and emp2 if authorized and datasource is valid.",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "list_conversation_ids_between_employees",
+                "description": "Fetches all conversation IDs for conversations that exist between two employees.",
+                "arguments": ["sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_ids": [
+                        "List of unique conversation IDs representing all conversations between the two employees."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_conversation_by_id",
+                "description": "Retrieves the full conversation data based on a unique conversation ID, verifying access permissions.",
+                "arguments": ["conversation_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for the conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content preserving privacy."
+                }
+            },
+            {
+                "name": "read_email",
+                "description": "Reads a specific email in a thread based on the unique email_id.",
+                "arguments": ["email_id"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email (e.g., High).",
+                    "category": "Category of the email (e.g., INTERNAL).",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "create_email",
+                "description": "Creates a new email message, generating unique email and thread IDs, validating participants, and storing the email with proper metadata. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "sender_name", "recipient_email", "recipient_name", "date=''", "subject=''", "body=''", "importance='Normal'", "category='INTERNAL'", "signature=''", "confidentiality_notice=''"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "update_email",
+                "description": "Updates an existing email message’s subject, body, importance, category, signature, or confidentiality notice after verifying user authorization. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None", "subject=None", "body=None", "importance=None", "category=None", "signature=None", "confidentiality_notice=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "delete_email",
+                "description": "Deletes an email message by sender or recipient after verifying participation and permissions based on email ID and optionally thread ID.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "list_my_email_threads",
+                "description": "Lists all email threads for a given user's email address, optionally filtered by a date range or importance.",
+                "arguments": ["emp_id", "start_date=None", "end_date=None", "importance=None"],
+                "return_type": {
+                    "threads": [
+                        {
+                            "thread_id": "Unique identifier for the email thread.",
+                            "subject": "Subject line of the latest email in the thread.",
+                            "last_email_date": "Date and time of the most recent email in the thread.",
+                            "email_count": "Number of emails in the thread."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_thread_ids_between_sender_recipient",
+                "description": "Reads all thread IDs existing between a particular sender email and recipient email.",
+                "arguments": ["sender_email", "recipient_email"],
+                "return_type": {
+                    "thread_ids": [
+                        "List of unique thread IDs representing email conversations between the sender and recipient."
+                    ]
+                }
+            },
+            {
+                "name": "list_email_ids_in_thread",
+                "description": "Reads all email IDs belonging to a specific email thread using unique thread_id.",
+                "arguments": ["thread_id"],
+                "return_type": {
+                    "email_ids": [
+                        "List of unique email IDs contained in the specified thread."
+                    ]
+                }
+            }
+        ]
+    def get_product_sales_tools(self):
+        return [
+            
+            {
+                "name": "llm",
+                "description": "Call the LLM to generate the contents only for create tasks",
+                "arguments": ["prompt"],
+                "return_type": "LLM output"
+            },
+            {
+                "name": "create_product",
+                "description": "Creates a new product entry if the product ID doesn't already exist and employee has the required access level. Use llm tool to create the arguments only if not present",
+                "arguments": ["product_id", "product_name", "category", "discounted_price", "actual_price", "rating", "about_product"],
+                "return_type": {
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of the product.",
+                    "discounted_price": "Discounted price of the product.",
+                    "actual_price": "Actual price of the product.",
+                    "rating": "Average customer rating of the product.",
+                    "about_product": "Description of the product."
+                }
+            },
+            {
+                "name": "get_product",
+                "description": "Reads and displays product details based on product ID  if access is allowed.",
+                "arguments": ["product_id"],
+                "return_type": {
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of the product.",
+                    "discounted_price": "Discounted price of the product.",
+                    "actual_price": "Actual price of the product.",
+                    "rating": "Average customer rating of the product.",
+                }
+            },
+            {
+                "name": "update_product",
+                "description": "Updates an existing product entry if the product ID exists and employee is authorized. Use llm tool to create the arguments only if not present",
+                "arguments": ["product_id", "product_name", "category", "discounted_price", "actual_price", "rating", "about_product"],
+                "return_type": {
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of the product.",
+                    "discounted_price": "Discounted price of the product.",
+                    "actual_price": "Actual price of the product.",
+                    "rating": "Average customer rating of the product.",
+                }
+            },
+            {
+                "name": "delete_product",
+                "description": "Deletes a product entry if the product ID exists and the employee has required access.",
+                "arguments": ["product_id"],
+                "return_type": {
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of the product.",
+                    "discounted_price": "Discounted price of the product.",
+                    "actual_price": "Actual price of the product.",
+                    "rating": "Average customer rating of the product.",
+                }
+            },
+            {
+                "name": "list_products_by_category",
+                "description": "Lists products filtered by category with optional pagination support.",
+                "arguments": ["category=None"],
+                "return_type": {
+                    "products": [
+                        {
+                            "product_id": "Unique identifier.",
+                            "product_name": "Name of the product.",
+                            "category": "Product category."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "create_product_sentiment",
+                "description": "Creates a new product sentiment/review entry with validation of product, customer, and employee access rights. Use llm tool to create the arguments only if not present",
+                "arguments": ["sentiment_id", "product_id", "customer_id", "review_content", "category=''", "about_product=''", "review_id=''", "review_date=''"],
+                "return_type": {
+                    "sentiment_id": "Unique identifier for the sentiment entry.",
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of the product.",
+                    "about_product": "Description of the product.",
+                    "customer_id": "Customer identifier.",
+                    "customer_name": "Name of the customer.",
+                    "review_id": "Unique identifier for the review.",
+                    "review_content": "Content of the customer review.",
+                    "review_date": "Date of the review."
+                }
+            },
+            {
+                "name": "get_product_sentiment",
+                "description": "Reads product sentiment data filtered by unique sentiment ID.",
+                "arguments": ["sentiment_id"],
+                "return_type": {
+                    "sentiment_id": "Unique identifier for the sentiment entry.",
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of the product.",
+                    "about_product": "Product description.",
+                    "customer_id": "Customer identifier.",
+                    "customer_name": "Name of the customer.",
+                    "review_id": "Unique review identifier.",
+                    "review_content": "Content of the review.",
+                    "review_date": "Review date."
+                }
+            },
+            {
+                "name": "get_product_reviews",
+                "description": "Reads all the sentiment IDs of the reviews on a particular product",
+                "arguments": ["product_id"],
+                "return_type": {
+                    
+                    "sentiment_ids":[
+                    
+                    ] 
+                
+                }
+            },
+          
+            {
+                "name": "update_product_sentiment",
+                "description": "Updates an existing product sentiment entry after access checks. Use llm tool to create the arguments only if not present",
+                "arguments": ["sentiment_id", "product_id", "customer_id", "review_content", "category=''", "about_product=''", "review_id=''", "review_date=''"],
+                "return_type": {
+                    "sentiment_id": "Unique identifier for the sentiment entry.",
+                    "product_id": "Product identifier.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of product.",
+                    "about_product": "Product description.",
+                    "customer_id": "Customer identifier.",
+                    "customer_name": "Customer name.",
+                    "review_id": "Review identifier.",
+                    "review_content": "Updated review content.",
+                    "review_date": "Review date."
+                }
+            },
+            {
+                "name": "delete_product_sentiment",
+                "description": "Deletes product sentiment entry if authorized.",
+                "arguments": ["sentiment_id", "product_id", "customer_id"],
+                "return_type": {
+                    "sentiment_id": "Unique identifier for the sentiment entry.",
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of the product.",
+                    "about_product": "Product description.",
+                    "customer_id": "Customer identifier.",
+                    "customer_name": "Name of the customer.",
+                    "review_id": "Review identifier.",
+                    "review_content": "Content of deleted review.",
+                    "review_date": "Review date."
+                }
+            },
+            {
+                "name": "create_sales_record",
+                "description": "Creates a new product sales record with full metadata and verifies employee permissions. Use llm tool to create the arguments only if not present",
+                "arguments": ["sales_record_id", "product_id", "product_name", "discounted_price", "actual_price", "discount_percentage", "rating", "rating_count", "category", "about_product", "product_link", "customer_id", "customer_name", "date_of_purchase"],
+                "return_type": {
+                    "sales_record_id": "Unique identifier for the sales record.",
+                    "product_id": "Unique identifier for product.",
+                    "product_name": "Product name.",
+                    "discounted_price": "Discounted price.",
+                    "actual_price": "Actual price.",
+                    "discount_percentage": "Discount percentage.",
+                    "rating": "Average rating.",
+                    "rating_count": "Count of ratings.",
+                    "category": "Product category.",
+                    "about_product": "Product description.",
+                    "product_link": "URL to product page.",
+                    "customer_id": "Customer ID.",
+                    "customer_name": "Customer name.",
+                    "date_of_purchase": "Purchase date."
+                }
+            },
+          
+            {
+                "name": "update_sales_record",
+                "description": "Updates an existing sales record based on specific sales_record_id after verifying employee and product access. Use llm tool to create the arguments only if not present",
+                "arguments": ["sales_record_id", "product_id=None", "product_name=None", "discounted_price=None", "actual_price=None", "discount_percentage=None", "rating=None", "rating_count=None", "category=None", "about_product=None", "product_link=None", "customer_id=None", "customer_name=None", "date_of_purchase=None"],
+                "return_type": {
+                    "sales_record_id": "Unique identifier for the sales record.",
+                    "product_id": "Unique product identifier.",
+                    "product_name": "Product name.",
+                    "discounted_price": "Discounted price.",
+                    "actual_price": "Actual price.",
+                    "discount_percentage": "Discount percentage.",
+                    "rating": "Average rating.",
+                    "rating_count": "Number of ratings.",
+                    "category": "Category.",
+                    "about_product": "Description.",
+                    "product_link": "Link.",
+                    "customer_id": "Customer ID.",
+                    "customer_name": "Customer name.",
+                    "date_of_purchase": "Date of purchase."
+                }
+            },
+            {
+                "name": "delete_sales_record",
+                "description": "Deletes an existing sales record based on specific sales_record_id if allowed by employee permissions.",
+                "arguments": ["sales_record_id"],
+                "return_type": {
+                    "sales_record_id": "Unique identifier for the deleted sales record.",
+                    "product_id": "Unique product identifier.",
+                    "product_name": "Product name.",
+                    "discounted_price": "Discounted price.",
+                    "actual_price": "Actual price.",
+                    "discount_percentage": "Discount.",
+                    "rating": "Rating.",
+                    "rating_count": "Ratings count.",
+                    "category": "Category.",
+                    "about_product": "Description.",
+                    "product_link": "Product link.",
+                    "customer_id": "Customer ID.",
+                    "customer_name": "Customer name.",
+                    "date_of_purchase": "Date of purchase."
+                }
+            },
+            {
+                "name": "get_sales_record",
+                "description": "Reads a sales record based on sales_record_id only.",
+                "arguments": ["sales_record_id"],
+                "return_type": {
+                    "sales_record_id": "Unique identifier for the sales record.",
+                    "product_id": "Product identifier.",
+                    "product_name": "Name of the product.",
+                    "discounted_price": "Discounted price.",
+                    "actual_price": "Actual price.",
+                    "discount_percentage": "Discount percentage.",
+                    "rating": "Average rating.",
+                    "rating_count": "Rating count.",
+                    "category": "Product category.",
+                    "about_product": "Description.",
+                    "product_link": "Product link.",
+                    "customer_id": "Customer identifier.",
+                    "customer_name": "Customer name.",
+                    "date_of_purchase": "Purchase date."
+                }
+            },
+            
+            {
+                "name": "list_sales_records_by_customer_and_product",
+                "description": "Reads sales records summary for a customer and purchased product based on product_id and customer_id",
+                "arguments": [ "customer_id", "product_id"],
+                "return_type": {
+                    "sales_records": [
+                        {
+                            "sales_record_id": "Unique sales record ID.",
+                            "product_id": "Product ID.",
+                            "product_name": "Product name.",
+                            "date_of_purchase": "Date of purchase."
+                        }
+                    ]
+                }
+            },
+            
+            {
+                "name": "list_sales_records_between_dates",
+                "description": "Returns sales records between specified dates with sales_record_id, product_id, product_name, customer_id, customer_name, and date_of_purchase.",
+                "arguments": [ "start_date", "end_date"],
+                "return_type": {
+                    "sales_records": [
+                        {
+                            "sales_record_id": "Unique sales record ID.",
+                            "product_id": "Product ID.",
+                            "product_name": "Product name.",
+                            "customer_id": "Customer ID.",
+                            "customer_name": "Customer name.",
+                            "date_of_purchase": "Date of purchase."
+                        }
+                    ]
+                }
+            }
+        ]
+    def get_customer_tools(self):
+        return [
+            {
+                "name": "get_product",
+                "description": "Reads and displays product details based on product ID, Product Name.",
+                "arguments": ["product_id", "product_name"],
+                "return_type": {
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of the product.",
+                    "discounted_price": "Discounted price of the product.",
+                    "actual_price": "Actual price of the product.",
+                    "rating": "Average customer rating of the product.",
+                }
+            },
+            {
+                "name": "get_customer",
+                "description": "Reads and displays Customer details based on customer ID or Customer Name  if access is allowed.",
+                "arguments": ["customer_id","customer_name"],
+                "return_type": {
+                    "customer_id": "Unique identifier for the Customer.",
+                    "customer_name": "Name of the Customer.",
+                    
+                }
+            },
+            {
+                "name": "create_product_sentiment",
+                "description": "Creates a new product sentiment/review entry with validation of product, customer, and employee access rights. Use llm tool to create the arguments only if not present",
+                "arguments": ["sentiment_id", "product_id", "customer_id", "review_content", "category=''", "about_product=''", "review_id=''", "review_date=''"],
+                "return_type": {
+                    "sentiment_id": "Unique identifier for the sentiment entry.",
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of the product.",
+                    "about_product": "Description of the product.",
+                    "customer_id": "Customer identifier.",
+                    "customer_name": "Name of the customer.",
+                    "review_id": "Unique identifier for the review.",
+                    "review_content": "Content of the customer review.",
+                    "review_date": "Date of the review."
+                }
+            },
+            {
+                "name": "get_product_sentiment",
+                "description": "Reads product sentiment data filtered by unique sentiment ID.",
+                "arguments": ["sentiment_id"],
+                "return_type": {
+                    "sentiment_id": "Unique identifier for the sentiment entry.",
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of the product.",
+                    "about_product": "Product description.",
+                    "customer_id": "Customer identifier.",
+                    "customer_name": "Name of the customer.",
+                    "review_id": "Unique review identifier.",
+                    "review_content": "Content of the review.",
+                    "review_date": "Review date."
+                }
+            },
+            {
+                "name": "get_customer_reviews",
+                "description": "Reads all the sentiment IDs of the product reviews given by a particular customer",
+                "arguments": ["customer_id"],
+                "return_type": {
+                    
+                    "sentiment_ids":[
+                    
+                    ] 
+                }
+            },
+            
+            {
+                "name": "update_product_sentiment",
+                "description": "Updates an existing product sentiment entry after access checks. Use llm tool to create the arguments only if not present",
+                "arguments": ["sentiment_id", "product_id", "customer_id", "review_content", "category=''", "about_product=''", "review_id=''", "review_date=''"],
+                "return_type": {
+                    "sentiment_id": "Unique identifier for the sentiment entry.",
+                    "product_id": "Product identifier.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of product.",
+                    "about_product": "Product description.",
+                    "customer_id": "Customer identifier.",
+                    "customer_name": "Customer name.",
+                    "review_id": "Review identifier.",
+                    "review_content": "Updated review content.",
+                    "review_date": "Review date."
+                }
+            },
+            {
+                "name": "delete_product_sentiment",
+                "description": "Deletes product sentiment entry if authorized.",
+                "arguments": ["sentiment_id", "product_id", "customer_id"],
+                "return_type": {
+                    "sentiment_id": "Unique identifier for the sentiment entry.",
+                    "product_id": "Unique identifier for the product.",
+                    "product_name": "Name of the product.",
+                    "category": "Category of the product.",
+                    "about_product": "Product description.",
+                    "customer_id": "Customer identifier.",
+                    "customer_name": "Name of the customer.",
+                    "review_id": "Review identifier.",
+                    "review_content": "Content of deleted review.",
+                    "review_date": "Review date."
+                }
+            },
+            {
+                "name": "get_sales_record",
+                "description": "Reads a sales record based on sales_record_id only.",
+                "arguments": ["sales_record_id"],
+                "return_type": {
+                    "sales_record_id": "Unique identifier for the sales record.",
+                    "product_id": "Product identifier.",
+                    "product_name": "Name of the product.",
+                    "discounted_price": "Discounted price.",
+                    "actual_price": "Actual price.",
+                    "discount_percentage": "Discount percentage.",
+                    "rating": "Average rating.",
+                    "rating_count": "Rating count.",
+                    "category": "Product category.",
+                    "about_product": "Description.",
+                    "product_link": "Product link.",
+                    "customer_id": "Customer identifier.",
+                    "customer_name": "Customer name.",
+                    "date_of_purchase": "Purchase date."
+                }
+            },
+            
+            {
+                "name": "list_sales_records_by_customer_and_product",
+                "description": "Reads sales records summary for a customer and purchased product based on product_id and customer_id",
+                "arguments": [ "customer_id", "product_id"],
+                "return_type": {
+                    "sales_records": [
+                        {
+                            "sales_record_id": "Unique sales record ID.",
+                            "product_id": "Product ID.",
+                            "product_name": "Product name.",
+                            "date_of_purchase": "Date of purchase."
+                        }
+                    ]
+                }
+            },
+            
+            {
+                "name": "list_sales_records_between_dates",
+                "description": "Returns sales records between specified dates with sales_record_id, product_id, product_name, customer_id, customer_name, and date_of_purchase.",
+                "arguments": [ "start_date", "end_date"],
+                "return_type": {
+                    "sales_records": [
+                        {
+                            "sales_record_id": "Unique sales record ID.",
+                            "product_id": "Product ID.",
+                            "product_name": "Product name.",
+                            "customer_id": "Customer ID.",
+                            "customer_name": "Customer name.",
+                            "date_of_purchase": "Date of purchase."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "llm",
+                "description": "Call the LLM to generate the contents only for create tasks",
+                "arguments": ["prompt"],
+                "return_type": "LLM output"
+            },
+        ]
+    def get_sales_conversation_tools(self):
+        return [
+          
+           {
+                "name": "llm",
+                "description": "Call the LLM to generate the contents only for create tasks",
+                "arguments": ["prompt"],
+                "return_type": "LLM output"
+            },
+           {
+                "name": "send_message",
+                "description": "Initiate a new conversation thread between emp1 and emp2 within the software engineering team if the conversation ID does not already exist. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_emp_id", "recipient_emp_id", "conversation_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                  
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees (e.g., Engineering, Finance, Management, Sales).",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified content of the conversation protecting privacy."
+                }
+            },
+            
+            {
+                "name": "edit_message",
+                "description": "Update the content of an existing conversation entry if it exists between emp1 and emp2 within the software engineering team. Use llm tool to create the arguments only if not present",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "delete_message",
+                "description": "Delete an existing conversation entry between emp1 and emp2 if authorized and datasource is valid.",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "list_conversation_ids_between_employees",
+                "description": "Fetches all conversation IDs for conversations that exist between two employees.",
+                "arguments": ["sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_ids": [
+                        "List of unique conversation IDs representing all conversations between the two employees."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_conversation_by_id",
+                "description": "Retrieves the full conversation data based on a unique conversation ID, verifying access permissions.",
+                "arguments": ["conversation_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for the conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content preserving privacy."
+                }
+            },
+            {
+                "name": "read_email",
+                "description": "Reads a specific email in a thread based on the unique email_id, with sender and recipient information. Enforces access control and supports semantic query.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email (e.g., High).",
+                    "category": "Category of the email (e.g., INTERNAL).",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "create_email",
+                "description": "Creates a new email message, generating unique email and thread IDs, validating participants, and storing the email with proper metadata. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "sender_name", "recipient_email", "recipient_name", "date=''", "subject=''", "body=''", "importance='Normal'", "category='INTERNAL'", "signature=''", "confidentiality_notice=''"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "update_email",
+                "description": "Updates an existing email message’s subject, body, importance, category, signature, or confidentiality notice after verifying user authorization. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None", "subject=None", "body=None", "importance=None", "category=None", "signature=None", "confidentiality_notice=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "delete_email",
+                "description": "Deletes an email message by sender or recipient after verifying participation and permissions based on email ID and optionally thread ID.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "list_my_email_threads",
+                "description": "Lists all email threads for a given user's email address, optionally filtered by a date range or importance.",
+                "arguments": ["email", "start_date=None", "end_date=None", "importance=None"],
+                "return_type": {
+                    "threads": [
+                        {
+                            "thread_id": "Unique identifier for the email thread.",
+                            "subject": "Subject line of the latest email in the thread.",
+                            "last_email_date": "Date and time of the most recent email in the thread.",
+                            "email_count": "Number of emails in the thread."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_thread_ids_between_sender_recipient",
+                "description": "Reads all thread IDs existing between a particular sender email and recipient email.",
+                "arguments": ["sender_email", "recipient_email"],
+                "return_type": {
+                    "thread_ids": [
+                        "List of unique thread IDs representing email conversations between the sender and recipient."
+                    ]
+                }
+            },
+            {
+                "name": "list_email_ids_in_thread",
+                "description": "Reads all email IDs belonging to a specific email thread.",
+                "arguments": ["thread_id"],
+                "return_type": {
+                    "email_ids": [
+                        "List of unique email IDs contained in the specified thread."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_employee_record",
+                "description": "Fetch employee data by various identifiers .",
+                "arguments": ["emp_id=None", "Name=None", "email=None", "category=None"],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee this employee reports to.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization, if applicable.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            },
+        ]
+    def get_it_solutions_conversation_tools(self):
+        return [
+          
+           {
+                "name": "llm",
+                "description": "Call the LLM to generate the contents only for create tasks",
+                "arguments": ["prompt"],
+                "return_type": "LLM output"
+            },
+            
+            {
+                "name": "send_message",
+                "description": "Initiate a new conversation thread between emp1 and emp2 within the software engineering team if the conversation ID does not already exist. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_emp_id", "recipient_emp_id", "conversation_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                  
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees (e.g., Engineering, Finance, Management, Sales).",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified content of the conversation protecting privacy."
+                }
+            },
+            
+            {
+                "name": "edit_message",
+                "description": "Update the content of an existing conversation entry if it exists between emp1 and emp2 within the software engineering team. Use llm tool to create the arguments only if not present",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                  
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "delete_message",
+                "description": "Delete an existing conversation entry between emp1 and emp2 if authorized and datasource is valid.",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "list_conversation_ids_between_employees",
+                "description": "Fetches all conversation IDs for conversations that exist between two employees.",
+                "arguments": ["sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_ids": [
+                        "List of unique conversation IDs representing all conversations between the two employees."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_conversation_by_id",
+                "description": "Retrieves the full conversation data based on a unique conversation ID, verifying access permissions.",
+                "arguments": ["conversation_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for the conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content preserving privacy."
+                }
+            },
+            {
+                "name": "read_email",
+                "description": "Reads a specific email in a thread based on the unique email_id, with sender and recipient information. Enforces access control and supports semantic query.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email (e.g., High).",
+                    "category": "Category of the email (e.g., INTERNAL).",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "create_email",
+                "description": "Creates a new email message, generating unique email and thread IDs, validating participants, and storing the email with proper metadata. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "sender_name", "recipient_email", "recipient_name", "date=''", "subject=''", "body=''", "importance='Normal'", "category='INTERNAL'", "signature=''", "confidentiality_notice=''"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "update_email",
+                "description": "Updates an existing email message’s subject, body, importance, category, signature, or confidentiality notice after verifying user authorization. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None", "subject=None", "body=None", "importance=None", "category=None", "signature=None", "confidentiality_notice=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "delete_email",
+                "description": "Deletes an email message by sender or recipient after verifying participation and permissions based on email ID and optionally thread ID.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "list_my_email_threads",
+                "description": "Lists all email threads for a given user's email address, optionally filtered by a date range or importance.",
+                "arguments": ["email", "start_date=None", "end_date=None", "importance=None"],
+                "return_type": {
+                    "threads": [
+                        {
+                            "thread_id": "Unique identifier for the email thread.",
+                            "subject": "Subject line of the latest email in the thread.",
+                            "last_email_date": "Date and time of the most recent email in the thread.",
+                            "email_count": "Number of emails in the thread."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_thread_ids_between_sender_recipient",
+                "description": "Reads all thread IDs existing between a particular sender email and recipient email.",
+                "arguments": ["sender_email", "recipient_email"],
+                "return_type": {
+                    "thread_ids": [
+                        "List of unique thread IDs representing email conversations between the sender and recipient."
+                    ]
+                }
+            },
+            {
+                "name": "list_email_ids_in_thread",
+                "description": "Reads all email IDs belonging to a specific email thread.",
+                "arguments": ["thread_id"],
+                "return_type": {
+                    "email_ids": [
+                        "List of unique email IDs contained in the specified thread."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_employee_record",
+                "description": "Fetch employee data by various identifiers .",
+                "arguments": ["emp_id=None", "Name=None", "email=None", "category=None"],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee this employee reports to.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization, if applicable.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            }
+        ]
+    def get_it_solutions_search_tools(self):
+        return [
+            {
+                "name": "fetch_employee_record",
+                "description": "Fetch employee data by various identifiers .",
+                "arguments": ["emp_id=None", "Name=None", "email=None", "category=None"],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee this employee reports to.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization, if applicable.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            },
+           {
+                "name": "llm",
+                "description": "Call the LLM to generate the contents only for create tasks",
+                "arguments": ["prompt"],
+                "return_type": "LLM output"
+            },
+            
+            {
+                "name": "create_it_ticket",
+                "description": "Creates a new IT service ticket if the reporting employee has access and the ticket ID does not already exist. Use llm tool to create the arguments only if not present",
+                "arguments": ["id", "priority", "raised_by_emp_id", "assigned_date", "emp_id", "Issue", "Resolution"],
+                "return_type": {
+                    "id": "Unique identifier for the ticket.",
+                    "priority": "Priority level of the ticket (e.g., High, Medium, Low).",
+                    "raised_by_emp_id": "Employee ID of the person who created the ticket.",
+                    "assigned_date": "Date the ticket was assigned.",
+                    "emp_id": "Employee ID responsible for resolving the issue.",
+                    "Issue": "Description of the raised issue.",
+                    "Resolution": "Resolution details if available."
+                }
+            },
+            {
+                "name": "get_it_ticket",
+                "description": "Retrieves details of an IT ticket by ticket ID and optionally filtered by reporting employee or assignee. Enforces access controls.",
+                "arguments": ["id", "emp_id=None", "raised_by_emp_id=None"],
+                "return_type": {
+                    "id": "Unique identifier for the ticket.",
+                    "priority": "Priority level of the ticket.",
+                    "raised_by_emp_id": "Employee ID who created the ticket.",
+                    "assigned_date": "Date assigned to resolver.",
+                    "emp_id": "Employee assigned to resolve the ticket.",
+                    "Issue": "Description of the issue.",
+                    "Resolution": "Resolution details or status."
+                }
+            },
+            {
+                "name": "update_it_ticket",
+                "description": "Updates an existing IT ticket with new priority, assignee, issue description or resolution details. Validates user access and ticket existence. Use llm tool to create the arguments only if not present",
+                "arguments": ["id", "priority=None", "raised_by_emp_id=None", "assigned_date=None", "emp_id=None", "Issue=None", "Resolution=None"],
+                "return_type": {
+                    "id": "Unique identifier for the ticket.",
+                    "priority": "Updated priority level.",
+                    "raised_by_emp_id": "Employee ID who created the ticket.",
+                    "assigned_date": "Updated assignment date.",
+                    "emp_id": "Employee ID responsible after update.",
+                    "Issue": "Updated issue description.",
+                    "Resolution": "Updated resolution details."
+                }
+            },
+            {
+                "name": "delete_it_ticket",
+                "description": "Deletes an IT service ticket if the employee has appropriate permissions.",
+                "arguments": ["id", "emp_id"],
+                "return_type": {
+                    "id": "Unique identifier for the deleted ticket.",
+                    "priority": "Priority level of the deleted ticket.",
+                    "raised_by_emp_id": "Employee ID who created the ticket.",
+                    "assigned_date": "Date assigned before deletion.",
+                    "emp_id": "Employee assigned before deletion.",
+                    "Issue": "Description of the deleted issue.",
+                    "Resolution": "Resolution details before deletion."
+                }
+            },
+            {
+                "name": "get_it_ticket_ids_by_raiser",
+                "description": "Lists all IT service tickets raised by a issue raiser using their emp id under `raised_by_emp_id` excluding issue and resolution details. Here employee under emp_id is the resolver of ticket",
+                "arguments": ["raised_by_emp_id"],
+                "return_type": {
+                    "tickets": [
+                        {
+                            "id": "Unique identifier for each ticket.",
+                            "priority": "Priority level of the ticket.",
+                            "raised_by_emp_id": "Employee who raised the ticket.",
+                            "assigned_date": "Date ticket was assigned.",
+                            "emp_id": "Employee responsible for the ticket."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_it_tickets_by_priority",
+                "description": "Retrieves all tickets filtered by priority level, excluding issue and resolution details.",
+                "arguments": ["priority"],
+                "return_type": {
+                    "tickets": [
+                        {
+                            "id": "Ticket identifier.",
+                            "priority": "Priority level.",
+                            "raised_by_emp_id": "Employee who raised the ticket.",
+                            "assigned_date": "Assignment date.",
+                            "emp_id": "Assigned employee ID."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_it_tickets_assigned_to_me",
+                "description": "Lists all IT service tickets currently assigned to the requesting employee using my employee id.",
+                "arguments": ["emp_id"],
+                "return_type": {
+                    "tickets": [
+                        {
+                            "id": "Unique identifier for each ticket.",
+                            "priority": "Priority level of the ticket.",
+                            "raised_by_emp_id": "Employee who raised the ticket.",
+                            "assigned_date": "Date ticket was assigned.",
+                            "emp_id": "Employee responsible for resolving the ticket."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "assign_ticket",
+                "description": "Assigns or reassigns an IT ticket to an employee with updated assignment date. Use llm tool to create the arguments only if not present",
+                "arguments": ["id", "emp_id", "assigned_date"],
+                "return_type": {
+                    "id": "Unique ticket identifier.",
+                    "emp_id": "Employee ID assigned to the ticket.",
+                    "assigned_date": "Date of assignment."
+                }
+            },
+            {
+                "name": "resolve_ticket",
+                "description": "Updates the resolution for a ticket and marks it resolved. Use llm tool to create the arguments only if not present",
+                "arguments": ["id", "Resolution"],
+                "return_type": {
+                    "id": "Ticket identifier.",
+                    "Resolution": "Details of resolution applied."
+                }
+            },
+            {
+                "name": "send_message",
+                "description": "Initiate a new conversation thread between emp1 and emp2 within the software engineering team if the conversation ID does not already exist. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_emp_id", "recipient_emp_id", "conversation_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees (e.g., Engineering, Finance, Management, Sales).",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified content of the conversation protecting privacy."
+                }
+            },
+            
+            {
+                "name": "edit_message",
+                "description": "Update the content of an existing conversation entry if it exists between emp1 and emp2 within the software engineering team. Use llm tool to create the arguments only if not present",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "delete_message",
+                "description": "Delete an existing conversation entry between emp1 and emp2 if authorized and datasource is valid.",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "list_conversation_ids_between_employees",
+                "description": "Fetches all conversation IDs for conversations that exist between two employees.",
+                "arguments": ["sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_ids": [
+                        "List of unique conversation IDs representing all conversations between the two employees."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_conversation_by_id",
+                "description": "Retrieves the full conversation data based on a unique conversation ID, verifying access permissions.",
+                "arguments": ["conversation_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for the conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content preserving privacy."
+                }
+            },
+            {
+                "name": "read_email",
+                "description": "Reads a specific email in a thread based on the unique email_id.",
+                "arguments": ["email_id"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email (e.g., High).",
+                    "category": "Category of the email (e.g., INTERNAL).",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "create_email",
+                "description": "Creates a new email message, generating unique email and thread IDs, validating participants, and storing the email with proper metadata. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "sender_name", "recipient_email", "recipient_name", "date=''", "subject=''", "body=''", "importance='Normal'", "category='INTERNAL'", "signature=''", "confidentiality_notice=''"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "update_email",
+                "description": "Updates an existing email message’s subject, body, importance, category, signature, or confidentiality notice after verifying user authorization. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None", "subject=None", "body=None", "importance=None", "category=None", "signature=None", "confidentiality_notice=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "delete_email",
+                "description": "Deletes an email message by sender or recipient after verifying participation and permissions based on email ID and optionally thread ID.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "list_my_email_threads",
+                "description": "Lists all email threads for a given user's email address, optionally filtered by a date range or importance.",
+                "arguments": ["emp_id", "start_date=None", "end_date=None", "importance=None"],
+                "return_type": {
+                    "threads": [
+                        {
+                            "thread_id": "Unique identifier for the email thread.",
+                            "subject": "Subject line of the latest email in the thread.",
+                            "last_email_date": "Date and time of the most recent email in the thread.",
+                            "email_count": "Number of emails in the thread."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_thread_ids_between_sender_recipient",
+                "description": "Reads all thread IDs existing between a particular sender email and recipient email.",
+                "arguments": ["sender_email", "recipient_email"],
+                "return_type": {
+                    "thread_ids": [
+                        "List of unique thread IDs representing email conversations between the sender and recipient."
+                    ]
+                }
+            },
+            {
+                "name": "list_email_ids_in_thread",
+                "description": "Reads all email IDs belonging to a specific email thread using unique thread_id.",
+                "arguments": ["thread_id"],
+                "return_type": {
+                    "email_ids": [
+                        "List of unique email IDs contained in the specified thread."
+                    ]
+                }
+            }
+        ]
+    def get_hr_conversation_tools(self):
+         return [
+          {
+                "name": "llm",
+                "description": "Call the LLM to generate the contents only for create tasks",
+                "arguments": ["prompt"],
+                "return_type": "LLM output"
+            },
+            {
+                "name": "fetch_employee_record",
+                "description": "Fetch employee data by various identifiers .",
+                "arguments": ["emp_id=None", "Name=None", "email=None", "category=None"],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee this employee reports to.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization, if applicable.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            },
+            {
+                "name": "send_message",
+                "description": "Initiate a new conversation thread between emp1 and emp2 within the software engineering team if the conversation ID does not already exist. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_emp_id", "recipient_emp_id", "conversation_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                  
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees (e.g., Engineering, Finance, Management, Sales).",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified content of the conversation protecting privacy."
+                }
+            },
+            
+            {
+                "name": "edit_message",
+                "description": "Update the content of an existing conversation entry if it exists between emp1 and emp2 within the software engineering team. Use llm tool to create the arguments only if not present",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "delete_message",
+                "description": "Delete an existing conversation entry between emp1 and emp2 if authorized and datasource is valid.",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "list_conversation_ids_between_employees",
+                "description": "Fetches all conversation IDs for conversations that exist between two employees.",
+                "arguments": ["sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_ids": [
+                        "List of unique conversation IDs representing all conversations between the two employees."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_conversation_by_id",
+                "description": "Retrieves the full conversation data based on a unique conversation ID, verifying access permissions.",
+                "arguments": ["conversation_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for the conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content preserving privacy."
+                }
+            },
+            {
+                "name": "read_email",
+                "description": "Reads a specific email in a thread based on the unique email_id, with sender and recipient information. Enforces access control and supports semantic query.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email (e.g., High).",
+                    "category": "Category of the email (e.g., INTERNAL).",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "create_email",
+                "description": "Creates a new email message, generating unique email and thread IDs, validating participants, and storing the email with proper metadata. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "sender_name", "recipient_email", "recipient_name", "date=''", "subject=''", "body=''", "importance='Normal'", "category='INTERNAL'", "signature=''", "confidentiality_notice=''"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "update_email",
+                "description": "Updates an existing email message’s subject, body, importance, category, signature, or confidentiality notice after verifying user authorization. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None", "subject=None", "body=None", "importance=None", "category=None", "signature=None", "confidentiality_notice=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "delete_email",
+                "description": "Deletes an email message by sender or recipient after verifying participation and permissions based on email ID and optionally thread ID.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "list_my_email_threads",
+                "description": "Lists all email threads for a given user's email address, optionally filtered by a date range or importance.",
+                "arguments": ["email", "start_date=None", "end_date=None", "importance=None"],
+                "return_type": {
+                    "threads": [
+                        {
+                            "thread_id": "Unique identifier for the email thread.",
+                            "subject": "Subject line of the latest email in the thread.",
+                            "last_email_date": "Date and time of the most recent email in the thread.",
+                            "email_count": "Number of emails in the thread."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_thread_ids_between_sender_recipient",
+                "description": "Reads all thread IDs existing between a particular sender email and recipient email.",
+                "arguments": ["sender_email", "recipient_email"],
+                "return_type": {
+                    "thread_ids": [
+                        "List of unique thread IDs representing email conversations between the sender and recipient."
+                    ]
+                }
+            },
+            {
+                "name": "list_email_ids_in_thread",
+                "description": "Reads all email IDs belonging to a specific email thread.",
+                "arguments": ["thread_id"],
+                "return_type": {
+                    "email_ids": [
+                        "List of unique email IDs contained in the specified thread."
+                    ]
+                }
+            }
+        ]
+    def get_employee_search_tools(self):
+        return [
+            {
+                "name": "llm",
+                "description": "Call the LLM to generate the contents only for create tasks",
+                "arguments": ["prompt"],
+                "return_type": "LLM output"
+            },
+            {
+                "name": "fetch_employee_record",
+                "description": "Fetch employee data by various identifiers .",
+                "arguments": ["emp_id=None", "Name=None", "email=None", "category=None"],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee this employee reports to.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization, if applicable.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            },
+            {
+                "name": "create_employee_record",
+                "description": "Create a new employee profile with mandatory and optional fields. Use llm tool to create the arguments only if not present",
+                "arguments": [
+                    "userId",
+                    "emp_id",
+                    "name",
+                    "email",
+                    "DOJ",
+                    "DOL",
+                    "category",
+                    "description=None",
+                    "experience=None",
+                    "skills=None",
+                    "Level=None",
+                    "Salary=None",
+                    "Age=None",
+                    "Total Casual Leaves",
+                    "Remaining Casual Leaves",
+                    "Total Sick Leaves",
+                    "Remaining Sick Leaves",
+                    "Total Vacation Leaves",
+                    "Remaining Vacation Leaves",
+                    "marital_status=None",
+                    "Performance Rating",
+                    "gender=None",
+                    "is_valid",
+                    "reportees=[]",
+                    "reports_to"
+                ],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization, if applicable.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            },
+            {
+                "name": "update_employee_record",
+                "description": "Update fields of an existing employee profile. Only provided arguments are updated. Use llm tool to create the arguments only if not present",
+                "arguments": [
+                    "userId",
+                    "emp_id=None",
+                    "name=None",
+                    "email=None",
+                    "DOJ=None",
+                    "category=None",
+                    "description=None",
+                    "experience=None",
+                    "skills=None",
+                    "Level=None",
+                    "Salary=None",
+                    "Age=None",
+                    "marital_status=None",
+                    "Performance Rating=None",
+                    "gender=None",
+                    "DOL=None",
+                    "Total Casual Leaves=None",
+                    "Remaining Casual Leaves=None",
+                    "Total Sick Leaves=None",
+                    "Remaining Sick Leaves=None",
+                    "Total Vacation Leaves=None",
+                    "Remaining Vacation Leaves=None",
+                    "Total Leaves Taken=None"
+                ],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization, if applicable.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            },
+            {
+                "name": "deactivate_employee_record",
+                "description": "Deactivate employee profile marking as inactive with leaving date. Use llm tool to create the arguments only if not present",
+                "arguments": ["userId", "emp_id", "DOL"],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            },
+            {
+                "name": "fetch_employees_by_ids",
+                "description": "Fetches basic details (name, email, emp_id, category) of employees given a list of employee IDs.",
+                "arguments": ["emp_ids"],
+                "return_type": {
+                    "employees": [
+                        {
+                            "emp_id": "Unique identifier for the employee.",
+                            "Name": "Name of the employee.",
+                            "email": "Email address of the employee.",
+                            "category": "Department or category of the employee."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "send_message",
+                "description": "Initiate a new conversation thread between emp1 and emp2 within the software engineering team if the conversation ID does not already exist. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_emp_id", "recipient_emp_id", "conversation_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                  
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees (e.g., Engineering, Finance, Management, Sales).",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified content of the conversation protecting privacy."
+                }
+            },
+            
+            {
+                "name": "edit_message",
+                "description": "Update the content of an existing conversation entry if it exists between emp1 and emp2 within the software engineering team. Use llm tool to create the arguments only if not present",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "delete_message",
+                "description": "Delete an existing conversation entry between emp1 and emp2 if authorized and datasource is valid.",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "list_conversation_ids_between_employees",
+                "description": "Fetches all conversation IDs for conversations that exist between two employees.",
+                "arguments": ["sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_ids": [
+                        "List of unique conversation IDs representing all conversations between the two employees."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_conversation_by_id",
+                "description": "Retrieves the full conversation data based on a unique conversation ID, verifying access permissions.",
+                "arguments": ["conversation_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for the conversation.",
+                    
+                    "sender_emp_id": "Employee ID of employee 1",
+                    "recipient_emp_id": "Employee ID of employee 2",
+                    "category": "Department category of the employees.",
+                    "date": "Date of the conversation",
+                    
+                    "text": "Modified conversation content preserving privacy."
+                }
+            },
+            {
+                "name": "read_email",
+                "description": "Reads a specific email in a thread based on the unique email_id.",
+                "arguments": ["email_id"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email (e.g., High).",
+                    "category": "Category of the email (e.g., INTERNAL).",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "create_email",
+                "description": "Creates a new email message, generating unique email and thread IDs, validating participants, and storing the email with proper metadata. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "sender_name", "recipient_email", "recipient_name", "date=''", "subject=''", "body=''", "importance='Normal'", "category='INTERNAL'", "signature=''", "confidentiality_notice=''"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "update_email",
+                "description": "Updates an existing email message’s subject, body, importance, category, signature, or confidentiality notice after verifying user authorization. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None", "subject=None", "body=None", "importance=None", "category=None", "signature=None", "confidentiality_notice=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "delete_email",
+                "description": "Deletes an email message by sender or recipient after verifying participation and permissions based on email ID and optionally thread ID.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "list_my_email_threads",
+                "description": "Lists all email threads for a given user's email address, optionally filtered by a date range or importance.",
+                "arguments": ["emp_id", "start_date=None", "end_date=None", "importance=None"],
+                "return_type": {
+                    "threads": [
+                        {
+                            "thread_id": "Unique identifier for the email thread.",
+                            "subject": "Subject line of the latest email in the thread.",
+                            "last_email_date": "Date and time of the most recent email in the thread.",
+                            "email_count": "Number of emails in the thread."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_thread_ids_between_sender_recipient",
+                "description": "Reads all thread IDs existing between a particular sender email and recipient email.",
+                "arguments": ["sender_email", "recipient_email"],
+                "return_type": {
+                    "thread_ids": [
+                        "List of unique thread IDs representing email conversations between the sender and recipient."
+                    ]
+                }
+            },
+            {
+                "name": "list_email_ids_in_thread",
+                "description": "Reads all email IDs belonging to a specific email thread using unique thread_id.",
+                "arguments": ["thread_id"],
+                "return_type": {
+                    "email_ids": [
+                        "List of unique email IDs contained in the specified thread."
+                    ]
+                }
+            },
+        ]
+    def get_business_operations_conversation_tools(self):
+        return [
+            {
+                
+                "name": "send_message",
+                "description": "Initiate a new conversation thread between emp1 and emp2 within the software engineering team if the conversation ID does not already exist. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_emp_id", "recipient_emp_id", "conversation_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees (e.g., Engineering, Finance, Management, Sales).",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified content of the conversation protecting privacy."
+                }
+            },
+            
+            {
+                "name": "edit_message",
+                "description": "Update the content of an existing conversation entry if it exists between emp1 and emp2 within the software engineering team. Use llm tool to create the arguments only if not present",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id", "text", "date=''"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "delete_message",
+                "description": "Delete an existing conversation entry between emp1 and emp2 if authorized and datasource is valid.",
+                "arguments": ["conversation_id", "sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for each conversation.",
+                    
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content protecting privacy."
+                }
+            },
+            {
+                "name": "list_conversation_ids_between_employees",
+                "description": "Fetches all conversation IDs for conversations that exist between two employees.",
+                "arguments": ["sender_emp_id", "recipient_emp_id"],
+                "return_type": {
+                    "conversation_ids": [
+                        "List of unique conversation IDs representing all conversations between the two employees."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_conversation_by_id",
+                "description": "Retrieves the full conversation data based on a unique conversation ID, verifying access permissions.",
+                "arguments": ["conversation_id"],
+                "return_type": {
+                    "conversation_id": "Unique identifier for the conversation.",
+                   
+                        "sender_emp_id": "Employee ID of employee 1",
+                        "recipient_emp_id": "Employee ID of employee 2",
+                        "category": "Department category of the employees.",
+                        "date": "Date of the conversation"
+                    ,
+                    "text": "Modified conversation content preserving privacy."
+                }
+            },
+            {
+                "name": "read_email",
+                "description": "Reads a specific email in a thread based on the unique email_id.",
+                "arguments": ["email_id"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email (e.g., High).",
+                    "category": "Category of the email (e.g., INTERNAL).",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "create_email",
+                "description": "Creates a new email message, generating unique email and thread IDs, validating participants, and storing the email with proper metadata. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "sender_name", "recipient_email", "recipient_name", "date=''", "subject=''", "body=''", "importance='Normal'", "category='INTERNAL'", "signature=''", "confidentiality_notice=''"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "update_email",
+                "description": "Updates an existing email message’s subject, body, importance, category, signature, or confidentiality notice after verifying user authorization. Use llm tool to create the arguments only if not present",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None", "subject=None", "body=None", "importance=None", "category=None", "signature=None", "confidentiality_notice=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "delete_email",
+                "description": "Deletes an email message by sender or recipient after verifying participation and permissions based on email ID and optionally thread ID.",
+                "arguments": ["sender_email", "recipient_email", "recipient_name", "email_id", "thread_id=None"],
+                "return_type": {
+                    "email_id": "Unique identifier for each email.",
+                    "thread_id": "Unique identifier for each email thread.",
+                    "date": "Date and time the email was sent.",
+                    
+                        "sender_email": "Email address of the sender.",
+                        "sender_name": "Name of the sender",
+                        "sender_emp_id": "Employee ID of the Sender",
+
+    
+                        "recipient_email": "Email address of the recipient.",
+                        "recipient_name": "Name of the recipient",
+                        "recipient_emp_id": "Employee ID of the Recipient",
+        
+                    "subject": "Subject line of the email.",
+                    "body": "Content of the email.",
+                    "importance": "Importance level of the email.",
+                    "category": "Category of the email.",
+                    "signature": "Signature of the sender at the end of the email.",
+                    "confidentiality_notice": "Confidentiality notice added at the end of the email."
+                }
+            },
+            {
+                "name": "list_my_email_threads",
+                "description": "Lists all email threads for a given user's email address, optionally filtered by a date range or importance.",
+                "arguments": ["emp_id", "start_date=None", "end_date=None", "importance=None"],
+                "return_type": {
+                    "threads": [
+                        {
+                            "thread_id": "Unique identifier for the email thread.",
+                            "subject": "Subject line of the latest email in the thread.",
+                            "last_email_date": "Date and time of the most recent email in the thread.",
+                            "email_count": "Number of emails in the thread."
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "list_thread_ids_between_sender_recipient",
+                "description": "Reads all thread IDs existing between a particular sender email and recipient email.",
+                "arguments": ["sender_email", "recipient_email"],
+                "return_type": {
+                    "thread_ids": [
+                        "List of unique thread IDs representing email conversations between the sender and recipient."
+                    ]
+                }
+            },
+            {
+                "name": "list_email_ids_in_thread",
+                "description": "Reads all email IDs belonging to a specific email thread using unique thread_id.",
+                "arguments": ["thread_id"],
+                "return_type": {
+                    "email_ids": [
+                        "List of unique email IDs contained in the specified thread."
+                    ]
+                }
+            },
+            {
+                "name": "fetch_employee_record",
+                "description": "Fetch employee data by various identifiers .",
+                "arguments": ["emp_id=None", "Name=None", "email=None", "category=None"],
+                "return_type": {
+                    "index": "Index of the employee record.",
+                    "category": "Department or category of the employee.",
+                    "description": "Brief description of the employee.",
+                    "Experience": "Work experience of the employee.",
+                    "Name": "Name of the employee.",
+                    "skills": "Skills of the employee.",
+                    "reportees": "List of employee IDs who report to this employee.",
+                    "emp_id": "Unique identifier for the employee.",
+                    "reports_to": "Employee ID of the senior employee this employee reports to.",
+                    "Level": "Employee level within the organization.",
+                    "email": "Email address of the employee.",
+                    "DOJ": "Date of joining the organization.",
+                    "DOL": "Date of leaving the organization, if applicable.",
+                    "Salary": "Current or last known salary of the employee.",
+                    "Total Casual Leaves": "Total number of casual leaves allocated.",
+                    "Remaining Casual Leaves": "Remaining casual leaves available.",
+                    "Total Sick Leaves": "Total number of sick leaves allocated.",
+                    "Remaining Sick Leaves": "Remaining sick leaves available.",
+                    "Total Vacation Leaves": "Total number of vacation leaves allocated.",
+                    "Remaining Vacation Leaves": "Remaining vacation leaves available.",
+                    "Total Leaves Taken": "Total number of leaves taken.",
+                    "Age": "Age of the employee.",
+                    "Performance Rating": "Most recent performance rating.",
+                    "Marital Status": "Marital status of the employee.",
+                    "Gender": "Gender of the employee.",
+                    "is_valid": "Indicates whether the employee record is active."
+                }
+            }
+            ,
+            {
+                "name": "llm",
+                "description": "Call the LLM to generate the contents only for create tasks",
+                "arguments": ["prompt"],
+                "return_type": "LLM output"
+            }
+        ]
+    def get_social_tools(self):
+        return [
+            
+            {
+                "name": "enterprise_social_platform_create",
+                "description": "Creates a new post in the clubbed posts JSON.",
+                "arguments": ["emp_id", "id", "body", "ans_emp_id", "ans_id", "ans_body", "posttypeid=None", "acceptedanswerid=None", "parentid=None", "score=0", "viewcount=None", "title=None", "contentlicense=None", "favoritecount=None", "creationdate=None", "lastactivitydate=None", "lasteditdate=None", "lasteditoruserid=None", "owneruserid=None", "tags=None", "ans_posttypeid=None", "ans_acceptedanswerid=None", "ans_parentid=None", "ans_score=0", "ans_viewcount=None", "ans_title=None", "ans_contentlicense=None", "ans_favoritecount=None", "ans_creationdate=None", "ans_lastactivitydate=None", "ans_lasteditdate=None", "ans_lasteditoruserid=None", "ans_owneruserid=None", "ans_tags=None"]
+            },
+            {
+                "name": "enterprise_social_platform_read",
+                "description": "Reads a post from the clubbed posts JSON.",
+                "arguments": ["emp_id", "id", "ans_id=None","query=None"]
+            },
+            {
+                "name": "enterprise_social_platform_update",
+                "description": "Updates an existing post in the clubbed posts JSON.",
+                "arguments": ["emp_id", "id", "body", "posttypeid=None", "acceptedanswerid=None", "parentid=None", "score=None", "viewcount=None", "title=None", "contentlicense=None", "favoritecount=None", "creationdate=None", "lastactivitydate=None", "lasteditdate=None", "lasteditoruserid=None", "owneruserid=None", "tags=None"]
+            },
+            {
+                "name": "enterprise_social_platform_delete",
+                "description": "Deletes a post from the clubbed posts JSON.",
+                "arguments": ["emp_id", "id", "ans_emp_id", "ans_id"]
+            },
+            {
+                "name": "enterprise_social_platform_get_employee_name",
+                "description": "Fetches the employee name from the employees CSV using the employee ID.",
+                "arguments": ["emp_id"]
+            },
+            {
+                "name": "inazuma_overflow_read",
+                "description": "Reads and displays an overflow post if the user has access.",
+                "arguments": ["emp_id", "id","query=None"]
+            },
+            {
+                "name": "inazuma_overflow_create",
+                "description": "Creates a new overflow post if the user is a valid employee and the post ID is unique.",
+                "arguments": ["emp_id", "id", "body", "PostTypeId=None", "AcceptedAnswerId=None", "ParentId=None", "Score=None", "ViewCount=None", "Title=None", "ContentLicense=None", "FavoriteCount=None", "CreationDate=None", "LastActivityDate=None", "LastEditDate=None", "LastEditorUserId=None", "OwnerUserId=None", "Tags=None"]
+            },
+            {
+                "name": "inazuma_overflow_update",
+                "description": "Updates an existing overflow post if the user is the owner and a valid employee.",
+                "arguments": ["emp_id", "id", "body", "PostTypeId=None", "AcceptedAnswerId=None", "ParentId=None", "Score=None", "ViewCount=None", "Title=None", "ContentLicense=None", "FavoriteCount=None", "CreationDate=None", "LastActivityDate=None", "LastEditDate=None", "LastEditorUserId=None", "OwnerUserId=None", "Tags=None"]
+            },
+            {
+                "name": "inazuma_overflow_delete",
+                "description": "Deletes an overflow post if the user is the owner and a valid employee.",
+                "arguments": ["emp_id", "id", "PostTypeId=None", "AcceptedAnswerId=None", "ParentId=None", "Score=None", "ViewCount=None", "Title=None", "ContentLicense=None", "FavoriteCount=None", "CreationDate=None", "LastActivityDate=None", "Title=None", "body=None", "LastEditDate=None", "LastEditorUserId=None", "OwnerUserId=None", "Tags=None"]
+            }
+        ]
+
+    

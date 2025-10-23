@@ -1,0 +1,9 @@
+{
+    "source_paths": {
+      "GitHub": "Workspace/GitHub/GitHub.json"
+    },
+    "goal_templates": [
+      "Generate a patch for the [Issue Id or Issue Title] in [Repository Name]",
+      "Address the code issue [Issue Id or Issue Title] in [Repository Name]"
+    ]
+}

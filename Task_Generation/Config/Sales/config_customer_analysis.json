@@ -1,0 +1,14 @@
+{
+    "source_paths": {
+    "Products": "Customer_Relation_Management/products.json",
+    "Customers": "/mnt/home-ldap/vkharsh_ldap/Research/EnterpriseBench/Customer_Relation_Management/customers.json",
+    "Sales": "Customer_Relation_Management/sales.json"
+    },
+    "goal_templates":[
+      "Did a customer [Customer Name] provide feedback for a Product [Product Name]?",
+      "Fetch the feedback text submitted by a customer [Customer Name] for Product [Product Name].",
+      "Obtain the purchase and feedback dates for a product bought by a Customer [Customer Name].",
+      "List all items bought and reviewed by Customer [Customer Name].",
+      "Determine the sentiment (positive/negative/neutral) of the feedback given by a customer for a [Product Name]."
+    ]
+  }

@@ -1,0 +1,1470 @@
+[
+    {
+      "id": "717",
+      "priority": "low",
+      "raised_by_emp_id": "emp_1178",
+      "assigned_date": "2016-10-10",
+      "emp_id": "emp_0750",
+      "Issue": "Hello IT Team, I'm Ethan Reynolds from the Business Development department. I'm currently experiencing VPN connectivity issues while trying to access our internal systems remotely. This is affecting my ability to efficiently contribute to our projects focused on transforming consumer experiences. Could you please assist me in resolving this issue?",
+      "Resolution": "Hi Ethan, this is Abigail Mitchell from the IT department. I understand the importance of seamless connectivity for your projects at Inazuma.co. To resolve the VPN connectivity issue, please ensure that your network settings are properly configured and that you are using the latest version of our VPN software. Additionally, try restarting your router and reconnecting to the VPN. If the problem persists, I can arrange a remote troubleshooting session to further assist you. Let me know how it goes!"
+    },
+    {
+      "id": "900",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0057",
+      "assigned_date": "2020-01-08",
+      "emp_id": "emp_1106",
+      "Issue": "Hi IT Team, I'm Alee Oliver from the Sales department. I'm currently experiencing issues accessing my email account. I've tried logging in multiple times, but it keeps showing an error message. It's crucial for me to resolve this as my role involves handling press releases and coordinating events, and I need to communicate effectively with external media partners through email. Could you please assist me in regaining access? Thank you.",
+      "Resolution": "Hello Alee, I'm Matthew Brooks from the IT team. I understand the importance of email access for your role in the Sales department at Inazuma.co. To resolve your email access issue, I've reset your email account credentials. Please check your inbox for a password reset email from us. Follow the instructions provided to create a new password. Additionally, ensure that your VPN connection is stable, as it can sometimes affect email access within Inazuma.co's network infrastructure. If you encounter any further issues, feel free to reach out. We're here to ensure seamless communication for your public relations activities. Best regards, Matthew."
+    },
+    {
+      "id": "1032",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0329",
+      "assigned_date": "2022-09-08",
+      "emp_id": "emp_0618",
+      "Issue": "Hello IT team, I'm Ravi Saxena from the Engineering department. I'm experiencing a VPN Connectivity Problem which is preventing me from accessing the necessary resources to align our team's efforts with strategic objectives. As you know, seamless connectivity is crucial for maintaining our agility and innovation in transforming consumer relationships. Could you please assist in resolving this issue at the earliest?",
+      "Resolution": "Hi Ravi, this is Rohan Sen from the IT department. I apologize for the inconvenience you're facing with the VPN connectivity. To resolve this, please ensure that you have the latest VPN client installed as per Inazuma.co's protocol. You might also want to check your network settings or restart your router. If the issue persists, I will escalate it to our network team to ensure your access is restored quickly, so you can continue driving organizational success. Please let me know if you need further assistance."
+    },
+    {
+      "id": "1438",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0704",
+      "assigned_date": "2016-06-08",
+      "emp_id": "emp_0089",
+      "Issue": "Hello IT team, I'm experiencing issues with VPN connectivity. I need to access some resources remotely for an upcoming art exhibition project, but the VPN connection is not stable. This is impacting my ability to coordinate with partners and manage logistics effectively. Could you please assist in resolving this issue? Thank you, Samantha Taylor.",
+      "Resolution": "Hi Samantha, thank you for reaching out. We've identified a temporary server-side issue with the VPN that Inazuma.co uses. Our team is working to resolve it swiftly. In the meantime, please try reconnecting using different network settings or access the portal through a mobile hotspot if possible. We expect full functionality to be restored shortly. Please let me know if you continue to face issues. Best, Tara Bhardwaj."
+    },
+    {
+      "id": "1955",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_1036",
+      "assigned_date": "2014-03-19",
+      "emp_id": "emp_0380",
+      "Issue": "Hello IT Support, I'm experiencing a problem with accessing my email account. It seems to be locked, and I can't login to check my messages. As an Engineering Associate at Inazuma.co, it's crucial for me to stay updated on project communications and client feedback. Could someone assist me with unlocking my account? Thank you! - Soji Thomas",
+      "Resolution": "Hi Soji, Thank you for reaching out. I understand how important email access is for your role in supporting engineering projects at Inazuma.co. To resolve the account lockout issue, please log into the Inazuma.co portal and navigate to the 'Account Management' section. There, you'll find a 'Reset Password' option. If you're unable to unlock your account through the portal, please let me know, and I'll assist you further. Looking forward to your confirmation. - Kunal Kapoor"
+    },
+    {
+      "id": "2268",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0839",
+      "assigned_date": "2020-12-28",
+      "emp_id": "emp_0750",
+      "Issue": "Hello IT team, this is Rajesh Kumar Tewatia from the Engineering department (emp_id: emp_0839). I'm experiencing issues with VPN connectivity, which is impacting my ability to access essential resources for my projects. Given Inazuma.co's commitment to agility and seamless experiences, I need assistance to restore VPN access promptly to continue supporting our innovative engineering initiatives.",
+      "Resolution": "Hi Rajesh, this is Abigail Mitchell from the IT department (emp_id: emp_0750). Thank you for reaching out. To address the VPN connectivity issue, please ensure that your VPN client is up-to-date and check if you have the correct access credentials. Additionally, verify that your internet connection is stable. If the issue persists, I will guide you through troubleshooting steps specific to the VPN system utilized by Inazuma.co. Let's work together to resolve this promptly and ensure you can continue contributing to our engineering projects. Please let me know if you need further assistance!"
+    },
+    {
+      "id": "2273",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_1160",
+      "assigned_date": "2020-06-09",
+      "emp_id": "emp_1209",
+      "Issue": "Hi IT team, I'm Lucas Anderson from the Digital Media department. I've been experiencing issues with VPN connectivity when trying to access the Inazuma.co portal from my laptop. The VPN keeps disconnecting, and it's affecting my ability to manage social media accounts and perform my tasks effectively. Could you please assist me in resolving this connectivity problem?",
+      "Resolution": "Hi Lucas, this is Kavya Rao from IT. I'm here to help you with the VPN connectivity issue. Given Inazuma.co's focus on seamless digital experiences, it's crucial that you're able to access the resources you need. First, please ensure that your VPN client is updated to the latest version. If the problem persists, try resetting your network settings and reconnecting. Additionally, check if there are any firewall settings blocking the VPN connection. If none of these solutions work, I suggest you bring your laptop to the IT department so we can take a closer look. We're committed to ensuring you have a smooth experience at Inazuma.co."
+    },
+    {
+      "id": "2509",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0176",
+      "assigned_date": "2015-03-18",
+      "emp_id": "emp_0081",
+      "Issue": "Hello, this is Zara Mistry from the HR department. I'm currently experiencing issues accessing my email account. Whenever I try to log in, it shows an error message indicating a problem with authentication. This is impacting my ability to effectively manage recruitment communications and employee relations tasks. Could you please assist in resolving this issue? Thank you.",
+      "Resolution": "Hi Zara, this is Matthew Hamilton from the IT department. I understand the inconvenience caused by the email access issue. It seems there might be an authentication error with the email portal that Inazuma.co utilizes. To resolve this, I'll reset your email authentication settings and ensure they align with our current security protocols. Please try logging in after 15 minutes and let me know if the issue persists. If further assistance is needed, feel free to reach out. Thank you for your patience."
+    },
+    {
+      "id": "2558",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0146",
+      "assigned_date": "2019-10-11",
+      "emp_id": "emp_0071",
+      "Issue": "Hi IT Team, this is Bijal Desai from the Architects department. I'm experiencing issues with accessing our collaboration tools, specifically Teams and Slack, on my laptop. This is impacting my ability to effectively coordinate with cross-functional teams and drive our strategic projects. Could you please look into the connectivity issue at the earliest? Thanks!",
+      "Resolution": "Hello Bijal, thank you for reaching out. We've identified a network configuration issue affecting access to collaboration tools like Teams and Slack. Our team has made the necessary adjustments on the Inazuma.co servers to restore connectivity. Please restart your laptop and try accessing the tools again. If the issue persists, feel free to contact us directly. We're committed to ensuring seamless communication and collaboration for all employees. Best, Nisha Sinha."
+    },
+    {
+      "id": "2616",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_1049",
+      "assigned_date": "2020-04-22",
+      "emp_id": "emp_0786",
+      "Issue": "Hi, I'm Manu Radhakrishnan from the Engineering department. I'm currently experiencing difficulties accessing my email account. It seems that my account is locked, and this is impacting my ability to effectively manage my tasks related to aviation management and strategic planning. As we rely heavily on timely communication for our cross-functional teams, I need this resolved urgently. Could you please assist me in unlocking my account?",
+      "Resolution": "Hello Manu, this is Maya Kapoor from the IT department. I understand the urgency of resolving your account lockout issue as communication is critical for your strategic initiatives at Inazuma.co. To unlock your email account, I will initiate the process right away by verifying your credentials and ensuring that your access is restored promptly. Additionally, I will review our security settings to prevent any further account lockouts. You should be able to access your email shortly. If you encounter any further issues, feel free to reach out. Thank you for your patience."
+    },
+    {
+      "id": "2642",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1168",
+      "assigned_date": "2019-04-18",
+      "emp_id": "emp_0594",
+      "Issue": "Hi IT Team, I'm experiencing difficulties accessing my email account. Every time I try to log in, the system prompts me for a password reset, but it doesn't recognize my credentials even after resetting. As an Engineering Manager overseeing project development, it's crucial for me to have uninterrupted access to my emails to ensure communication with my team and maintain quality standards. Could you please assist with resolving this issue? Thank you. Regards, Sri Kesava Rao, emp_1168.",
+      "Resolution": "Hello Sri Kesava Rao, Thank you for reaching out. I understand the importance of seamless communication for your role in project development. The issue seems to be related to our Inazuma.co email authentication system. I have reset your credentials on our server and ensured that your profile is correctly updated. You should be able to access your email now using the new password sent to your registered mobile number. If the problem persists, please let me know so we can further investigate. Best, Nishant Rathore, emp_0594."
+    },
+    {
+      "id": "2742",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0167",
+      "assigned_date": "2015-01-09",
+      "emp_id": "emp_1108",
+      "Issue": "Hi IT Team, I'm Gloria Martinez from HR. I'm experiencing an issue with accessing my email. Every time I try to log in, I'm getting an error message saying my account is locked. This is impacting my ability to communicate with candidates and team members effectively. Could you please assist with unlocking my account? Thank you.",
+      "Resolution": "Hello Gloria, this is Brandon Scott from the IT department. I've reviewed your issue and unlocked your email account. You should now be able to access your emails without any problems. Please try logging in again. If you encounter any further issues, feel free to reach out. At Inazuma.co, we're committed to ensuring seamless communication for our HR team. Thank you for your patience."
+    },
+    {
+      "id": "2827",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0708",
+      "assigned_date": "2022-08-30",
+      "emp_id": "emp_0887",
+      "Issue": "Hello IT team, I'm experiencing issues accessing my email account. I've tried logging in multiple times, but it seems to be locked, and I can't receive any new messages. Given the importance of seamless communication for managing our digital marketing campaigns here at Inazuma.co, I need this resolved quickly. Could you please assist with unlocking the account? Thank you. - Arvind Desai, Digital Media Manager, emp_0708",
+      "Resolution": "Hi Arvind, thank you for reaching out. I've unlocked your email account and ensured that your access is restored. You should now be able to log in and receive messages without any issues. Given our commitment to personalized experiences at Inazuma.co, I understand the urgency in resolving such communication barriers. If you face any further difficulties, please let me know, and I'll be happy to assist. Best, Lucas Green, IT Team Lead, emp_0887"
+    },
+    {
+      "id": "2869",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0826",
+      "assigned_date": "2020-06-02",
+      "emp_id": "emp_0380",
+      "Issue": "Hello IT team, I hope this message finds you well. I am experiencing trouble accessing my email account, which is crucial for my role in the Business Development department. The email access issues are affecting my ability to communicate effectively with potential clients and partners. I have tried resetting my password, but it seems there might be a problem with the Inazuma.co email server. Could you please assist me in resolving this issue? Thank you! - Vikram Ahuja, emp_0826",
+      "Resolution": "Hi Vikram, thank you for reaching out. I'm Kunal Kapoor from the IT department, and I'll be assisting you with this issue. Given the importance of seamless communication for Inazuma.co's Business Development team, I'll prioritize your ticket. I have checked the Inazuma.co email server and noticed a minor configuration issue affecting a few accounts. I've corrected this, and you should now be able to access your email without any problems. Please try logging in again and let me know if there are any further issues. If needed, we can also set up a remote session to ensure everything is working perfectly. Thank you for your patience! - Kunal Kapoor, emp_0380"
+    },
+    {
+      "id": "2950",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0574",
+      "assigned_date": "2018-12-04",
+      "emp_id": "emp_0427",
+      "Issue": "Hello IT team, I'm experiencing difficulties accessing my email account. I keep receiving an error message indicating that my account is locked. As this is crucial for my role in the Food & Beverages department at Inazuma.co, I would appreciate your prompt assistance in resolving this issue. Thank you, Shailesh Desai, emp_0574.",
+      "Resolution": "Hi Shailesh, thank you for bringing this to our attention. It seems your email account may have been inadvertently locked due to multiple failed login attempts. I have unlocked your account and reset your password. You should receive an email shortly with instructions to set a new password. Please try logging in again, and let us know if you encounter any further issues. We understand the importance of seamless communication, especially in a fast-paced environment like Inazuma.co. If you have any more concerns, feel free to reach out. Best, Zaid Ali, IT Manager."
+    },
+    {
+      "id": "3203",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0020",
+      "assigned_date": "2019-05-01",
+      "emp_id": "emp_0921",
+      "Issue": "Hello IT Team, I'm Casey Morgan from the PR department at Inazuma.co. I'm experiencing a problem with accessing my email. Every time I try to log in, it prompts me with an error message saying 'Email access denied'. This is affecting my ability to send out press releases and handle media relations efficiently. Could you please assist in resolving this issue? Thank you.",
+      "Resolution": "Hi Casey, this is Aakash Bhalla from the IT department. I understand how crucial email access is for your role at Inazuma.co. The issue might be related to the recent security updates on our email servers. To resolve this, please try clearing your browser cache and cookies, then attempt logging in again. If the problem persists, I will reset your email access permissions on our server. Let me know if this resolves the issue or if further assistance is needed. Best regards."
+    },
+    {
+      "id": "3359",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0753",
+      "assigned_date": "2016-08-31",
+      "emp_id": "emp_1173",
+      "Issue": "Hello IT team, I'm experiencing difficulties accessing my email account. It seems that my account is locked, and I'm unable to receive or send emails. This is affecting my ability to communicate effectively with my team and stakeholders. Could you please assist in unlocking my account and ensuring that I have full email access? Thank you. - John Doe, Project Manager, Engineering Department, emp_0753",
+      "Resolution": "Hi John, I understand the importance of seamless communication for project coordination at Inazuma.co. I've unlocked your email account and ensured that all access permissions are correctly configured. Please try logging in now. If you encounter any further issues, feel free to reach out. We appreciate your commitment to delivering world-class consumer experiences. Best regards, Kunal Bhattacharya, Team Lead, IT Department, emp_1173"
+    },
+    {
+      "id": "3412",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0618",
+      "assigned_date": "2017-10-25",
+      "emp_id": "emp_0249",
+      "Issue": "Hello IT Team, I'm Rohan Sen from the Information Technology department at Inazuma.co. I'm experiencing connectivity issues with our VPN, which is affecting my ability to access certain portals and resources necessary for my daily tasks. As a Junior IT Associate, I rely heavily on the VPN to access our internal systems and collaborate effectively with our team. Can you please assist in resolving this issue at your earliest convenience?",
+      "Resolution": "Hi Rohan, this is Mansoor Faridi from the IT department. Thank you for reaching out regarding the VPN connectivity issue. As Inazuma.co's VPN is crucial for secure access to our internal systems, I understand the importance of resolving this swiftly. Please try restarting your device and ensure your network settings are configured correctly. If the problem persists, I'll guide you through a detailed troubleshooting process or escalate the issue to our network team for further investigation. Let me know if you need additional assistance."
+    },
+    {
+      "id": "3616",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0014",
+      "assigned_date": "2014-11-13",
+      "emp_id": "emp_1173",
+      "Issue": "Hello IT Team, I'm Samual Henderson from the Health & Fitness department. I'm experiencing an issue with VPN connectivity when trying to access the Inazuma.co portal remotely. Whenever I attempt to connect, the VPN client fails to establish a secure connection, showing a timeout error. This is affecting my ability to access important resources and client information. Could you please assist in resolving this issue?",
+      "Resolution": "Hi Samual, this is Kunal Bhattacharya from the IT department. I understand the inconvenience you're facing with the VPN connectivity. To resolve this, please ensure that your VPN client is updated to the latest version, as older versions might have compatibility issues with our Inazuma.co servers. Additionally, check your internet connection stability, as intermittent connections can cause timeout errors. If the problem persists, please reach out to us with the specific error code, and we'll investigate further. Thank you for your patience!"
+    },
+    {
+      "id": "3814",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1021",
+      "assigned_date": "2018-06-15",
+      "emp_id": "emp_0247",
+      "Issue": "Hello IT team, this is Daljit Singh from Business Development. I am experiencing issues with VPN connectivity while trying to access our servers. The connection seems to be unstable, and I am unable to access the Inazuma.co portal consistently. This is impacting my ability to manage account reconciliation and financial reporting tasks effectively. Could you please assist me in resolving this issue?",
+      "Resolution": "Hi Daljit, this is Ananya from IT. I understand the importance of maintaining a stable VPN connection for accessing the Inazuma.co portal and servers. To resolve this issue, please ensure you are using the latest version of our VPN client. If the problem persists, try disconnecting and reconnecting to the VPN, and check if your internet connection is stable. Additionally, please verify that your VPN settings match the configurations provided in our IT guidelines. Let me know if you continue to face issues, and I will be happy to assist further."
+    },
+    {
+      "id": "4076",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0962",
+      "assigned_date": "2016-01-27",
+      "emp_id": "emp_0089",
+      "Issue": "Hi IT team, I'm experiencing a problem accessing my email account. Whenever I try to log in, I receive an error message saying my account is locked. This is affecting my ability to manage personnel communications effectively and resolve conflicts in a timely manner. Can someone assist me with unlocking my account? Thank you! - Kavita Radhakrishnan, HR09, emp_0962",
+      "Resolution": "Hello Kavita, thank you for reaching out. It appears your account was locked due to multiple incorrect login attempts. I've unlocked your email account, and you should now be able to access it without any issues. Please use the password reset option if needed. As Inazuma.co is dedicated to ensuring seamless operations, feel free to reach out if you need further assistance with our systems. Regards, Tara Bhardwaj, IT Manager, emp_0089"
+    },
+    {
+      "id": "4458",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0715",
+      "assigned_date": "2022-05-06",
+      "emp_id": "emp_0427",
+      "Issue": "Hello IT Support, this is Vignesh Krishnan from the Engineering department. I'm currently experiencing issues with VPN connectivity. I am unable to access the internal resources required for my projects. This is affecting my ability to support ongoing engineering activities and maintain systems as needed. Could you please assist in resolving this issue urgently? Thank you!",
+      "Resolution": "Hi Vignesh, this is Zaid Ali from the IT department. Thank you for bringing this to our attention. The VPN connectivity issue you are facing might be due to recent updates on our network infrastructure. To resolve this, please try reconnecting by ensuring that your VPN client is updated to the latest version used by Inazuma.co. Additionally, check if your firewall settings are configured to allow VPN traffic. If the issue persists, please reach out to our IT helpdesk at [helpdesk@inazuma.com] for further assistance. We're committed to ensuring that our cutting-edge technology supports your engineering projects seamlessly. Let me know if this resolves the problem or if further help is needed."
+    },
+    {
+      "id": "4783",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0853",
+      "assigned_date": "2015-06-19",
+      "emp_id": "emp_0667",
+      "Issue": "Hello IT Support, this is Mahesh Nambiar from the Finance department. I am currently experiencing issues accessing my email account. It seems like I am unable to send or receive emails, which is affecting my ability to communicate effectively with my team and external partners. Given the importance of seamless communication in our operations at Inazuma.co, I would appreciate your prompt assistance in resolving this issue. Thank you.",
+      "Resolution": "Hi Mahesh, this is Tariq Ahmad from the IT department. I understand the importance of email communication for our operations at Inazuma.co. To resolve your email access issues, I recommend starting by checking your internet connection to ensure it's stable. If the connection is fine, please try clearing your browser cache or accessing your email through a different browser. Additionally, verify if your email account settings are correct and up-to-date. If the issue persists, please contact our helpdesk for further assistance, and we'll ensure your email access is restored promptly. Thank you for your patience."
+    },
+    {
+      "id": "4870",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0331",
+      "assigned_date": "2018-09-18",
+      "emp_id": "emp_1173",
+      "Issue": "Hello IT team, I'm experiencing difficulties accessing my email account. Each time I try to log in, I receive an error message stating my credentials are incorrect. Given the ongoing engineering projects I'm involved in, seamless communication is essential for collaborating with team members. Could you please assist me in resolving this issue? Thanks, Jason Wang, Engineering Associate, emp_0331.",
+      "Resolution": "Hi Jason, thank you for reaching out. To resolve your email access issue, I have reset your password and ensured your account is synchronized with the Inazuma.co email server. You should receive a temporary password shortly via SMS to your registered mobile number. Please use this password to log in and follow the prompts to set a new password. If you encounter any further issues, feel free to reply to this message. We understand the importance of uninterrupted communication for your projects and are here to help. Best regards, Kunal Bhattacharya, IT Team Lead, emp_1173."
+    },
+    {
+      "id": "5118",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0801",
+      "assigned_date": "2013-11-07",
+      "emp_id": "emp_0262",
+      "Issue": "Hi, this is Vivek Verma from the HR department. I'm experiencing a VPN connectivity problem and I'm unable to access the portal we use at Inazuma.co for managing client communications and negotiations. This issue is hindering my ability to efficiently handle ongoing legal matters and collaborate with my team. Could you please look into this as soon as possible?",
+      "Resolution": "Hello Vivek, this is Aarav Sharma from IT. I understand the importance of maintaining seamless connectivity for your tasks. For the VPN connection issue, I recommend trying to restart your device and re-establishing the connection. Please ensure that you are using the latest VPN client version provided by Inazuma.co. If the problem persists, kindly check your network settings to verify that the VPN server IP address configured matches the one provided by our IT department. If you continue to experience difficulties, feel free to reach out, and I will assist you further. Thank you for your patience."
+    },
+    {
+      "id": "6419",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0671",
+      "assigned_date": "2022-09-23",
+      "emp_id": "emp_0694",
+      "Issue": "Hello IT team, I am experiencing issues accessing the VPN that Inazuma.co uses for remote connectivity. Every time I try to connect, it fails to establish a secure connection. As a Junior Sales Associate, I need to access CRM tools remotely to support my team in achieving sales targets. Could you please assist in resolving this VPN connectivity problem?",
+      "Resolution": "Hi Richard, thank you for reaching out regarding the VPN connectivity issue. It seems like there might be a configuration problem with the VPN client on your device. To resolve this, please ensure that you have the latest VPN client version installed, which is optimized for Inazuma.co's secure network environment. Additionally, verify your network settings, and if the issue persists, please restart your device and try reconnecting. If you need further assistance, feel free to contact me directly at kevin.anderson@inazuma.com. We understand the importance of seamless access to CRM tools for your sales activities and are committed to ensuring you have a smooth experience. Best regards, Kevin Anderson."
+    },
+    {
+      "id": "6817",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0958",
+      "assigned_date": "2017-02-02",
+      "emp_id": "emp_0336",
+      "Issue": "Hello IT Team, this is Rishi Verma from the BPO department. I am currently facing an issue with VPN connectivity, which is affecting my ability to access the Inazuma.co portal and perform my tasks efficiently. Every time I try to connect, it fails to establish a secure connection. Could you please assist me in resolving this issue at your earliest convenience? Thank you!",
+      "Resolution": "Hi Rishi, this is Andrew Sinclair from the IT department. I understand your concern regarding the VPN connectivity issue. Our VPN server at Inazuma.co occasionally requires a reset or there might be a configuration mismatch. Please try the following steps: \n1. Ensure your internet connection is stable.\n2. Restart your device and attempt to reconnect to the VPN.\n3. Verify that your VPN client is up-to-date; if not, please update it.\nIf the issue persists, please send me your VPN client logs, and I'll assist further. Thank you for your patience and cooperation."
+    },
+    {
+      "id": "7290",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0592",
+      "assigned_date": "2020-06-29",
+      "emp_id": "emp_0325",
+      "Issue": "Hi IT team, I'm experiencing issues with VPN connectivity. I need to access the portal to review some strategic partnerships and manage account information, but the VPN doesn't seem to be connecting properly. This is crucial for my role in Business Development, as I rely on seamless access to our systems to drive revenue growth and enable effective sales strategies. Could you please assist me in resolving this issue? Thanks, Don Anderson.",
+      "Resolution": "Hello Don, thank you for reaching out. I understand the importance of VPN connectivity for your strategic initiatives. To resolve this issue, please follow these steps: \n1. Ensure that you are using the latest VPN client version provided by Inazuma.co.\n2. Confirm that your internet connection is stable.\n3. Try reconnecting after restarting your device. \nIf the issue persists, please send me the error logs or any messages you encounter. I'll investigate further to ensure you have uninterrupted access to the portal for your business development activities. Regards, Raghav Pillai."
+    },
+    {
+      "id": "8264",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1005",
+      "assigned_date": "2022-10-24",
+      "emp_id": "emp_0887",
+      "Issue": "Hello IT Team, I'm experiencing difficulties accessing my email account. Every time I try to log in, the system prompts me with an error message stating that my account is locked. As part of my role in the Advocate department, timely access to emails is crucial for managing legal correspondences and client communications. Could you please assist me in unlocking my account? Thank you. - Ishaan Marak",
+      "Resolution": "Hi Ishaan, thank you for reaching out. I've unlocked your email account, and you should now be able to access it without any issues. Please try logging in again. If you encounter any further problems, feel free to contact me directly. As Inazuma.co continues to enhance security protocols to protect sensitive data, these measures sometimes lock accounts for safety. Your patience is appreciated as we maintain top-notch security standards. Regards, Lucas Green"
+    },
+    {
+      "id": "8826",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0506",
+      "assigned_date": "2019-11-22",
+      "emp_id": "emp_0081",
+      "Issue": "Hello IT team, this is Patrick Sullivan from the Agricultural department. I'm currently facing an issue with VPN connectivity. I am unable to access internal resources crucial for our farm operations and equestrian management projects. This is impacting my ability to collaborate with my team effectively and manage ongoing projects efficiently. Could you please assist in resolving this issue at the earliest? Thank you.",
+      "Resolution": "Hi Patrick, this is Matthew Hamilton from the IT department. I understand the importance of accessing our internal resources for your projects. Let's ensure that you have a seamless experience with the VPN connection used by Inazuma.co. Could you please check if the VPN client is updated to the latest version? Sometimes, connectivity issues arise due to outdated software. Additionally, ensure that your network connection is stable. Please restart your VPN client, and if the issue persists, I will guide you through the troubleshooting steps or escalate the matter to our network team. Feel free to reach out if you need further assistance. Best regards, Matthew."
+    },
+    {
+      "id": "9117",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_1212",
+      "assigned_date": "2015-03-13",
+      "emp_id": "emp_0089",
+      "Issue": "Hello IT team, this is Shivam Kapoor from the Engineering department. I'm currently experiencing issues accessing my email on the Inazuma.co portal. I've tried resetting my password, but I still can't log in. This is impacting my ability to collaborate with the team on crucial projects. Could you please assist me in resolving this email access issue? Thank you.",
+      "Resolution": "Hi Shivam, this is Tara Bhardwaj from the IT department. Thank you for reaching out. I understand how important email access is for maintaining seamless communication and collaboration at Inazuma.co. Let\u2019s resolve this promptly. First, please ensure your VPN connection is active, as some email functionalities require secure access through our corporate network. If the issue persists, I will reset your email credentials and send you instructions for a secure login. Rest assured, we'll have you back up and running in no time. Let me know if you encounter any further issues."
+    },
+    {
+      "id": "9608",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0665",
+      "assigned_date": "2016-01-15",
+      "emp_id": "emp_0081",
+      "Issue": "Hello, this is Ajay Nambiar from the Finance department. I'm experiencing a VPN connectivity problem when trying to access the network resources essential for our consumer relationship management system. Considering Inazuma.co's focus on seamless brand connections, it's crucial for me to resolve this issue swiftly to maintain our operational efficiency. Could you please assist me with this?",
+      "Resolution": "Hi Ajay, this is Matthew Hamilton from the IT department. I understand the importance of maintaining a seamless connection to support Inazuma.co's consumer relationship efforts. To resolve the VPN connectivity issue, please ensure that you are using the latest VPN client version provided by Inazuma.co. Additionally, check your internet connection stability; if the problem persists, try restarting your device and re-establishing the VPN connection. If you continue to encounter difficulties, please reach out to me directly for further assistance. We're committed to ensuring you have the tools necessary to enhance our customer experiences."
+    },
+    {
+      "id": "10607",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0604",
+      "assigned_date": "2016-12-13",
+      "emp_id": "emp_0786",
+      "Issue": "Hi IT team, this is Hari Kumar from Business Development. I'm currently experiencing issues with VPN connectivity. Whenever I try to connect, it fails to establish a secure connection. This is affecting my ability to access resources needed for strategic planning and client relationship management, which are crucial for driving revenue growth at Inazuma.co. Could you please assist in resolving this matter?",
+      "Resolution": "Hello Hari, this is Maya Kapoor from the IT department. Thank you for bringing this to our attention. We understand the importance of seamless connectivity for your business development activities at Inazuma.co. To resolve the VPN connectivity issue, please ensure that your network settings are configured correctly according to the guidelines provided in the Inazuma.co employee portal. Additionally, try restarting your router and check if your firewall settings are blocking the VPN connection. If the issue persists, I will arrange a remote session to troubleshoot the problem further. Feel free to reach out if you need additional assistance."
+    },
+    {
+      "id": "10754",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0700",
+      "assigned_date": "2021-06-10",
+      "emp_id": "emp_0642",
+      "Issue": "Hi IT team, I'm Rajesh Malhotra from the Engineering department. I'm currently experiencing a Network Connectivity Issue. My laptop is unable to connect to the Inazuma.co network, and I'm having trouble accessing our cloud-based project management tools and shared drives. This is crucial for my ongoing tasks, and I need assistance to resolve this as soon as possible. Thank you.",
+      "Resolution": "Hello Rajesh, this is Arvind Sharma from the IT department. I understand how important network connectivity is for your work at Inazuma.co, especially when accessing our cloud-based resources. Firstly, please ensure your Wi-Fi is enabled and connected to the correct network. If you're using a wired connection, check if the Ethernet cable is securely plugged in. In case the issue persists, try restarting your router or the network adapter on your laptop. If these steps don't help, please reach out to me directly, and I'll guide you through a more technical troubleshooting process or escalate the matter to our network team. We aim to ensure that you can smoothly access all tools necessary for your role. Thank you for your patience."
+    },
+    {
+      "id": "10828",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_1001",
+      "assigned_date": "2012-11-21",
+      "emp_id": "emp_0618",
+      "Issue": "Hello IT team, this is Rahul Alagappan from the Engineering department. I am currently experiencing issues with VPN connectivity. I am unable to access the internal resources on the servers at Inazuma.co, which is hindering my ability to collaborate with cross-functional teams on ongoing engineering projects. Could you please assist in resolving this issue at your earliest convenience?",
+      "Resolution": "Hi Rahul, this is Rohan Sen from the IT department. I understand the importance of seamless connectivity for your engineering projects. Please try restarting your VPN client and ensure you are using the latest version compatible with Inazuma.co's systems. If the issue persists, kindly check if there are any firewall settings blocking the VPN connection. You can also reach out to our network team for further assistance. Let me know if you need any more help!"
+    },
+    {
+      "id": "10964",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0583",
+      "assigned_date": "2018-02-13",
+      "emp_id": "emp_0081",
+      "Issue": "Hello IT support, this is Shaan Roy from the Business Development team. I'm experiencing difficulties accessing my email account, which is crucial for coordinating educational initiatives and communicating with team members and clients. This issue is affecting my ability to stay connected with colleagues and contribute effectively to the seamless, personalized experiences we aim to deliver at Inazuma.co. Could you please assist me in resolving this email access issue at your earliest convenience?",
+      "Resolution": "Hi Shaan, thank you for reaching out. I'm Matthew Hamilton from the IT department, and I'll be assisting you with your email access issue. To ensure seamless communication and collaboration, please try the following steps: 1) Check your internet connection to ensure it's stable. 2) Clear the cache and cookies in your browser. 3) Verify that your VPN connection to Inazuma.co is active and stable. If the issue persists, please provide any error messages you encounter, and I'll investigate further. We're committed to maintaining effective communication channels to support our consumer-focused operations. Let me know if you need any additional assistance."
+    },
+    {
+      "id": "11318",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0105",
+      "assigned_date": "2021-06-22",
+      "emp_id": "emp_0462",
+      "Issue": "Hello IT team, I'm experiencing difficulties with VPN connectivity. I'm unable to access the internal engineering resources needed to manage our ongoing projects effectively. This is causing delays in coordinating with my team and ensuring project goals are met efficiently. Could you please assist in resolving this issue at your earliest convenience? Thanks, Ananya Joshi.",
+      "Resolution": "Hi Ananya, thank you for reaching out. I've checked the VPN settings and noticed some discrepancies in your access configuration. I've made the necessary adjustments to ensure seamless connectivity to Inazuma.co's internal resources. Please try connecting again and let me know if you encounter any further issues. Additionally, I've verified the network stability to ensure you have uninterrupted access moving forward. Best regards, Ethan Turner."
+    },
+    {
+      "id": "11583",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0084",
+      "assigned_date": "2014-02-17",
+      "emp_id": "emp_0436",
+      "Issue": "Hello, IT team. I'm Rajesh Ksheersagar from the Building & Construction department. I'm currently experiencing a VPN Connectivity Problem. I need to access the portal for project documentation, and it's crucial for maintaining seamless communication with our partners. Can you please assist in resolving this issue at your earliest convenience?",
+      "Resolution": "Hi Rajesh, this is Surya Reddy from the IT department. I've reviewed your VPN connectivity issue. Let's ensure that your VPN client is updated to the latest version used by Inazuma.co. Also, please verify that your network settings are configured correctly. If the problem persists, I suggest restarting your laptop and attempting to reconnect. Our server monitoring shows stable activity, so there should not be any outages. Please let us know if you need further assistance or if the issue continues. We're here to ensure you can maintain productivity and effective communication with our partners."
+    },
+    {
+      "id": "11675",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0255",
+      "assigned_date": "2016-08-18",
+      "emp_id": "emp_0996",
+      "Issue": "Hello IT team, this is Sanjeev Kapoor from the Engineering department. I've encountered a VPN connectivity problem while trying to access the Inazuma.co servers remotely. The VPN client seems to be failing to authenticate, which is affecting my ability to lead and oversee technical projects efficiently. Could you please assist in resolving this issue at the earliest?",
+      "Resolution": "Hi Sanjeev, this is Rajat from the IT department. Thank you for bringing this to our attention. I've checked the VPN configuration for Inazuma.co, and it seems like there might be a mismatch in the authentication credentials. I've reset your VPN credentials, and you should be able to access the servers now. Please try reconnecting and let me know if the issue persists. Your seamless connectivity is crucial for leading innovative projects, and we're here to ensure you have the tools needed for success."
+    },
+    {
+      "id": "11863",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0322",
+      "assigned_date": "2014-01-27",
+      "emp_id": "emp_0465",
+      "Issue": "Hello IT Support, I'm Maya Raghavan from the Finance department. I'm experiencing a VPN connectivity problem while attempting to access the Inazuma.co secure portal from home. This issue is impacting my ability to manage client relationships and conduct business analysis effectively. Could you please assist me in resolving this at the earliest? Thank you.",
+      "Resolution": "Hi Maya, this is Arman Ali from IT Support. I understand that VPN connectivity is crucial for accessing our secure portal and maintaining seamless client operations at Inazuma.co. Please try restarting your router and ensure that you are using the latest VPN client version provided by our IT department. If the issue persists, I recommend checking the firewall settings or any antivirus software that might be blocking the VPN connection. Let me know if you need further assistance or if the problem continues. We're here to help ensure you have uninterrupted access to the portal."
+    },
+    {
+      "id": "12578",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0927",
+      "assigned_date": "2022-02-25",
+      "emp_id": "emp_0436",
+      "Issue": "Hello IT Department, I am Rishi Kumar from the Engineering team. I am currently facing issues with VPN connectivity which is affecting my ability to access essential resources remotely. As we heavily depend on VPN to maintain seamless communications and data flow across Inazuma.co's platforms, I need this resolved urgently to continue supporting engineering projects effectively. Please assist in resolving this issue. Thank you.",
+      "Resolution": "Hi Rishi, this is Surya Reddy from IT. I've reviewed your VPN connectivity issue and suggest the following steps to troubleshoot: 1) Ensure your VPN client is updated to the latest version. 2) Check if there are any firewall settings that might be blocking the VPN. 3) Restart your device and try reconnecting. If the issue persists, please provide us with any error messages that appear. Our team is committed to ensuring seamless connectivity across Inazuma.co's platforms, and we'll work swiftly to address this. Feel free to reach out if you need further assistance. Best, Surya."
+    },
+    {
+      "id": "12671",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0151",
+      "assigned_date": "2022-10-25",
+      "emp_id": "emp_1106",
+      "Issue": "Hi IT Team, this is Anita Sharma from Engineering. I'm experiencing issues with accessing my email account. I've tried logging in multiple times, but I keep receiving an error message stating that my account is locked. Given my role in overseeing cross-functional teams and driving business development initiatives, it's crucial that I have uninterrupted access to my emails to maintain seamless communication with vendors and stakeholders. Could you please assist in unlocking my account? Thank you!",
+      "Resolution": "Hello Anita, this is Matthew Brooks from the IT department. I've reviewed your account status and can confirm that your email access issue is due to multiple failed login attempts, which triggered a security protocol on Inazuma.co's email server. I've unlocked your account and reset your password. You should receive an email shortly with instructions on setting a new password. Please ensure that your new password adheres to our security guidelines. If you encounter any further issues, feel free to reach out. Thank you for your patience and understanding."
+    },
+    {
+      "id": "12909",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0855",
+      "assigned_date": "2021-06-01",
+      "emp_id": "emp_0508",
+      "Issue": "Hello IT team, this is Harish Tiwari. I'm experiencing VPN connectivity problems. I need to access our systems remotely to ensure timely updates in the aviation department. However, the VPN connection keeps dropping, which is hampering my ability to perform efficiently. Could you please look into this at the earliest? Thank you.",
+      "Resolution": "Hi Harish, this is Suresh Roy from the IT department. I understand the importance of maintaining seamless connectivity for your aviation operations. We have identified a temporary disruption in the VPN service used by Inazuma.co. I have reset your VPN credentials and optimized the connection settings. Please try reconnecting now. If the issue persists, feel free to reach out directly to me at suresh.roy@inazuma.com. We are committed to ensuring your operational efficiency. Best regards."
+    },
+    {
+      "id": "13121",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0477",
+      "assigned_date": "2021-04-28",
+      "emp_id": "emp_0389",
+      "Issue": "Hello IT team, this is Kunal Mahajan from Business Development. I'm currently experiencing a network connectivity issue that is affecting my ability to access the Inazuma.co portal for email marketing tasks. The connection seems unstable, and I'm unable to effectively conduct market research and liaise with clients. Could you please assist in resolving this issue at the earliest? Thank you.",
+      "Resolution": "Hi Kunal, this is Priya Srinivas from the IT department. Thank you for reaching out. We've identified a temporary network outage affecting some areas of Inazuma.co's servers. Our team is actively working to restore stable connectivity. Meanwhile, you can try accessing the portal via a VPN connection, which might offer a temporary workaround. We'll keep you updated on the progress and let you know as soon as the issue is resolved. Apologies for any inconvenience caused, and thank you for your patience."
+    },
+    {
+      "id": "13516",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0821",
+      "assigned_date": "2018-02-13",
+      "emp_id": "emp_1017",
+      "Issue": "Hi Team, this is Ravi Anand from the Information Technology department, Level IT09. I'm experiencing a VPN Connectivity Problem. I am unable to connect to the VPN that Inazuma.co uses for accessing internal resources. This issue is affecting my ability to work on digital marketing projects that require secure access to customer data. Please assist me in resolving this issue at the earliest.",
+      "Resolution": "Hello Ravi, this is Anupam Kapoor, Team Lead for the IT department. Thank you for bringing this to our attention. To resolve the VPN Connectivity Problem, please ensure that your network settings are configured correctly and that you are using the latest VPN client provided by Inazuma.co. If the issue persists, try restarting your router and device. I will also check the server logs to ensure that there are no blockages from our end. Please let me know if you are still facing difficulties after these steps. We're committed to ensuring seamless connectivity for your projects. Feel free to reach out for further assistance."
+    },
+    {
+      "id": "13528",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0679",
+      "assigned_date": "2021-10-13",
+      "emp_id": "emp_0508",
+      "Issue": "Hello IT team, this is Rohan Krishnappa from the Food & Beverages department. I've been experiencing connectivity issues with the VPN that Inazuma.co provides. Whenever I attempt to connect, the connection either fails or drops frequently, which is impacting my ability to access important files and collaborate with my cross-functional teams efficiently. Could you please assist in resolving this issue? My emp_id is emp_0679.",
+      "Resolution": "Hi Rohan, this is Suresh Roy from the IT department. I understand your concern regarding the VPN connectivity. Given the importance of seamless communication and collaboration at Inazuma.co, I recommend the following steps to resolve the issue: 1) Ensure your VPN client is the latest version available; 2) Check your internet connection for stability; 3) Restart your device and attempt to reconnect; 4) If the problem persists, please reach out to me directly so I can assist with further troubleshooting or escalate to our network team. We strive to maintain efficient connectivity for all departments and ensure your work is unhindered. Thank you for your patience."
+    },
+    {
+      "id": "13640",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0002",
+      "assigned_date": "2019-03-27",
+      "emp_id": "emp_0389",
+      "Issue": "Hello IT Team, I am Siddhant Kapoor, an Engineering Associate at Inazuma.co. I am currently experiencing a VPN connectivity problem that is hindering my ability to access critical resources and collaborate on ongoing engineering projects. The VPN connection drops frequently, and I am unable to maintain a stable connection to the servers of Inazuma.co. This issue is affecting my productivity, and I would appreciate your urgent assistance in resolving it. Thank you.",
+      "Resolution": "Hi Siddhant, thank you for reaching out regarding the VPN connectivity issue. This is Priya Srinivas from the IT department. I understand the importance of maintaining a stable connection to ensure seamless collaboration and productivity, especially when working on crucial engineering projects at Inazuma.co. Please try the following steps to resolve the VPN connectivity problem: \n\n1. Ensure your internet connection is stable and that your modem/router is functioning correctly.\n2. Check if your VPN client software is up-to-date and try restarting the application.\n3. Disable any antivirus or firewall temporarily to see if they are blocking the VPN connection.\n4. Reboot your laptop/desktop to refresh the network settings.\n\nIf these steps do not resolve the issue, please reach out to me directly at priya.srinivas@inazuma.com, and I will assist you further. We are committed to ensuring you have the necessary support to maintain your productivity. Thank you for bringing this to our attention."
+    },
+    {
+      "id": "14075",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0735",
+      "assigned_date": "2013-03-18",
+      "emp_id": "emp_0089",
+      "Issue": "Hello IT team, I am experiencing difficulties accessing my email account. Every time I try to log in, I receive an authentication error message. This has started happening since yesterday and is impacting my ability to assist customers efficiently. Could you please help resolve this issue as soon as possible? Thank you. - Riya Mukherjee, Customer Service Associate, emp_0735.",
+      "Resolution": "Hi Riya, thank you for reaching out. It appears there might be an issue with the authentication server settings for your email account. I have reset your email authentication protocols, and you should be able to access your account now. If you continue to face issues, please try clearing your browser cache or contact us again. We strive to ensure seamless communication at Inazuma.co, and our team is committed to providing the necessary support to uphold this standard. Best regards, Tara Bhardwaj, IT Manager, emp_0089."
+    },
+    {
+      "id": "15436",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1226",
+      "assigned_date": "2021-08-18",
+      "emp_id": "emp_0163",
+      "Issue": "Hello IT Support, I'm experiencing a VPN Connectivity Problem. I'm unable to access the VPN that Inazuma.co uses to connect remotely to our engineering servers. This is affecting my ability to oversee engineering projects and manage teams efficiently. Could you please help resolve this issue at the earliest? Thank you! - Medha Sen, Engineering Manager",
+      "Resolution": "Hi Medha, Thank you for reaching out. I understand how critical VPN access is for managing engineering projects seamlessly. I recommend checking if your VPN client is up to date with the latest version provided by Inazuma.co. Additionally, ensure that your network settings align with our VPN requirements. If the issue persists, please let me know, and I can assist you further by verifying your access credentials and network configurations. We aim to get you back to optimal performance quickly. Best regards, Miguel Santiago, IT Manager"
+    },
+    {
+      "id": "15524",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0858",
+      "assigned_date": "2015-11-05",
+      "emp_id": "emp_0816",
+      "Issue": "Hello IT Team, this is Shiva Kumar from the Engineering department. I'm currently facing an issue with accessing our shared drive on the Inazuma.co network. It's crucial for me to access the files for my ongoing project in Art Direction and Creative Thinking. Could someone assist me in resolving this issue? Thank you!",
+      "Resolution": "Hi Shiva Kumar, this is Arjun Nair from the IT department. I understand the importance of accessing the shared drive for your creative projects. To resolve your issue, please ensure you're connected to the Inazuma.co VPN as it provides secure access to our network resources. If you're already connected and the issue persists, please try restarting your network adapter or contact our IT support for further assistance. We're committed to ensuring seamless collaboration and will work swiftly to restore your access. Thank you for your patience!"
+    },
+    {
+      "id": "16717",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0263",
+      "assigned_date": "2022-06-27",
+      "emp_id": "emp_0325",
+      "Issue": "Hello, I'm Sudha Krishnan, a Junior Apparel Associate at Inazuma.co. I'm currently experiencing issues accessing my email account. Each time I try to log in, I receive an error message saying my account is locked. Given the importance of seamless communication in our day-to-day operations, this has started to impact my ability to manage inventory and fabric requests effectively. Could you please assist with unlocking my account and ensuring I have full access to the email services?",
+      "Resolution": "Hi Sudha, this is Raghav Pillai from the IT department. I understand the urgency in resolving your email access issue, as efficient communication is vital for maintaining our agile and customer-obsessed operations at Inazuma.co. I've unlocked your account and ensured all settings are optimized for seamless access. If you encounter any further issues, please let me know, and I'll be happy to assist. You should now be able to access your email without any interruptions. Thank you for your patience, and have a great day!"
+    },
+    {
+      "id": "17226",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0069",
+      "assigned_date": "2022-11-09",
+      "emp_id": "emp_0380",
+      "Issue": "Hello IT Support, I'm experiencing difficulties accessing the VPN. Each time I try to connect, I receive an error message stating 'Connection failed due to security settings.' As a Junior Software Engineer, I need uninterrupted VPN access to work on critical engineering projects remotely. Could you please help me resolve this issue? Thanks, Rajan Sethi.",
+      "Resolution": "Hi Rajan, thank you for reaching out. VPN connectivity issues can often stem from outdated security protocols or incorrect settings. Please ensure that your VPN client is updated to the latest version provided by Inazuma.co. You might need to adjust the security settings within the client to match those specified by our IT policies. If the problem persists, I can assist you with a more detailed troubleshooting guide or arrange for a remote session to debug the issue. Let me know how you'd like to proceed. Regards, Kunal Kapoor."
+    },
+    {
+      "id": "17826",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0648",
+      "assigned_date": "2021-11-26",
+      "emp_id": "emp_0089",
+      "Issue": "Hi IT Support, this is Clara Bennett from the Sales team. I'm currently experiencing issues accessing my email. Every time I try to log in, I receive an error message stating that my account is locked. As you know, seamless communication is crucial for maintaining our consumer relationships here at Inazuma.co. Could you assist me in resolving this as soon as possible? Thank you!",
+      "Resolution": "Hello Clara, this is Tara Bhardwaj from IT. I understand how important email communication is for your role in fostering consumer relationships at Inazuma.co. I've unlocked your account and reset your password to ensure you can access your email without further issues. Please check your inbox for a temporary password and follow the instructions to set a new one. If you encounter any more issues, feel free to reach out. Have a great day!"
+    },
+    {
+      "id": "18325",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0366",
+      "assigned_date": "2018-02-05",
+      "emp_id": "emp_1173",
+      "Issue": "Hello IT team, I'm currently facing a VPN connectivity problem. Whenever I try to connect, the VPN portal of Inazuma.co does not authenticate my credentials, and I am unable to access the necessary resources for my projects. This has been affecting my ability to collaborate with the team remotely. Could you please assist in resolving this issue at the earliest? Thank you. - Harish Bhambhani, emp_0366",
+      "Resolution": "Hello Harish, thank you for reaching out. It seems like there might be an issue with the authentication server on our VPN portal. I will reset your VPN credentials and ensure that the server configuration is correct. Please try again in about 30 minutes and let me know if you are able to connect successfully. If the issue persists, I will further investigate the network settings on your device. Your seamless access to resources is crucial for maintaining the personalized experiences we deliver at Inazuma.co. - Kunal Bhattacharya, emp_1173"
+    },
+    {
+      "id": "19197",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0798",
+      "assigned_date": "2021-02-17",
+      "emp_id": "emp_0436",
+      "Issue": "Hello IT team, this is Devika Bose from the Management department. I'm currently experiencing issues with VPN connectivity. Whenever I try to connect, it fails to establish a secure connection, which is affecting my ability to access certain resources required for strategic planning and team coordination. This is urgent as I need to prepare for an upcoming meeting regarding our digital marketing strategies. Could you please assist in resolving this issue at your earliest convenience?",
+      "Resolution": "Hi Devika, this is Surya Reddy from the IT department. I understand the urgency of the situation, especially considering the importance of seamless access for strategic planning. The VPN connectivity issue you're experiencing can be caused by several factors, including network congestion or incorrect settings. Here's what you can do: \n1. Please ensure your VPN client is updated to the latest version used by Inazuma.co.\n2. Check your network settings to ensure there are no conflicting configurations.\n3. Try resetting your router to clear any potential congestion.\nIf the issue persists, please let me know, and I will coordinate with our network team to further investigate and ensure you have the access needed for your meeting preparations. Thank you for your patience and understanding."
+    },
+    {
+      "id": "19415",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0163",
+      "assigned_date": "2012-08-16",
+      "emp_id": "emp_1108",
+      "Issue": "Hi IT Team, I'm experiencing difficulties accessing the VPN used by Inazuma.co. Each time I attempt to connect, it fails to authenticate my credentials. This connectivity problem is impacting my ability to engage with cloud computing strategies and manage ongoing projects effectively. Could you please assist in resolving this issue? Thanks, Miguel Santiago.",
+      "Resolution": "Hello Miguel, thank you for bringing this to our attention. To resolve the VPN connectivity problem, please ensure that your credentials are correct and try clearing any cached data in the VPN client settings. If the issue persists, it might be related to server configurations on Inazuma.co's end. I will coordinate with our network team to verify VPN server settings and ensure seamless connectivity for your projects. Let me know if you need further assistance. Best regards, Brandon Scott."
+    },
+    {
+      "id": "19676",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0365",
+      "assigned_date": "2018-08-02",
+      "emp_id": "emp_0389",
+      "Issue": "Hi IT team, I'm experiencing a problem with VPN connectivity while trying to access the Inazuma.co servers remotely. It seems the connection keeps dropping, and I cannot maintain access to the necessary resources for my agricultural management tasks. Could you please help resolve this at the earliest? Thank you. - Vijay Bansal",
+      "Resolution": "Hello Vijay, thank you for reaching out. We understand the importance of maintaining seamless access to our servers for your agricultural management tasks. To resolve the VPN connectivity issue, please ensure that your VPN client is updated to the latest version used by Inazuma.co. Additionally, check your network settings to ensure they are configured correctly for remote access. If the issue persists, please contact us directly so we can further investigate and ensure continuous access. Best regards, Priya Srinivas"
+    },
+    {
+      "id": "19848",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0073",
+      "assigned_date": "2022-05-24",
+      "emp_id": "emp_0249",
+      "Issue": "Hello IT Team, I am experiencing difficulties accessing my email account. It seems that my account has been locked, and I'm unable to receive or send emails. This is crucial for my current engineering projects as seamless communication is key to collaborating effectively with my team. Could you please assist in resolving this issue? Thank you. - Ayaan Shaikh",
+      "Resolution": "Hi Ayaan, Thank you for reaching out. It looks like your email account was accidentally locked due to a security protocol triggered by multiple incorrect login attempts. I've unlocked your account and reset your password. You should be able to access your emails now. Please try logging in using the new password sent to your registered phone number. If you face any further issues, feel free to contact me directly. Regards, Mansoor Faridi, IT Department, Inazuma.co"
+    },
+    {
+      "id": "20535",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0554",
+      "assigned_date": "2019-03-21",
+      "emp_id": "emp_0427",
+      "Issue": "Hi IT Team, I'm Shubham Kumar from the HR department. I'm currently having trouble accessing my email account. Whenever I try to log in, it seems that my account is locked. This is affecting my ability to communicate effectively with my team and handle HR tasks. Could you please look into this issue as soon as possible? Thanks!",
+      "Resolution": "Hello Shubham, this is Zaid Ali from the IT department. I've unlocked your email account on the Inazuma.co server and reset the password. You should now be able to access your email without any issues. Please check your inbox for an email with instructions on resetting your password securely. If you encounter any further problems, do not hesitate to reach out. We understand how crucial communication is for your role in HR and are committed to ensuring seamless access to all our digital platforms. Thank you for your patience."
+    },
+    {
+      "id": "20777",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0695",
+      "assigned_date": "2022-04-01",
+      "emp_id": "emp_1017",
+      "Issue": "Hello IT team, I'm Claire Bennett from Business Development (emp_0695). I've been experiencing connectivity issues with the VPN that Inazuma.co uses. This is affecting my ability to access the digital marketing tools needed for my projects. Could you please assist in resolving this issue at your earliest convenience? Thank you!",
+      "Resolution": "Hi Claire, this is Anupam Kapoor from the IT department. I understand the importance of seamless access for your digital marketing tasks. To resolve the VPN connectivity issue, please check if your internet connection is stable and try reconnecting. If the problem persists, please ensure that your VPN client is updated to the latest version. You might also want to restart your device and attempt to connect again. Should the issue continue, feel free to reach out, and I'll assist you further. Thank you for your patience and commitment to enhancing Inazuma.co's consumer relationships."
+    },
+    {
+      "id": "21065",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_1210",
+      "assigned_date": "2012-07-05",
+      "emp_id": "emp_0234",
+      "Issue": "Hi IT Team, I am Arjun Radhakrishnan from HR. I am experiencing a VPN connectivity problem that is preventing me from accessing the necessary resources to complete my tasks. This issue is affecting my ability to coordinate with the team and support our recruiting efforts. Could you please assist in resolving this at the earliest? Thank you!",
+      "Resolution": "Hello Arjun, this is Arvind Manohar from the IT department. I understand the importance of seamless connectivity for your HR functions. To resolve the VPN connectivity problem, please ensure that you are using the latest version of our VPN client provided by Inazuma.co. Additionally, try disconnecting and reconnecting to see if the issue persists. If the problem continues, please check your network settings and firewall configurations. Let me know if you need further assistance, and I will be happy to help. Best, Arvind."
+    },
+    {
+      "id": "21074",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0288",
+      "assigned_date": "2016-05-03",
+      "emp_id": "emp_0527",
+      "Issue": "Hi IT Team, this is Grace Williams from the HR department. I'm currently experiencing VPN connectivity problems which are preventing me from accessing the internal resources needed for coordinating an upcoming event. This issue is impacting my ability to manage media relations effectively. Could you please assist in resolving this as soon as possible? Thank you.",
+      "Resolution": "Hello Grace, this is Carlos Ramirez from the IT department. I've checked the VPN settings on the Inazuma.co network and noticed a configuration error causing the connectivity issue. I have corrected the settings, and you should now be able to connect seamlessly. Please try accessing the VPN again and let me know if you encounter any further issues. Your ability to manage media relations is crucial for our customer success, and we're committed to ensuring you have the necessary tools to excel. Thank you for your patience."
+    },
+    {
+      "id": "21261",
+      "priority": "low",
+      "raised_by_emp_id": "emp_1036",
+      "assigned_date": "2014-05-07",
+      "emp_id": "emp_0996",
+      "Issue": "Hi IT Support, I'm Soji Thomas from the Engineering department. I'm experiencing VPN connectivity problems which are affecting my ability to access necessary resources for ongoing engineering projects at Inazuma.co. The VPN seems to disconnect frequently, and I am unable to maintain a stable connection. Could you help me resolve this issue as soon as possible? Thank you.",
+      "Resolution": "Hi Soji, this is Rajat Anand from the IT department. I understand the importance of uninterrupted access to our systems for your engineering tasks. Please try the following steps to resolve your VPN connectivity issue: \n1. Ensure that your internet connection is stable. \n2. Restart the VPN client and try reconnecting. \n3. Verify that you are using the correct VPN settings provided by Inazuma.co. \n4. If the problem persists, please update your VPN client to the latest version available on our Inazuma.co portal.\nIf none of these steps work, please reach out to me directly, and I'll investigate further. We're committed to ensuring you have seamless access to our resources. Thank you."
+    },
+    {
+      "id": "21835",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1145",
+      "assigned_date": "2019-06-04",
+      "emp_id": "emp_0465",
+      "Issue": "Hello IT Team, I'm Rajesh Kapoor from the Business Development department. I've been experiencing issues with VPN connectivity, which is crucial for accessing the Inazuma.co servers remotely. This problem is affecting my ability to conduct market analysis and strategic planning efficiently. Could you please assist me in resolving this issue? Thank you.",
+      "Resolution": "Hi Rajesh, this is Arman Ali from the IT Support team. I understand the importance of VPN connectivity for your strategic tasks. Let's start by ensuring your VPN client is up-to-date; outdated software can cause connectivity issues. Additionally, try restarting your computer and logging into the VPN again. If the problem persists, please check your internet connection and firewall settings, as they might be blocking VPN access. Feel free to reach out if you need further assistance. Thanks for your patience."
+    },
+    {
+      "id": "22481",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0879",
+      "assigned_date": "2021-01-19",
+      "emp_id": "emp_0750",
+      "Issue": "Hello IT team, I've been experiencing issues with VPN connectivity since this morning. As a Team Lead Designer, it is crucial for me to access our design resources remotely to ensure seamless collaboration with my team. Could you please assist in resolving this connectivity problem? Thank you! - Cyan Branding (emp_0879)",
+      "Resolution": "Hi Cyan, thank you for reaching out. VPN connectivity is essential for ensuring uninterrupted access to our design resources. Here are a few steps you can follow to troubleshoot the issue: \n1. Ensure that your internet connection is stable.\n2. Try restarting your VPN client.\n3. Verify your VPN credentials.\n4. If the problem persists, please contact our support team so we can investigate the issue further, potentially involving server configurations.\nWe are committed to facilitating seamless collaboration across Inazuma.co's ecosystem, and we'll make sure you can connect to our VPN smoothly. Best, Abigail Mitchell (emp_0750)"
+    },
+    {
+      "id": "22541",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0506",
+      "assigned_date": "2022-07-06",
+      "emp_id": "emp_0887",
+      "Issue": "Hello IT Team, I've been experiencing some issues accessing my email account. It seems like my email credentials are either not working or there's a problem with the email portal here at Inazuma.co. I rely heavily on email communication for managing my agricultural projects and coordinating with my team, so I need this resolved as soon as possible. Could you please assist me in regaining access to my email? Thank you. - Patrick Sullivan",
+      "Resolution": "Hi Patrick, thank you for reaching out. It appears there may be a discrepancy with your email credentials or an issue with our email servers. Rest assured, I will investigate this promptly. In the meantime, please try resetting your password through the Inazuma.co email portal. If the issue persists, I will ensure our team resolves it swiftly to minimize any disruption to your communication needs. Please let me know if you require any immediate assistance. Best regards, Lucas Green"
+    },
+    {
+      "id": "23492",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0192",
+      "assigned_date": "2020-03-12",
+      "emp_id": "emp_0996",
+      "Issue": "Hello IT team, this is Arnav Agarwal from the apparel department. I'm experiencing issues accessing my email account, and it's crucial for my daily operations and communication with our brand partners. When I try to log in, it either times out or doesn't recognize my credentials. Could you please assist me in resolving this email access issue? Thank you.",
+      "Resolution": "Hi Arnav, this is Rajat Anand from the IT department. I understand how important email access is for your role in managing brand communications. To resolve your email access issue, I have reset your email credentials. Please try logging in using the new credentials sent to your registered mobile number. If the problem persists, ensure that your network connectivity is stable, especially if you're using the VPN provided by Inazuma.co. Additionally, check if there are any email client settings or firewall configurations blocking access. If further assistance is needed, feel free to reach out. Thank you for your patience."
+    },
+    {
+      "id": "25052",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1167",
+      "assigned_date": "2022-09-09",
+      "emp_id": "emp_0523",
+      "Issue": "Hello IT team, I'm having trouble accessing my email. Whenever I try to log in, I receive an error message stating that my account is locked. Given my role in the Finance department and the importance of timely communication, this is quite urgent. Could you help me resolve this issue? My email is arnav.das@inazuma.com.",
+      "Resolution": "Hi Arnav, thank you for reaching out to us. We understand the urgency, especially considering your role in guiding seamless financial operations at Inazuma.co. We have unlocked your account and you should now be able to access your email without any issues. Please ensure to update your password at your earliest convenience to prevent any future lockouts. If you continue to face difficulties, please let us know. Best, Aditi Choudhary from IT Support."
+    },
+    {
+      "id": "25713",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0252",
+      "assigned_date": "2022-08-30",
+      "emp_id": "emp_0389",
+      "Issue": "Hi IT Team, I'm Sameer Khan from the Engineering department. I'm having trouble accessing the VPN connection required for our ongoing project collaborations. The VPN seems to be disconnecting frequently, which is impacting our team's ability to connect seamlessly with the servers at Inazuma.co. Could you please assist in resolving this connectivity problem? Thanks in advance.",
+      "Resolution": "Hello Sameer, this is Priya Srinivas from the IT department. I understand the importance of maintaining a stable VPN connection for your engineering projects at Inazuma.co. To resolve the issue, please ensure that your internet connection is stable and that the VPN client software is updated to the latest version. Additionally, verify that your firewall settings allow VPN traffic. If the problem persists, I will coordinate with our network team to further diagnose the issue and ensure that the VPN connectivity is restored. Please let me know if you need any further assistance. Best regards."
+    },
+    {
+      "id": "25995",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0744",
+      "assigned_date": "2017-12-26",
+      "emp_id": "emp_0667",
+      "Issue": "Hello IT Team, I am experiencing VPN connectivity issues while trying to access the Inazuma.co network remotely. The VPN client seems to be failing to establish a connection, which is crucial for my current project involving cross-functional collaboration. Could you please assist in resolving this issue at the earliest? Thanks, Arvind Bhardwaj.",
+      "Resolution": "Hi Arvind, Thank you for reaching out. We understand the importance of maintaining seamless connectivity, especially for cross-functional projects. Please ensure your VPN client is updated to the latest version. If the issue persists, try restarting your device and network equipment. Additionally, verify your network settings are configured correctly for Inazuma.co's VPN standards. We've also checked the server status, and everything seems operational on our end. If further assistance is needed, feel free to contact us directly. Best regards, Tariq Ahmad."
+    },
+    {
+      "id": "26475",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0907",
+      "assigned_date": "2017-08-10",
+      "emp_id": "emp_0786",
+      "Issue": "Hello IT team, this is Deepak Verma from the Engineering department. I'm experiencing a VPN Connectivity Problem that's affecting my ability to access our internal project management tools and collaboration platforms. The VPN seems to disconnect intermittently, causing disruptions in my work with the engineering teams. Given our focus on agility and innovation at Inazuma.co, it's crucial that I have stable access to our systems to lead projects effectively. Could someone assist in resolving this issue promptly? Thank you.",
+      "Resolution": "Hi Deepak, this is Maya Kapoor from the IT Support team. I understand the importance of seamless connectivity for your role at Inazuma.co. To resolve the VPN Connectivity Problem, please try the following steps: \n1. Ensure your VPN client is up-to-date; you can download the latest version from the Inazuma.co portal.\n2. Check your internet connection stability and restart your router if necessary.\n3. Try reconnecting at a time when network traffic is lower, such as early morning or late evening.\n4. If the issue persists, please provide logs from your VPN client for further analysis.\nWe aim to ensure you have uninterrupted access to our systems to continue driving innovation. Let me know if these steps help or if further assistance is needed."
+    },
+    {
+      "id": "26766",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0783",
+      "assigned_date": "2020-01-15",
+      "emp_id": "emp_0465",
+      "Issue": "Hello IT Support Team, this is Dhruv Desai from the Engineering department. I'm encountering a VPN connectivity problem that's preventing me from accessing critical resources necessary for ongoing projects. As you know, seamless remote access is crucial for our cross-functional collaboration at Inazuma.co, and I need this resolved to maintain the agility and efficiency we strive for in our operations. Please assist at the earliest.",
+      "Resolution": "Hi Dhruv, thank you for bringing this to our attention. I'm Arman Ali, and I'll be assisting you with your VPN connectivity issue. Based on our checks, it seems there may be a configuration mismatch between your device and the VPN settings used by Inazuma.co. I've sent you a step-by-step guide to adjust these settings. Also, ensure your VPN client software is updated to the latest version compatible with our infrastructure. If the problem persists, please let me know, and I'll escalate it to ensure minimal disruption to your work. We're committed to providing the support you need to maintain your project momentum."
+    },
+    {
+      "id": "27009",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0401",
+      "assigned_date": "2020-11-20",
+      "emp_id": "emp_1024",
+      "Issue": "Hi IT Support Team, this is Akshay Kulkarni from the Business Development department. I'm experiencing difficulties accessing my email account. For some reason, my email client keeps giving me an error message stating that the server is unreachable. As email communication is vital to supporting the senior advocates and clients at Inazuma.co, I need this resolved quickly. Could you please assist me in diagnosing and fixing this issue? Thank you!",
+      "Resolution": "Hello Akshay, this is Steven Parker from the IT department. I understand the importance of seamless email communication for your role at Inazuma.co. To resolve the email access issue, please try restarting your email client and ensure that your VPN connection is active, as Inazuma.co's servers require VPN access for security reasons. If the problem persists, make sure your network settings are configured properly. I\u2019ll also check if there are any server-side issues that might be causing this problem. Kindly let me know if the issue continues after following these steps. Thank you for your patience."
+    },
+    {
+      "id": "28756",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0041",
+      "assigned_date": "2022-12-29",
+      "emp_id": "emp_0234",
+      "Issue": "Hello IT team, I'm Rajesh Ranjan from the HR department. I've been experiencing issues with VPN connectivity while trying to access our internal portals from home. This is affecting my ability to lead cross-functional teams efficiently, especially in coordinating project management tasks. Could you please assist in resolving this matter promptly? Thank you.",
+      "Resolution": "Hi Rajesh, this is Arvind Manohar from the IT department. I understand how crucial seamless VPN access is for your role in coordinating vehicle dynamics and project management tasks. Let's start by ensuring that your VPN client is updated to the latest version compatible with Inazuma.co's infrastructure. Please check your firewall settings and ensure that the necessary ports for VPN are open. If the issue persists, I recommend trying a different network to see if the problem is specific to your current internet service provider. Let me know if you need further assistance. Best, Arvind."
+    },
+    {
+      "id": "28983",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0536",
+      "assigned_date": "2018-07-06",
+      "emp_id": "emp_0218",
+      "Issue": "Hello IT Team, I am experiencing difficulties accessing my email account on the Inazuma.co portal. It seems to be a recurring issue, where my login credentials are not being recognized, and I am unable to send or receive emails. As my role involves managing IT operations and service delivery, including oversight of Office 365, timely access to my emails is crucial for coordinating with vendors and managing ongoing projects. Could you please assist in resolving this email access issue at the earliest? Thank you.",
+      "Resolution": "Hi Rajesh, thank you for reaching out. It appears that there might be an authentication issue on the Office 365 platform used by Inazuma.co. I'll start by verifying your account settings and checking for any discrepancies in the email server configuration. In the meantime, please ensure your browser cache is cleared and attempt accessing the portal from an incognito window. I will also perform a security audit to ensure that there are no underlying vulnerabilities affecting your access. I will keep you updated on the progress and aim to resolve this as swiftly as possible. Thanks for your patience."
+    },
+    {
+      "id": "29333",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1123",
+      "assigned_date": "2021-03-31",
+      "emp_id": "emp_0560",
+      "Issue": "Hi IT Team, I am experiencing an issue with VPN connectivity while trying to access the resources on Inazuma.co's network. It seems like I cannot establish a connection, which is impacting my ability to complete my tasks efficiently. Could you please assist in resolving this problem? Thanks! - Austin Mitchell",
+      "Resolution": "Hello Austin, thank you for reaching out. I'm here to help with your VPN connectivity issue. Please try the following steps: \n1. Ensure that your internet connection is stable.\n2. Check if the VPN client is up to date; an outdated version might cause connectivity problems.\n3. Verify that you are using the correct VPN credentials provided by Inazuma.co.\n4. If the issue persists, restart your laptop and try connecting again.\n\nIf none of these steps resolve the issue, please let me know, and we can look into it further. Best regards, Amir Hasan"
+    },
+    {
+      "id": "29364",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0425",
+      "assigned_date": "2022-09-27",
+      "emp_id": "emp_0247",
+      "Issue": "Hello, this is Ritu Nair from the aviation team. I'm currently facing a VPN connectivity problem while trying to access the Inazuma.co portal from home. The connection keeps dropping intermittently, making it difficult for me to access the resources needed for my tasks. Could you please assist me with this issue?",
+      "Resolution": "Hi Ritu, thank you for reaching out. This is Ananya Deshpande from the IT team. I understand the importance of seamless connectivity for your work. To resolve the VPN connectivity issue, please ensure that your internet connection is stable and check if other devices on your network are experiencing similar issues. Additionally, try restarting your VPN client and router. If the problem persists, please update your VPN client to the latest version provided by Inazuma.co. You can find the update on our IT portal under 'VPN Resources.' Feel free to reach out if you need further assistance. Best regards, Ananya."
+    },
+    {
+      "id": "29833",
+      "priority": "low",
+      "raised_by_emp_id": "emp_1060",
+      "assigned_date": "2020-04-23",
+      "emp_id": "emp_0427",
+      "Issue": "Hi IT Team, I'm Harish Singh from the Engineering department. I've been experiencing VPN connectivity problems, which is affecting my ability to access the servers at Inazuma.co for ongoing engineering tasks. This issue prevents me from collaborating efficiently on the current projects, especially when trying to access data-driven insights and technical resources remotely. Can you please assist in resolving this as soon as possible? Thank you.",
+      "Resolution": "Hello Harish, Thank you for reaching out. This is Zaid Ali from the IT department. I've reviewed the VPN connectivity issue you're experiencing. Please ensure that your VPN client is updated to the latest version compatible with Inazuma.co's secure network protocols. Additionally, verify that your internet connection is stable and try reconnecting to the VPN. If the issue persists, we may need to look into your network settings or escalate the matter to our technical support team. Please let us know if you continue to face difficulties. We're committed to ensuring seamless access to our resources for optimal collaboration and innovation. Best regards, Zaid Ali."
+    },
+    {
+      "id": "30191",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0805",
+      "assigned_date": "2021-08-05",
+      "emp_id": "emp_1108",
+      "Issue": "Hello IT team, I'm experiencing a problem with accessing the VPN we use at Inazuma.co. Every time I attempt to connect, I receive an error message saying 'Connection Failed'. This is impacting my ability to coordinate land development projects effectively, as remote access to files is crucial for our operations. Could you please assist in resolving this issue? Thank you, Sagar Khanna, Team Lead Architect.",
+      "Resolution": "Hi Sagar, thank you for reaching out. The VPN connection issue you're experiencing may be due to recent updates on our network infrastructure. Please try the following troubleshooting steps: 1) Ensure your internet connection is stable. 2) Verify your VPN settings match those provided by Inazuma.co's IT guidelines. 3) Restart your computer and try connecting again. If the problem persists, please provide the specific error code for further diagnosis. We're committed to ensuring seamless remote access for all employees and will work promptly to resolve this. Best, Brandon Scott, Junior IT Associate."
+    },
+    {
+      "id": "30197",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1068",
+      "assigned_date": "2018-11-19",
+      "emp_id": "emp_0642",
+      "Issue": "Hello, this is Patrick O'Reilly from the Business Development department. I am currently unable to access my email account, which is crucial for communicating with our partners and managing contracts effectively. I suspect it might be an email access issue. Could you please assist in resolving this? My email is patrick.o'reilly@inazuma.com.",
+      "Resolution": "Hi Patrick, this is Arvind Sharma from the IT department. I understand the importance of email communication, especially given Inazuma.co's commitment to seamless consumer experiences. I've checked the email server configurations, and it appears that your account was temporarily locked due to multiple failed login attempts. I've reset your account settings, and you should now be able to access your email. If the problem persists, please let me know, and I'll investigate further. Thank you for your patience."
+    },
+    {
+      "id": "30285",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0766",
+      "assigned_date": "2021-01-18",
+      "emp_id": "emp_0050",
+      "Issue": "Hello IT team, I'm experiencing a problem with VPN connectivity. Whenever I try to connect, it either times out or fails to authenticate, preventing me from accessing the resources needed for my projects. Given the critical nature of my work in engineering, I need a resolution at the earliest. Could you please assist?",
+      "Resolution": "Hi Rahul, thank you for reaching out. We understand the importance of maintaining seamless connectivity for your role. Please ensure that you're using the latest version of the VPN client provided by Inazuma.co. If the issue persists, try clearing your cache and rebooting your device. We have also refreshed your VPN credentials on our server. Let me know if this resolves the issue or if you need further assistance."
+    },
+    {
+      "id": "30590",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0625",
+      "assigned_date": "2017-07-19",
+      "emp_id": "emp_0594",
+      "Issue": "Hello IT Team, I'm Nicole Taylor from the Sales department. I've been facing issues with accessing my email account. Every time I try to log in, I receive an error message stating that my account is locked. Given the urgency of maintaining timely financial reporting and operational efficiency, I need immediate access to my email to communicate with our clients and team members effectively. Could you please help me resolve this issue?",
+      "Resolution": "Hi Nicole, this is Nishant Rathore from the IT department. I understand the urgency of the situation given your role in managing crucial financial operations at Inazuma.co. It seems like your account lockout might be due to multiple failed login attempts or security protocols in place to protect sensitive information. I have unlocked your account and updated the security settings to prevent future lockouts. Please try logging in now. If you encounter any further issues, don't hesitate to reach out. Your email access should now be restored, ensuring uninterrupted communication with your clients and team. Thank you for your patience."
+    },
+    {
+      "id": "31422",
+      "priority": "low",
+      "raised_by_emp_id": "emp_1038",
+      "assigned_date": "2015-01-14",
+      "emp_id": "emp_0163",
+      "Issue": "Hello IT Team, this is Suraj Kapoor from the Sales department. I'm currently facing issues with VPN connectivity. I've been trying to access the VPN that Inazuma.co uses to connect to our servers for the past few hours, but I keep receiving a connection error. This is impacting my ability to access important documents related to a new strategy proposal we're working on. Could you please assist me in resolving this at the earliest? Thank you.",
+      "Resolution": "Hi Suraj, Miguel Santiago here from IT. I understand the importance of accessing our VPN for your work on strategic proposals. Let's get this fixed promptly. Firstly, please ensure you're using the correct VPN credentials provided by Inazuma.co. If the issue persists, try restarting your router and check if other network services are functioning correctly. Additionally, ensure your firewall settings aren't blocking the VPN connection. If you're still experiencing issues, we may need to update your VPN client software or check for any server maintenance activities on the Inazuma.co portal. Feel free to reach out directly if you need further assistance."
+    },
+    {
+      "id": "31712",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0171",
+      "assigned_date": "2022-02-10",
+      "emp_id": "emp_1048",
+      "Issue": "Hello IT team, this is Vaishali Sinha from the Management department. I'm having trouble accessing my email on the Inazuma.co portal. Every time I try to log in, it gives me an error message saying 'Access Denied'. I've tried resetting my password, but the issue persists. This is affecting my ability to communicate with my team and handle project-related tasks. Could you please assist me in resolving this email access issue?",
+      "Resolution": "Hi Vaishali, this is Zain Ahmed from the IT department. I apologize for the inconvenience you're facing with your email access on the Inazuma.co portal. Let's get this sorted out for you. First, I'll verify your account status to ensure there are no lockouts or security flags. If your account is in good standing, I will proceed to reset your email configurations and permissions on our server. Also, please ensure your credentials are entered correctly and try accessing via a different browser or clearing cache. If the issue persists, we can arrange a remote session to troubleshoot further. Thank you for your patience as we work to resolve this matter promptly."
+    },
+    {
+      "id": "32616",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0669",
+      "assigned_date": "2021-05-13",
+      "emp_id": "emp_1173",
+      "Issue": "Hello IT Team, I'm Samuel Jefferson from the HR department. I've been experiencing difficulties accessing my email account today. Whenever I try to log in, the system keeps prompting me to verify my credentials, but I seem to be stuck in a loop of verification. Given that seamless communication is crucial for managing our HR operations and maintaining employee relations, could you please assist in resolving this issue at your earliest convenience?",
+      "Resolution": "Hi Samuel, this is Kunal Bhattacharya from the IT department. I've looked into your email access issue, and it appears there might be a problem with the authentication gateway used by Inazuma.co. To resolve this, I recommend clearing your browser cache and cookies and trying to log in again. If the issue persists, please reset your password using the Inazuma.co portal and ensure that your VPN connection is stable when accessing the email system. I've also initiated a temporary bypass to help you access your account. Feel free to reach out if you encounter further issues."
+    },
+    {
+      "id": "32721",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0561",
+      "assigned_date": "2021-08-16",
+      "emp_id": "emp_0508",
+      "Issue": "Hello IT team, I'm encountering a VPN connectivity problem that's affecting my ability to access critical resources required for ongoing engineering projects. As an Engineering Associate at Inazuma.co, it's essential for me to maintain seamless access to our systems to support project success. Could you please assist in resolving this issue? Thank you, Raghav Kapoor.",
+      "Resolution": "Hi Raghav, thank you for reaching out. I've checked the VPN configurations specific to Inazuma.co and found that there was a temporary server interruption affecting connectivity. I've now restored the connection, and you should be able to access all necessary resources. If you encounter any further issues, please let me know. Best, Suresh Roy."
+    },
+    {
+      "id": "34781",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_1011",
+      "assigned_date": "2019-10-07",
+      "emp_id": "emp_0081",
+      "Issue": "Hello IT team, I'm facing a VPN connectivity problem while trying to access the servers at Inazuma.co from home. The connection drops frequently, and I'm unable to work on the projects efficiently. Could you please assist in resolving this issue? Thank you. - Karan Bhatia, Engineering Associate",
+      "Resolution": "Hi Karan, thank you for reaching out. To address the VPN connectivity issue, please ensure that your internet connection is stable and try reconnecting to the VPN using the latest version of the Inazuma.co VPN client. If the problem persists, please reset your network settings and attempt the connection again. Additionally, make sure your firewall settings allow VPN access. If you need further assistance, I\u2019m here to help. Best, Matthew Hamilton, Junior IT Associate"
+    },
+    {
+      "id": "35181",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0696",
+      "assigned_date": "2015-12-10",
+      "emp_id": "emp_0427",
+      "Issue": "Hello IT team, this is Sohan Choudhury from the Engineering department. I'm experiencing a VPN connectivity problem while trying to access the Inazuma.co servers remotely. The connection keeps dropping, and I'm unable to maintain a stable link to work on my projects. Could someone assist me with troubleshooting this issue?",
+      "Resolution": "Hi Sohan, this is Zaid Ali from the IT department. I understand the importance of maintaining a stable VPN connection for accessing Inazuma.co's servers, especially for your engineering projects. Please try restarting your VPN client and ensure your internet connection is stable. If the issue persists, verify that your VPN settings are correctly configured according to the latest guidelines provided on our IT portal. If you still face difficulties, feel free to reach out for further assistance. We're here to ensure your connection is seamless and efficient. Regards, Zaid Ali."
+    },
+    {
+      "id": "35194",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0020",
+      "assigned_date": "2015-06-19",
+      "emp_id": "emp_1173",
+      "Issue": "Hello IT Team, I'm Casey Morgan, a Junior Public Relations Associate here at Inazuma.co. I've been having trouble accessing my email account for the past few days. It seems like there might be an issue with the email server or my account settings. Could you please help me resolve this? Email communication is crucial for my role in Media Relations and crafting Press Releases, and I need to ensure seamless communication with our partners and stakeholders. Thank you!",
+      "Resolution": "Hi Casey, this is Kunal Bhattacharya from the IT department. I've looked into your email access issue and found that there was a temporary glitch with our email server that affected a few accounts. The server settings have been adjusted and your email access should now be restored. Please try logging in again, and if the problem persists, let me know immediately. We understand the importance of uninterrupted communication for your work in Media Relations and Social Media at Inazuma.co. Thank you for your patience!"
+    },
+    {
+      "id": "35320",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0271",
+      "assigned_date": "2021-10-12",
+      "emp_id": "emp_1108",
+      "Issue": "Hello IT team, I'm facing issues accessing my email. I believe it might be related to our VPN connectivity, as I'm unable to connect properly since this morning. As an Engineering employee at Inazuma.co, I rely heavily on email communication for aircraft maintenance coordination and documentation. Could you please assist me in resolving this issue? Thank you. - Arun R Prasad.",
+      "Resolution": "Hi Arun, thank you for reaching out. It seems like your email access issue might indeed be linked to VPN connectivity. I recommend first checking your VPN settings and ensuring you are using the latest version of the VPN client that Inazuma.co provides. If your VPN connection is unstable, try reconnecting to a different server location. Additionally, clearing your email client's cache might help. If the issue persists, please let me know, and I can assist you further with troubleshooting. Regards, Brandon Scott, Junior IT Associate."
+    },
+    {
+      "id": "35710",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0798",
+      "assigned_date": "2022-07-15",
+      "emp_id": "emp_0883",
+      "Issue": "Hello, this is Devika Bose from the Management department. I'm experiencing difficulties accessing my email account, which is crucial for coordinating project updates and communications. I've tried logging in multiple times, but it seems that my account is locked. As my role involves leading cross-functional teams, it's essential that I regain access promptly to ensure seamless collaboration and strategic planning. Could you assist me in resolving this issue? My employee ID is emp_0798.",
+      "Resolution": "Hi Devika, this is Alok Mathur from the IT department. Thank you for reaching out. I've checked the status of your email account on the Inazuma.co portal and confirmed that it was locked due to multiple failed login attempts. I've now unlocked your account, and you should be able to access it. Please make sure to reset your password to maintain security. If you encounter any further issues, feel free to contact me directly at alok.mathur@inazuma.com. We understand the importance of seamless communication for strategic planning and collaboration, and we're here to support you. Have a great day!"
+    },
+    {
+      "id": "36662",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0989",
+      "assigned_date": "2021-08-31",
+      "emp_id": "emp_0163",
+      "Issue": "Hello IT team, this is Arvind Sahukar from the BPO department. I'm experiencing a VPN connectivity problem which is preventing me from accessing the Inazuma.co portal and other internal resources. This issue is impacting my ability to conduct legal research and manage cases efficiently. Could you please assist in resolving this matter at your earliest convenience?",
+      "Resolution": "Hi Arvind, thank you for reaching out. This is Miguel Santiago from the IT department. Let's get your VPN connectivity issue resolved. Firstly, please ensure that your VPN client is updated to the latest version provided by Inazuma.co. If the problem persists, try resetting your network settings and reconnecting to the VPN. Additionally, check if there are any firewall settings that might be blocking the VPN connection. If these steps don't work, I'll arrange a remote session to troubleshoot further. Your seamless access to our resources is crucial for maintaining our consumer relationships and delivering quality service. Please let me know if you need further assistance."
+    },
+    {
+      "id": "37065",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0886",
+      "assigned_date": "2022-02-07",
+      "emp_id": "emp_0921",
+      "Issue": "Hello IT team, this is Samuel Richards from the Engineering department. I'm experiencing a VPN connectivity problem. It seems that I'm unable to connect to the Inazuma.co VPN, which is crucial for accessing project resources remotely. I've tried restarting my machine and checking the network settings, but the issue persists. Could you please assist in troubleshooting this connectivity problem?",
+      "Resolution": "Hi Samuel, this is Aakash Bhalla from the IT support team. I understand the importance of seamless VPN connectivity for ensuring uninterrupted access to critical project resources. Please try the following steps: \n1. Ensure that your network connection is stable and restart your router if necessary.\n2. Verify that your VPN client is up-to-date by checking the Inazuma.co portal for the latest version.\n3. Clear any cached data related to the VPN application and attempt a fresh login.\n4. If you are still unable to connect, please provide us with the error message you are receiving for further diagnosis. \nFeel free to reach out if the issue persists, and we'll ensure you regain access promptly."
+    },
+    {
+      "id": "39145",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0129",
+      "assigned_date": "2020-01-06",
+      "emp_id": "emp_0336",
+      "Issue": "Hello IT team, I'm experiencing a VPN connectivity problem. Whenever I attempt to connect to the VPN that Inazuma.co uses, I receive an error message stating that the server is unreachable. As someone who frequently drafts contracts and conducts legal research, having access to our internal network is crucial for my role. Could you please assist in resolving this issue at your earliest convenience?",
+      "Resolution": "Hi Arvind, thank you for reaching out. To resolve the VPN connectivity problem, please try the following steps: 1) Ensure your internet connection is stable; 2) Restart your VPN client; 3) Verify that your VPN credentials are correct. If you're still experiencing issues, we will check the server configurations on our end. Inazuma.co's VPN servers are designed to provide secure and seamless access to our network, and we're committed to ensuring that you can perform your legal tasks without interruption. Let's get this sorted out promptly."
+    },
+    {
+      "id": "39210",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0112",
+      "assigned_date": "2022-09-16",
+      "emp_id": "emp_0523",
+      "Issue": "Hello IT Team, I am experiencing difficulties accessing my email account. Every time I try to log in, I receive an error message indicating that my account is locked. This is affecting my ability to oversee several ongoing construction projects and coordination tasks. Could you please assist in unlocking my account? My email is omar.youssef@inazuma.com. Thank you.",
+      "Resolution": "Hi Omar, thank you for reaching out. I've unlocked your email account, and you should be able to access it without any issues now. Please try logging in again. If the problem persists, it may be due to multiple failed login attempts triggering the lockout. In the future, consider using the Inazuma.co portal's password recovery feature to avoid this issue. If you face further complications, feel free to reach out, and I'll assist you promptly. Regards, Aditi Choudhary."
+    },
+    {
+      "id": "39224",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0861",
+      "assigned_date": "2018-01-04",
+      "emp_id": "emp_1042",
+      "Issue": "Hello, IT team. This is Batgerel Tseveen from Business Development. I'm experiencing issues with VPN connectivity which is affecting my ability to access certain resources essential for my role. I rely on the VPN to connect with our digital marketing platforms and logistic systems. Could you please assist in resolving this problem? Thank you.",
+      "Resolution": "Hi Batgerel, thank you for reaching out. This is Mohan Choudhary from the IT department. I understand the importance of VPN connectivity for accessing Inazuma.co's digital marketing and logistic systems. Please ensure that your VPN client is updated to the latest version and check if your network settings match the configuration provided in our IT portal. If the problem persists, try restarting your device and reconnecting. Should you need further assistance, I'm here to help. Thank you for your patience."
+    },
+    {
+      "id": "39330",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0287",
+      "assigned_date": "2022-03-02",
+      "emp_id": "emp_0786",
+      "Issue": "Hello IT Support, I'm Dylan Carter from the Building & Construction department. I'm currently experiencing a VPN connectivity problem while trying to access our internal resources remotely. This issue is hindering my ability to coordinate projects effectively, as I rely heavily on VPN access for managing team activities and accessing project management tools. Could you please assist in resolving this issue at the earliest? Thank you.",
+      "Resolution": "Hi Dylan, this is Maya Kapoor from IT Support. I understand the importance of VPN connectivity for your role in project management at Inazuma.co. To resolve the issue, please ensure that you are connected to a stable internet connection and try restarting your VPN client. If the problem persists, I recommend checking if there are any updates required for the VPN software. Additionally, please verify that your credentials are correctly entered. If none of these steps work, I will escalate the issue to our network team to ensure seamless connectivity. Thank you for your patience."
+    },
+    {
+      "id": "39568",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0949",
+      "assigned_date": "2013-07-18",
+      "emp_id": "emp_0508",
+      "Issue": "Hello IT team, this is Rakesh Kumar from the BPO category, emp_id: emp_0949. I am encountering a VPN connectivity problem when trying to access the resources required for CRM implementation and strategy development. The VPN used by Inazuma.co seems to be blocking my access intermittently, which is impacting my ability to collaborate effectively with my team and stakeholders. Could you please assist in resolving this at the earliest? Thank you.",
+      "Resolution": "Hi Rakesh, this is Suresh Roy from the IT department. I understand the importance of seamless connectivity for your strategic initiatives. The issue you're experiencing with the VPN might be due to recent updates on the Inazuma.co servers. I recommend resetting your VPN configuration and ensuring you have the latest updates installed. Additionally, please clear your cache and attempt to reconnect. If the problem persists, feel free to reach out, and I will initiate a deeper investigation into our VPN settings to ensure optimal performance for your business process optimization tasks. Best regards."
+    },
+    {
+      "id": "42237",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0659",
+      "assigned_date": "2022-06-09",
+      "emp_id": "emp_0081",
+      "Issue": "Hello IT Team, I'm experiencing a VPN connectivity problem. I've been trying to connect to the VPN that Inazuma.co uses to access the servers needed for my engineering projects, but I'm unable to establish a connection. This is impacting my ability to collaborate on ongoing tasks efficiently. Could you please assist me in resolving this issue? Thank you! - Nishchal Anand Kapoor, Engineering Associate.",
+      "Resolution": "Hi Nishchal, thank you for reaching out. We understand the importance of accessing the VPN for your work at Inazuma.co. To resolve the connectivity issue, please ensure your network settings are configured correctly and that you're using the latest VPN client application provided by Inazuma.co. If the issue persists, try restarting your device and router. Additionally, please verify that your login credentials are correct. If none of these steps work, please let us know, and we will further investigate the issue. Best, Matthew Hamilton, Junior IT Associate."
+    },
+    {
+      "id": "42261",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0082",
+      "assigned_date": "2015-03-11",
+      "emp_id": "emp_0816",
+      "Issue": "Hello, this is Tara Hamilton from the Engineering department. I'm experiencing difficulties accessing our project management tool, which is crucial for coordinating our engineering projects effectively. It seems my account is having trouble with the Single Sign-On (SSO) feature that Inazuma.co uses for seamless access across platforms. Could you please assist in resolving this issue?",
+      "Resolution": "Hi Tara, this is Arjun Nair from the IT department. Thank you for bringing this to our attention. We understand the importance of maintaining seamless access to your project management tool, especially given Inazuma.co's commitment to agility and innovation. I've checked the SSO settings and made some adjustments to ensure your account can access the tool without further issues. Please try logging in again, and let me know if you face any more difficulties. We're here to ensure that your engineering projects continue to run smoothly."
+    },
+    {
+      "id": "43812",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_1089",
+      "assigned_date": "2013-09-13",
+      "emp_id": "emp_1024",
+      "Issue": "Hello IT Team, this is Akash Roy from the HR department. I'm currently experiencing issues with VPN connectivity when trying to access our Inazuma.co portal remotely. The connection seems to drop frequently, which is impacting my ability to manage financial operations effectively. Could you please look into this matter and help resolve it as soon as possible? Thank you.",
+      "Resolution": "Hi Akash, this is Steven Parker from IT Support. Thank you for reaching out regarding the VPN connectivity issue. I understand the importance of seamless access to the Inazuma.co portal for your financial management tasks. I have checked the server settings and have optimized the network configuration to enhance stability. Please try connecting again. If the problem persists, feel free to reach out, and we can explore further solutions together. Best regards, Steven."
+    },
+    {
+      "id": "44686",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0859",
+      "assigned_date": "2017-10-20",
+      "emp_id": "emp_0996",
+      "Issue": "Hello, this is Samuel Harris from the Finance department. I am experiencing a VPN connectivity problem, which is affecting my ability to access the financial servers securely and perform budgeting tasks efficiently. As our work at Inazuma.co relies heavily on seamless access to data-driven insights and collaboration tools, resolving this issue is critical to maintaining our operational flow. Could you please assist with this connectivity problem at your earliest convenience?",
+      "Resolution": "Hi Samuel, thank you for reaching out regarding the VPN connectivity issue. We understand the importance of maintaining secure access to financial servers for your budgeting tasks. Here's a quick troubleshooting guide: Ensure your VPN client is up-to-date and restart your device. If the issue persists, try reconnecting using a different network. We've checked the VPN servers at Inazuma.co, and they are operational. If you're still facing difficulties, please let us know, and we can explore further solutions. Best regards, Rajat Anand."
+    },
+    {
+      "id": "45094",
+      "priority": "low",
+      "raised_by_emp_id": "emp_1242",
+      "assigned_date": "2022-04-04",
+      "emp_id": "emp_0750",
+      "Issue": "Hello IT Team, I'm experiencing issues with VPN connectivity. Whenever I try to connect to the VPN that Inazuma.co uses for secure remote work, I'm unable to establish a connection. This is affecting my ability to access essential resources and collaborate effectively with my team. Could you please assist in resolving this issue? Thank you. - Abid Shaikh Khan, emp_1242",
+      "Resolution": "Hi Abid, thank you for reaching out. To resolve the VPN connectivity issue, please follow these steps: First, ensure your internet connection is stable and active. Then, restart your device and try reconnecting to the VPN. If the problem persists, please check the VPN configuration settings provided by Inazuma.co to ensure they are correct. Lastly, if you are using any firewall or antivirus software, make sure they are not blocking the VPN connection. If you continue to face difficulties, I am available for a remote session to assist further. Best regards, Abigail Mitchell, emp_0750"
+    },
+    {
+      "id": "45964",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0278",
+      "assigned_date": "2020-12-31",
+      "emp_id": "emp_0921",
+      "Issue": "Hello IT Team, I'm Jitendra Kumar from the HR department. I'm experiencing an issue with accessing my email. I seem to be locked out, and I need assistance to regain access urgently, given the strategic planning tasks I need to complete today. Kindly assist in resolving this email access issue.",
+      "Resolution": "Hi Jitendra, this is Aakash Bhalla from the IT department. I've reset your email account access, and you should now be able to log in using the temporary password sent to your registered phone number. Please ensure to change the password once logged in to maintain security. If you encounter any further issues, feel free to reach out. We understand the importance of seamless communication for strategic planning and operational excellence at Inazuma.co. Thank you for your patience."
+    },
+    {
+      "id": "46176",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0451",
+      "assigned_date": "2021-12-22",
+      "emp_id": "emp_0026",
+      "Issue": "Hello IT team, I'm Tariq Mirza from the Sales department. I am experiencing issues with VPN connectivity, which is crucial for accessing our internal resources and databases. This has been affecting my ability to work remotely and efficiently on my current projects. Could you please assist in resolving this issue at the earliest? Thank you!",
+      "Resolution": "Hi Tariq, this is Rohan Singh from the IT department. I'm sorry to hear about the VPN connectivity problem you're facing. To resolve this, please ensure that you are using the latest VPN client version that Inazuma.co provides. Also, check if your internet connection is stable, as this can affect VPN performance. If the issue persists, please clear your browser cache and cookies, and restart your device before attempting to connect again. I have also checked the VPN server status, and everything appears operational from our end. If you continue to face difficulties, kindly reach out, and I will assist further. Thank you for your patience!"
+    },
+    {
+      "id": "46731",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0494",
+      "assigned_date": "2022-07-22",
+      "emp_id": "emp_0821",
+      "Issue": "Hello IT Team, I am experiencing difficulties accessing my email account. Every time I try to log in, it says my account is locked. As a Junior Consultant in the Finance department, seamless access to my email is crucial for maintaining efficient communication with our clients and the team. Could you please assist in unlocking my account? Thank you. - Soumyadeep Banerjee, emp_0494",
+      "Resolution": "Hi Soumyadeep, thank you for reaching out. I understand the importance of having uninterrupted access to your email, especially given your role in client communication and project coordination at Inazuma.co. I have unlocked your account and ensured that your credentials are up-to-date with the security protocols of Inazuma.co. Please try logging in again. If you encounter any further issues, feel free to contact me directly. Best regards, Ravi Anand, emp_0821"
+    },
+    {
+      "id": "46980",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0526",
+      "assigned_date": "2019-09-20",
+      "emp_id": "emp_0921",
+      "Issue": "Hello IT team, this is Blake Sullivan from the Engineering department. I am experiencing a VPN connectivity problem which is impacting my ability to coordinate with cross-functional teams efficiently. As you know, seamless communication is critical for ensuring the timely delivery of engineering solutions here at Inazuma.co. Could you please assist in resolving this issue at your earliest convenience? Thank you.",
+      "Resolution": "Hi Blake, this is Aakash Bhalla from the IT department. I understand the importance of maintaining smooth communication for timely project delivery. To address your VPN connectivity issue, please try the following steps: 1) Ensure your internet connection is stable. 2) Verify that you're using the correct VPN credentials provided by Inazuma.co. 3) Restart your VPN client and attempt to reconnect. If the issue persists, please let me know, and I'll escalate it to our network team for further investigation. We're committed to ensuring uninterrupted access to our platforms. Thanks for your patience."
+    },
+    {
+      "id": "48279",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0322",
+      "assigned_date": "2018-07-03",
+      "emp_id": "emp_0667",
+      "Issue": "Hi IT team, I'm experiencing difficulties accessing my email account. Every time I try to log in, I receive an error message stating that my account is locked. This is impacting my ability to manage client relationships and perform business analysis tasks effectively. Could you please assist in resolving this issue urgently? Thank you. - Maya Raghavan, emp_0322",
+      "Resolution": "Hello Maya, thank you for reaching out regarding your email access issue. I've checked the Inazuma.co email servers and found that your account was temporarily locked due to multiple failed login attempts. I have unlocked your account and you should now be able to access your emails without any issues. For enhanced security, ensure that you are using the correct credentials and consider enabling two-factor authentication for your email account through the Inazuma.co portal. If you encounter any further issues, feel free to contact me directly. Best regards, Tariq Ahmad, emp_0667"
+    },
+    {
+      "id": "48284",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0155",
+      "assigned_date": "2016-11-14",
+      "emp_id": "emp_0618",
+      "Issue": "Hello IT Team, this is Shivani Rao from the Business Development department. I'm experiencing issues with VPN connectivity, which is crucial for accessing our centralized resources and data-driven insights at Inazuma.co. When I attempt to connect, the VPN client displays an error message stating 'Connection Failed: Unable to establish a secure connection.' As my role involves supporting team operations and collaborating with various departments, I urgently need to resolve this issue to ensure seamless communication and access. Please assist me in troubleshooting this problem. Thank you.",
+      "Resolution": "Hi Shivani, this is Rohan Sen from the IT department. I understand the importance of maintaining a stable VPN connection for your role in Business Development at Inazuma.co. To resolve the VPN connectivity issue, please try the following steps: 1) Ensure that your internet connection is stable. 2) Restart the VPN client and your device. 3) Verify that you are using the correct VPN credentials provided by Inazuma.co. 4) If the issue persists, check for any recent updates or patches released for the VPN client software and apply them. Should these steps not resolve the issue, please contact our support team for further assistance, and we will ensure that your access to Inazuma's centralized resources is restored promptly. Best, Rohan."
+    },
+    {
+      "id": "48372",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0885",
+      "assigned_date": "2021-11-26",
+      "emp_id": "emp_0527",
+      "Issue": "Hello IT team, I am experiencing a VPN connectivity problem. I've been trying to connect to the VPN that Inazuma.co uses to access some important resources for a project, but I'm unable to establish a connection. This is affecting my ability to manage client relationships effectively as I need access to certain digital marketing tools housed on the server. Could you please assist me in resolving this issue? Thanks, Jason Mitchell.",
+      "Resolution": "Hi Jason, thank you for reaching out. I understand the importance of seamless connectivity to maintain client relationships and access critical resources. Let's troubleshoot your VPN issue. Firstly, please ensure your internet connection is stable. Next, restart your device and attempt to reconnect to the VPN. If the issue persists, please verify that the VPN client software is up to date and check for any firewall settings that might be blocking the connection. I will also check the Inazuma.co VPN server logs for any anomalies. Please let me know if these steps help or if you need further assistance. Best, Carlos Ramirez."
+    },
+    {
+      "id": "48500",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0878",
+      "assigned_date": "2022-11-17",
+      "emp_id": "emp_0089",
+      "Issue": "Hello IT Team, I am Janki Sharma from the Education department. I'm experiencing a VPN Connectivity Problem. I am unable to connect to the VPN that Inazuma.co uses for accessing our internal resources and collaboration tools. This is impacting my ability to manage lesson plans and communicate effectively with my colleagues. Could you please assist me in resolving this issue at the earliest?",
+      "Resolution": "Hi Janki, this is Tara Bhardwaj from the IT department. I understand the importance of maintaining seamless connectivity for your educational activities. To resolve your VPN connectivity issue, please ensure that your internet connection is stable and try rebooting your router. Additionally, check if the VPN client is updated to the latest version. If the issue persists, please reach out to our IT support through the Inazuma.co portal for further assistance. We\u2019ll make sure you\u2019re back online as soon as possible!"
+    },
+    {
+      "id": "50024",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0212",
+      "assigned_date": "2018-08-02",
+      "emp_id": "emp_0694",
+      "Issue": "Hello IT team, this is Hope Anderson from the Engineering department. I'm experiencing an issue with VPN connectivity. I am unable to access the Portal of Inazuma.co remotely, which is affecting my ability to lead my team effectively. Could you please assist me in resolving this issue at the earliest convenience?",
+      "Resolution": "Hi Hope, this is Kevin Anderson from the IT department. I've reviewed your VPN connectivity issue with the Portal of Inazuma.co. Please ensure your VPN client software is updated to the latest version. Additionally, try restarting your device and re-establishing the VPN connection. If the problem persists, please connect directly with our IT support team, and they will assist you further. Your ability to lead your team effectively is important to us, and we aim to resolve this promptly."
+    },
+    {
+      "id": "50226",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0946",
+      "assigned_date": "2019-07-05",
+      "emp_id": "emp_0436",
+      "Issue": "Hello IT team, this is Zain Malik from the Engineering department. I'm currently facing an issue with VPN connectivity. Whenever I try to connect, the VPN client displays an error message saying 'Unable to establish a secure connection'. As our work at Inazuma.co heavily relies on secure access to servers for collaborative projects, this has been impacting my ability to contribute effectively. Could you please assist in resolving this matter?",
+      "Resolution": "Hi Zain, this is Surya Reddy from the IT department. Thank you for bringing this issue to our attention. VPN connectivity is crucial for accessing Inazuma.co's secure network resources. To resolve this, please ensure your VPN client is updated to the latest version. Additionally, check your network settings to ensure that no firewall is blocking the VPN connection. If the issue persists, I will coordinate with our network team to investigate further. We aim to restore your access promptly so you can continue your valuable work on engineering projects. Please let me know if you need further assistance."
+    },
+    {
+      "id": "50482",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0963",
+      "assigned_date": "2013-05-22",
+      "emp_id": "emp_0347",
+      "Issue": "Hello IT team, this is Ashwin Reddy from the Engineering department. I'm currently experiencing issues with VPN connectivity, which is impacting our ability to access servers and collaborate efficiently on ongoing projects. This is crucial for maintaining seamless communication and ensuring timely project delivery. Could you please assist in resolving this connectivity problem at your earliest convenience? Thank you.",
+      "Resolution": "Hi Ashwin, this is Dhruv Ahuja from the IT team. I understand the importance of maintaining seamless connectivity for your engineering projects. To resolve the VPN connectivity issue, I recommend checking your network settings and ensuring that the Inazuma.co VPN client is installed and configured correctly. If the problem persists, please restart your device and attempt to reconnect. Additionally, ensure your internet connection is stable. If further assistance is needed, feel free to reach out, and I'll be happy to help troubleshoot the issue further. Best regards."
+    },
+    {
+      "id": "51238",
+      "priority": "low",
+      "raised_by_emp_id": "emp_1030",
+      "assigned_date": "2016-07-28",
+      "emp_id": "emp_0249",
+      "Issue": "Hi IT Support Team, I'm Elena Petrova from the HR department. I'm experiencing an issue with accessing my email. When I try to log in, I keep getting an error message saying my account is locked. This is impacting my ability to manage onboarding and recruitment tasks effectively. Could you please help me resolve this issue as soon as possible? Thank you!",
+      "Resolution": "Hello Elena, this is Mansoor Faridi from the IT department. I've reviewed your issue and have unlocked your email account on the Inazuma.co portal. It seems there was an accidental lock due to multiple login attempts. You should be able to access your email now. If the issue persists, please try resetting your password using the 'Forgot Password' option, or let me know for further assistance. Thank you for your patience and dedication in ensuring a seamless HR process at Inazuma.co."
+    },
+    {
+      "id": "51450",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1031",
+      "assigned_date": "2022-10-26",
+      "emp_id": "emp_1024",
+      "Issue": "Hello, this is Om Prakash from the Finance team. I'm experiencing a problem with VPN connectivity. I've tried accessing the necessary portals to continue my work on optimizing financial strategies, but the VPN connection keeps dropping. This issue is impacting my ability to collaborate effectively with the team and maintain our agile workflow. Could you please assist in resolving this connectivity problem at the earliest?",
+      "Resolution": "Hi Om Prakash, this is Steven Parker from IT. I understand the urgency of your VPN connectivity issue, especially given Inazuma.co's focus on seamless collaboration and real-time data insights. Please try restarting your VPN client and ensure that your network settings are configured correctly. If the problem persists, I recommend updating the VPN software to the latest version available through our company portal. Additionally, verify that your firewall settings permit VPN connections. If you continue to face difficulties, feel free to reach out, and I'll assist you further to ensure smooth access to the Inazuma.co network. Thank you for your patience."
+    },
+    {
+      "id": "51513",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0741",
+      "assigned_date": "2019-01-15",
+      "emp_id": "emp_1209",
+      "Issue": "Hi IT Team, this is Mohan Shankar from the Business Development department. I'm currently facing a VPN connectivity problem. Whenever I try to connect to the Inazuma.co VPN, the connection fails, and I'm unable to access the internal resources that are crucial for my ongoing projects. Could you please assist me in resolving this issue? Thank you.",
+      "Resolution": "Hello Mohan, this is Kavya Rao from the IT department. I understand your concern regarding the VPN connectivity issue. Based on Inazuma.co's VPN settings, it could be a problem with the network configuration or security settings on your device. Could you please check if your antivirus or firewall is blocking the VPN connection? Additionally, ensure that you are using the latest VPN client provided by Inazuma.co. If the issue persists, please let me know, and I will guide you through additional troubleshooting steps or escalate the matter for a more in-depth investigation. Thank you for your patience."
+    },
+    {
+      "id": "53853",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_1106",
+      "assigned_date": "2016-02-16",
+      "emp_id": "emp_0618",
+      "Issue": "Hello IT team, I'm experiencing difficulty accessing my emails today. When I try to log in, I'm greeted with an error message stating that the server is unreachable. This is affecting my ability to manage project communications and collaborate effectively. Could you please look into this issue and restore access at the earliest? Thank you. - Matthew Brooks, IT Manager at Inazuma.co",
+      "Resolution": "Hi Matthew, thank you for reaching out. It seems there was an unexpected outage in the email server used by Inazuma.co, causing the connectivity issue you're experiencing. Our team is actively working to resolve this and restore your email access as soon as possible. We expect full functionality to be restored within the next hour. I will keep you updated on the progress. Apologies for the inconvenience caused. - Rohan Sen, Junior IT Associate"
+    },
+    {
+      "id": "53940",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0572",
+      "assigned_date": "2021-10-28",
+      "emp_id": "emp_0026",
+      "Issue": "Hello IT Team, this is Nikhil Joshi from the Apparel department. I'm currently experiencing issues with accessing my emails on the Inazuma.co portal. I've tried logging in multiple times, but I keep receiving an error message stating 'Access Denied'. This is affecting my ability to coordinate with team members and manage customer service operations efficiently. Could you please assist me in resolving this issue at the earliest? Thank you.",
+      "Resolution": "Hi Nikhil, this is Rohan Singh from the IT Support team. I understand the importance of seamless communication in your department. The 'Access Denied' error suggests there might be an issue with your account permissions on the Inazuma.co email server. I have reset your email access permissions and you should be able to log in now. Please try accessing your emails again. If the issue persists, let me know, and we can further investigate any possible server-side problems. We're committed to ensuring smooth operations for you and your team. Thank you for your patience."
+    },
+    {
+      "id": "54405",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0925",
+      "assigned_date": "2015-03-17",
+      "emp_id": "emp_0163",
+      "Issue": "Hi, I'm Isabella Cruz from the Engineering department. I'm having trouble accessing the VPN that Inazuma.co uses for remote work. Every time I try to connect, I receive an error message stating 'Connection Timed Out.' This issue is preventing me from accessing critical resources needed for my current projects. Could you please assist me in resolving this issue?",
+      "Resolution": "Hello Isabella, Miguel Santiago here from IT. I understand the urgency, especially when accessing key resources for your engineering projects. The 'Connection Timed Out' error typically occurs due to network instability or VPN configuration issues. Please try the following steps: 1) Ensure your internet connection is stable, 2) Restart your VPN client, 3) If the issue persists, adjust the VPN settings as per the guidelines on our Inazuma.co portal. I've emailed the detailed instructions to your Inazuma.co email. If you continue facing problems, don't hesitate to reach out for further troubleshooting. Thank you for your patience!"
+    },
+    {
+      "id": "54493",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0190",
+      "assigned_date": "2017-09-13",
+      "emp_id": "emp_0821",
+      "Issue": "Hi IT team, this is Rashmi Kapoor from the Engineering department. I'm experiencing issues with VPN connectivity, which is affecting my ability to access resources needed for project management. Our team is working on a critical engineering project, and seamless connectivity is crucial for maintaining our workflow and delivering quality results. Could you please assist in resolving this issue at the earliest?",
+      "Resolution": "Hello Rashmi, this is Ravi Anand from the IT department. I'm here to help with the VPN connectivity problem you're facing. Inazuma.co uses a robust VPN system to ensure secure and efficient access to our servers and resources. I'll guide you through some troubleshooting steps to restore connectivity. If the issue persists, I will escalate it to ensure minimal disruption to your project. Let's start by checking your VPN client settings and network configuration. Please let me know if you encounter any further difficulties."
+    },
+    {
+      "id": "54926",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_1155",
+      "assigned_date": "2019-05-31",
+      "emp_id": "emp_0945",
+      "Issue": "Hello IT team, I'm Aakash Goel from the Sales department. I'm currently experiencing difficulties accessing my email account. Every time I try to log in, I receive an error message stating that my account is locked. This is affecting my ability to communicate with clients and colleagues. Could you please help me resolve this issue as soon as possible? My email is aakash.goel@inazuma.com. Thank you!",
+      "Resolution": "Hi Aakash, thank you for reaching out. I'm Rohan Joshi, and I'll assist you with your email access issue. It seems your account has been locked due to multiple unsuccessful login attempts. I'll reset your account settings on the Inazuma.co server and ensure your email access is restored. You should be able to log in within the next 30 minutes. To avoid such issues in the future, please ensure your email client is configured correctly according to our company guidelines. If you encounter any further problems, feel free to contact me directly at rohan.joshi@inazuma.com. Thank you for your patience and understanding."
+    },
+    {
+      "id": "55393",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0062",
+      "assigned_date": "2020-11-24",
+      "emp_id": "emp_1106",
+      "Issue": "Hi IT Support, I'm Armaan Sahni from the Engineering team. I'm experiencing a VPN connectivity problem. Whenever I try to connect to the VPN that Inazuma.co uses for secure access to our project files, I'm unable to establish a connection. This issue is hindering my ability to collaborate effectively on ongoing engineering tasks. Could you please assist in resolving this? Thank you!",
+      "Resolution": "Hello Armaan, thank you for reaching out. I'm Matthew Brooks from the IT department. I understand the importance of seamless VPN connectivity for your engineering team at Inazuma.co. To resolve this, please ensure that your VPN client is up-to-date. Additionally, check if any firewall settings are blocking the VPN connection. If the issue persists, please restart your network router and try reconnecting. Our servers are optimized for secure connections, so these steps should help restore access. Feel free to reach out if you need further assistance. Best, Matthew."
+    },
+    {
+      "id": "57696",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0344",
+      "assigned_date": "2019-07-01",
+      "emp_id": "emp_0071",
+      "Issue": "Hi IT team, I'm Arvind Chidambaram from the Architects department. I've been experiencing issues with accessing my email account. It seems that my login credentials are not working, and I am unable to receive or send any emails. This is affecting my ability to collaborate on projects, especially when using shared tools like AutoCAD and Revit, which require communication through the Inazuma.co portal. Could you please help me resolve this issue as soon as possible?",
+      "Resolution": "Hello Arvind, this is Nisha Sinha from the IT department. I've looked into your email access issue, and it appears your account was temporarily locked due to multiple failed login attempts. I've reset your password and sent the new credentials to your registered personal email address. Please check and use them to log in. Remember to update your password once you regain access to ensure security. If you encounter any further issues, feel free to reach out. It's important for your architectural projects to have seamless communication, and we're here to support your productivity at Inazuma.co."
+    },
+    {
+      "id": "58892",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0910",
+      "assigned_date": "2021-10-11",
+      "emp_id": "emp_0081",
+      "Issue": "Hello IT team, this is Kunal Singh from the Sales department. I'm currently experiencing issues with VPN connectivity while trying to access the Inazuma.co portal from home. I've followed the standard procedure to connect, but it keeps timing out, preventing me from accessing important data needed for my financial analysis tasks. Could you please assist me with resolving this issue? Thank you!",
+      "Resolution": "Hi Kunal, this is Matthew Hamilton from the IT department. I understand the inconvenience caused due to the VPN connectivity issue. At Inazuma.co, we use a secure VPN connection to ensure seamless remote access to our portal. Please try the following steps: first, ensure your internet connection is stable, then restart your VPN software. If the issue persists, update the VPN client to the latest version available. Additionally, you can try clearing your browser cache and cookies. If these steps don't resolve the problem, please let me know, and I'll look into it further. Thank you for your patience and commitment to delivering exceptional service!"
+    },
+    {
+      "id": "59204",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1177",
+      "assigned_date": "2014-06-10",
+      "emp_id": "emp_0523",
+      "Issue": "Hello, this is Rajesh Mohan from the Information Technology department. I've been experiencing difficulties accessing the VPN that Inazuma.co uses to connect remotely to our servers. The connection frequently drops, and this has been affecting my ability to contribute effectively to ongoing R&D initiatives. Could you please assist me in resolving this VPN connectivity problem?",
+      "Resolution": "Hi Rajesh, this is Aditi Choudhary from the IT department. I understand how crucial remote access is for your contributions to R&D at Inazuma.co. To address the VPN connectivity issue, please try the following steps: first, ensure your VPN client is up-to-date, as outdated software can cause stability issues. Next, check your internet connection for any inconsistencies. If these steps don't resolve the issue, please reach out to me directly, and we can explore advanced troubleshooting options, like adjusting your VPN settings or verifying server configurations. Thank you for your patience and commitment to innovation at Inazuma.co."
+    },
+    {
+      "id": "60302",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0105",
+      "assigned_date": "2022-08-05",
+      "emp_id": "emp_0999",
+      "Issue": "Hello IT Team, this is Ananya Joshi from the Engineering department. I'm currently experiencing trouble with VPN connectivity, which is crucial for accessing Inazuma.co's servers remotely. I've tried reconnecting multiple times, but the connection keeps failing. Could you please assist in resolving this issue at your earliest convenience? Thank you!",
+      "Resolution": "Hi Ananya, this is Arvind Khatri from the IT department. I understand the importance of VPN connectivity for accessing Inazuma.co's servers. Here are a few steps you can try to resolve the issue: First, please ensure that your internet connection is stable. Then, try restarting the VPN application and your device. If the problem persists, please check if your VPN credentials are correct and up-to-date. Additionally, make sure that your system's firewall settings are not blocking the VPN. If none of these solutions work, please let me know, and I'll assist you further. Thank you for your patience!"
+    },
+    {
+      "id": "60745",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0827",
+      "assigned_date": "2014-08-29",
+      "emp_id": "emp_1106",
+      "Issue": "Hi, this is Sagar Deshmukh from the Engineering team. I'm experiencing issues with VPN connectivity while trying to access the servers of Inazuma.co remotely. The VPN connection keeps dropping intermittently, affecting my ability to collaborate effectively on ongoing projects. Could you assist in resolving this issue?",
+      "Resolution": "Hello Sagar, this is Matthew Brooks from the IT team. I understand the importance of seamless connectivity for your projects. To resolve the VPN connectivity issue, please ensure your system's VPN client is updated to the latest version. Additionally, check that your internet connection is stable. If the problem persists, I will escalate this to our network team to investigate any server-side configurations on Inazuma.co's end that may be causing disruptions. Thank you for your patience."
+    },
+    {
+      "id": "61005",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0697",
+      "assigned_date": "2013-06-11",
+      "emp_id": "emp_0999",
+      "Issue": "Hello IT team, I'm experiencing a VPN connectivity problem that is affecting my ability to access important resources needed for our ongoing engineering projects at Inazuma.co. I've tried reconnecting several times, but the connection fails each time. Could you please assist in resolving this issue? Thank you. - Emily Sanders, Engineering Associate",
+      "Resolution": "Hi Emily, thank you for reaching out. I understand how crucial VPN access is for your engineering work at Inazuma.co. Please try the following steps: 1) Restart your computer and attempt to reconnect to the VPN. 2) Ensure that your internet connection is stable. 3) Check if the VPN client is up-to-date. If these steps don't resolve the issue, kindly provide me with the error message you receive, and I'll investigate further. - Arvind Khatri, Junior Software Engineer"
+    },
+    {
+      "id": "61043",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0183",
+      "assigned_date": "2018-01-09",
+      "emp_id": "emp_0618",
+      "Issue": "Hello IT Team, I'm Harsh Vardhan Singh from the Engineering department. I've been experiencing issues with accessing our collaboration tools, specifically Teams and Slack, which are critical for coordinating with my cross-functional team. This is impacting our ability to deliver scalable solutions efficiently. Could you please assist in resolving this as soon as possible? Thank you.",
+      "Resolution": "Hi Harsh, I hope you're doing well. This is Rohan Sen from the IT department. I understand the importance of having uninterrupted access to collaboration tools to maintain seamless communication within your team. I'll start by checking the server settings and network configurations that Inazuma.co uses for Teams and Slack. Could you please verify if your VPN is connected, as it's essential for secure access to these tools? Also, ensure that your system firewall settings are not blocking these applications. I'll keep you posted on the progress and resolve this promptly. Thank you for your patience."
+    },
+    {
+      "id": "61409",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0162",
+      "assigned_date": "2019-05-17",
+      "emp_id": "emp_0081",
+      "Issue": "Hello IT team, I am experiencing a VPN connectivity problem today, and I'm unable to access certain resources that are vital for my projects. This issue is preventing me from accessing the design files I need to work on aerodynamic models. Could you please assist me in resolving this connectivity issue? Thank you, Martina Silva, Junior Aeronautical Engineer.",
+      "Resolution": "Hi Martina, thank you for reaching out. We understand the importance of seamless connectivity to access your design files for aerodynamic projects. To resolve the VPN connectivity issue, please ensure that you are using the latest version of the VPN client software approved by Inazuma.co. You might also want to check your internet connection stability and restart your device. If the issue persists, please contact our IT support line directly for further assistance. We are committed to ensuring your work continues without disruption. Best, Matthew Hamilton, Junior IT Associate."
+    },
+    {
+      "id": "63587",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0283",
+      "assigned_date": "2016-08-04",
+      "emp_id": "emp_0026",
+      "Issue": "Hello IT team, I'm Abhinav Sharma from the HR department. I've been experiencing issues accessing my email account, which is crucial for managing communications related to crop management projects and data analysis tasks. I suspect it might be an account lockout issue. Could you please assist me in resolving this? My email is abhinav.sharma@inazuma.com. Thank you!",
+      "Resolution": "Hi Abhinav, thank you for reaching out. We understand the importance of seamless communication, especially in managing agricultural projects at Inazuma.co. I've checked your account status, and it appears there was an account lockout due to multiple failed login attempts. I've unlocked your account, and you should now be able to access your email. If you encounter any further issues, please let me know. You can also reset your password using the Inazuma.co portal for enhanced security. Best, Rohan Singh, Junior IT Support Specialist."
+    },
+    {
+      "id": "64296",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0954",
+      "assigned_date": "2016-07-25",
+      "emp_id": "emp_0380",
+      "Issue": "Hello IT Support, I'm facing a problem accessing my email account. It appears that my account is locked, and I am unable to view or send any emails. This issue is affecting my ability to manage client relationships and strategic planning tasks effectively. Can someone assist in unlocking my account? Thank you, Manav Kapoor.",
+      "Resolution": "Hi Manav, thank you for reaching out. I understand how crucial email access is for managing client relationships at Inazuma.co. I've unlocked your account, and you should now be able to access your email. Please try logging in again. If you face any further issues, feel free to contact me directly. Regards, Kunal Kapoor, Junior IT Associate."
+    },
+    {
+      "id": "66031",
+      "priority": "low",
+      "raised_by_emp_id": "emp_1061",
+      "assigned_date": "2020-03-24",
+      "emp_id": "emp_0508",
+      "Issue": "Hello, this is Aditi Mahajan from the HR department. I'm experiencing issues with accessing my email account. Every time I try to log in, I'm greeted with an error message stating that my account is locked. Email is crucial for my day-to-day communications and overseeing art projects, so I need this resolved urgently. Please assist.",
+      "Resolution": "Hi Aditi, Suresh Roy here from the IT department. I understand the importance of seamless communication, especially in managing large-scale projects at Inazuma.co. I've unlocked your email account and ensured that all email settings are in place for smooth operation. Please try logging in again. If you encounter any further issues, don't hesitate to reach out. Your email should be back to functioning normally now. Thank you for your patience."
+    },
+    {
+      "id": "66209",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0708",
+      "assigned_date": "2022-09-05",
+      "emp_id": "emp_0999",
+      "Issue": "Hello IT Team, I'm experiencing a VPN connectivity problem which is hindering my ability to access critical marketing insights and collaborate with my team efficiently. As we are in the midst of a campaign optimization phase, it's crucial that I regain access to our systems to ensure seamless execution. Could you please assist in resolving this at the earliest? Thanks, Arvind Desai.",
+      "Resolution": "Hi Arvind, thank you for reaching out. To address the VPN connectivity issue, please ensure that you are using the latest version of the VPN client provided by Inazuma.co. If you are still facing difficulties, try restarting your device and reconnecting. Our VPN server is optimized for high-speed access, but occasionally, network congestion can cause delays. If the problem persists, please send me a screenshot of any error messages you receive, and I will investigate further. We understand the importance of maintaining uninterrupted access for campaign optimization, and we'll have this resolved promptly. Regards, Arvind Khatri."
+    },
+    {
+      "id": "66572",
+      "priority": "low",
+      "raised_by_emp_id": "emp_1050",
+      "assigned_date": "2014-09-09",
+      "emp_id": "emp_0325",
+      "Issue": "Subject: Account Lockout Issue\n\nHi IT Team,\n\nI am currently unable to access my account due to an unexpected lockout. As a Digital Media Manager at Inazuma.co, it's crucial for me to have uninterrupted access to my systems to lead our social media strategies and content marketing campaigns effectively. Could you please assist in unlocking my account at the earliest?\n\nThank you,\nAryan Desai\nemp_1050",
+      "Resolution": "Subject: Account Lockout Issue - Resolution\n\nHi Aryan,\n\nThank you for bringing this to our attention. We have successfully unlocked your account. Please ensure that you are using the correct credentials when logging in to avoid future lockouts. If you encounter further issues, do not hesitate to reach out.\n\nWe understand the importance of maintaining seamless access for our digital media initiatives at Inazuma.co. Your ability to lead impactful campaigns is vital for our consumer engagement strategies.\n\nBest regards,\nRaghav Pillai\nIT Manager\nemp_0325"
+    },
+    {
+      "id": "67092",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0446",
+      "assigned_date": "2022-10-20",
+      "emp_id": "emp_0523",
+      "Issue": "Hi IT Team, I'm experiencing issues with accessing my email account. It seems my account has been locked and I'm unable to access my emails, which is crucial for managing ongoing engineering projects. Could you please assist in unlocking my account? Appreciate your help in ensuring seamless communication within Inazuma.co. Thanks, Daniel Matthews.",
+      "Resolution": "Hello Daniel, thank you for reaching out. I've unlocked your email account, and you should now be able to access your emails without any issues. Please ensure that you use the correct credentials and follow the security protocols as outlined in Inazuma.co's IT policy to prevent future lockouts. If you encounter any further problems, feel free to contact me directly. Best regards, Aditi Choudhary."
+    },
+    {
+      "id": "68128",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1088",
+      "assigned_date": "2017-10-19",
+      "emp_id": "emp_0921",
+      "Issue": "Hello IT team, I am encountering issues with VPN connectivity. Every time I try to connect to the VPN that Inazuma.co uses, it fails to establish a connection. This is affecting my ability to access necessary resources for managing architectural projects. Could you please assist in resolving this matter at the earliest?",
+      "Resolution": "Hi Ramesh, thank you for reaching out. To resolve the VPN connectivity issue, please ensure that you are using the latest version of the VPN client provided by Inazuma.co. Verify your internet connection and firewall settings, as these can sometimes block VPN access. Additionally, try clearing your cache and restarting your system. If the issue persists, please let me know, and I will check the servers on our end for any inconsistencies. We're committed to ensuring seamless connectivity to support your project management needs."
+    },
+    {
+      "id": "68526",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1016",
+      "assigned_date": "2019-08-26",
+      "emp_id": "emp_0089",
+      "Issue": "Hello IT team, this is Kaushal Singh from the Advocate department. I'm experiencing an issue with accessing my email on the Inazuma.co portal. It seems like I'm locked out, and I need to access some important communications regarding a high-stakes negotiation. Could you assist me in resolving this as soon as possible? My emp_id is emp_1016. Thank you!",
+      "Resolution": "Hi Kaushal, this is Tara Bhardwaj from the IT department. I've checked your account and it seems there was a temporary lockout due to multiple failed login attempts. I've reset your access, and you should now be able to log into the Inazuma.co email portal. Please try using your credentials now. If you encounter any further issues, feel free to reach out. We understand the importance of timely communication for your legal negotiations and are here to ensure seamless access. Best, Tara."
+    },
+    {
+      "id": "69212",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_1228",
+      "assigned_date": "2020-01-16",
+      "emp_id": "emp_0750",
+      "Issue": "Hello IT team, I am Aditi Kapoor from the BPO department. I'm facing issues with VPN connectivity. I need to access the Inazuma.co portal for my work, but I am unable to connect through the VPN. Could you please assist me in resolving this issue?",
+      "Resolution": "Hi Aditi, this is Abigail Mitchell from the IT department. I understand the importance of VPN connectivity for accessing the Inazuma.co portal. Let's start by checking the VPN settings on your device. Ensure that the VPN client is up-to-date and verify your network configuration. If the issue persists, please restart your device and try reconnecting. I am here to assist further if needed. Thank you for your patience."
+    },
+    {
+      "id": "69393",
+      "priority": "low",
+      "raised_by_emp_id": "emp_1034",
+      "assigned_date": "2022-02-10",
+      "emp_id": "emp_0462",
+      "Issue": "Hello IT Team, this is Karan Das from the Engineering department. I'm experiencing a VPN connectivity problem. Whenever I try to connect to our Inazuma.co VPN, it fails to establish a connection, and I'm unable to access the servers required for project collaboration. This is affecting my ability to oversee the team's progress and deliverables. Could you please assist in resolving this issue? Thank you.",
+      "Resolution": "Hi Karan, Ethan Turner here from the IT department. I understand the importance of maintaining connectivity to our Inazuma.co VPN for seamless project management. To resolve your issue, please try restarting your VPN client and ensure your internet connection is stable. If the problem persists, I recommend clearing your VPN cache and re-entering your credentials. I've checked the server status, and everything seems operational on our end. Let me know if you continue to face issues, and I'll guide you through further troubleshooting steps. We aim to ensure you have uninterrupted access for effective collaboration. Best regards, Ethan."
+    },
+    {
+      "id": "70152",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0586",
+      "assigned_date": "2018-11-08",
+      "emp_id": "emp_0996",
+      "Issue": "Hello IT team, this is Gibu Fernandez from the Management department. I'm encountering issues with VPN connectivity while trying to access our internal network remotely. The system keeps disconnecting me and I can't seem to maintain a stable connection. This is impacting my ability to lead and coordinate with my team, especially with our current strategic planning initiatives. Please assist with resolving this issue as soon as possible.",
+      "Resolution": "Hi Gibu, thank you for reaching out. This is Rajat Anand from the IT department. I understand the VPN connectivity issue can be quite disruptive, especially given your role in strategic planning at Inazuma.co. Our VPN service sometimes faces connectivity fluctuations due to server load. I suggest checking your internet connection stability and ensuring your VPN client is updated to the latest version that Inazuma.co provides. If the problem persists, please try accessing the VPN during off-peak hours or connect with our dedicated IT support portal for further assistance. Let me know if this helps or if you need further support."
+    },
+    {
+      "id": "70747",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0876",
+      "assigned_date": "2022-06-27",
+      "emp_id": "emp_0462",
+      "Issue": "Hi IT Team, I'm Meghana Das from the Education department. I've been facing an issue with VPN connectivity when trying to access the Inazuma.co internal portals from home. The connection keeps dropping, making it difficult to maintain seamless access to the tools I need for educational initiatives. Could you please assist me in resolving this? Thanks!",
+      "Resolution": "Hello Meghana, this is Ethan Turner from the IT department. I understand the importance of having a stable VPN connection to access Inazuma.co's internal portals. To resolve this issue, please ensure you are using the latest VPN client version provided by Inazuma.co. Additionally, verify your internet connection stability at home, as network interruptions can affect VPN performance. If the problem persists, I can guide you through a more detailed troubleshooting process or arrange for a remote session to diagnose the issue. Let me know how it goes. Best regards, Ethan."
+    },
+    {
+      "id": "71435",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0299",
+      "assigned_date": "2020-01-09",
+      "emp_id": "emp_1024",
+      "Issue": "Hello IT Team, I'm experiencing a problem with VPN connectivity. I'm unable to access the resources required for my engineering projects. The VPN has been working perfectly until today, but now it seems to be blocking my access to the Inazuma.co servers, which is hindering my ability to collaborate with my team effectively. Could you please assist in resolving this issue? Regards, Govind Bhatnagar.",
+      "Resolution": "Hi Govind, thank you for bringing this to our attention. The VPN connectivity issue you're experiencing could be due to a recent update on our server configurations. To resolve this, please ensure your VPN client is updated to the latest version and try reconnecting. If the issue persists, please check your network settings to ensure there are no local firewall restrictions. Should you need further assistance, feel free to reach out, and I'll be happy to guide you through additional troubleshooting steps. Best, Steven Parker."
+    },
+    {
+      "id": "74180",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1105",
+      "assigned_date": "2013-04-10",
+      "emp_id": "emp_0262",
+      "Issue": "Hello IT Team, I am experiencing a problem with accessing my email account. I tried logging in multiple times, but I keep receiving an error message stating that my account is locked. As a Junior Finance Associate, timely access to emails is crucial for managing financial reporting and budgeting tasks. Could you please assist me in resolving this issue? Thank you. - Vishal Wadekar, emp_1105, vishal.wadekar@inazuma.com",
+      "Resolution": "Hi Vishal, thank you for reaching out. It appears your account has been locked due to multiple unsuccessful login attempts. I have now unlocked your account, and you should be able to access your emails again. Please ensure you use the correct credentials when logging in. If you encounter any further issues, feel free to contact us. We are committed to ensuring that all Inazuma.co employees have seamless access to their email accounts to maintain efficient communication across departments. Best regards, Aarav Sharma, IT Team Lead, emp_0262, aarav.sharma@inazuma.com"
+    },
+    {
+      "id": "74845",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0151",
+      "assigned_date": "2019-04-01",
+      "emp_id": "emp_0508",
+      "Issue": "Hello IT Team, I'm experiencing an issue accessing my email account. Every time I try to log in, I receive an error message stating that my account is locked. This is impacting my ability to communicate with vendors and manage CRM tasks efficiently. Could you please assist me in resolving this issue? Thank you. - Anita Sharma, Team Lead, Engineering Department.",
+      "Resolution": "Hi Anita, thank you for reaching out. I understand the importance of email access in managing your CRM tasks and vendor communications. I've unlocked your account and reset your password for security purposes. Please check your email for the new credentials. If you face any further issues, feel free to contact me directly. Additionally, I've ensured this won't interfere with your ongoing business development initiatives. Best regards, Suresh Roy, Junior IT Associate, Inazuma.co."
+    },
+    {
+      "id": "75217",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0694",
+      "assigned_date": "2015-03-13",
+      "emp_id": "emp_0508",
+      "Issue": "Hello IT Team, this is Kevin Anderson from the Information Technology department. I'm experiencing issues with VPN connectivity. Whenever I attempt to connect to the VPN that Inazuma.co uses, the connection fails, and I'm unable to access internal resources. This is impacting my ability to work on CRM and ERP projects effectively. Could you please assist in resolving this matter?",
+      "Resolution": "Hi Kevin, this is Suresh Roy from the IT Team. I understand the importance of accessing our internal resources for your CRM and ERP projects. Let's first ensure that your VPN client is updated to the latest version. If the issue persists, try restarting your laptop and checking your internet connection to ensure stability. Additionally, make sure that the VPN credentials provided by Inazuma.co are correctly entered. If none of these steps resolve the issue, please let me know, and I will escalate the matter to our network team for further investigation. We're committed to ensuring seamless connectivity for all employees."
+    },
+    {
+      "id": "77128",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0455",
+      "assigned_date": "2022-07-26",
+      "emp_id": "emp_1048",
+      "Issue": "Hello IT Team, I'm experiencing connectivity issues with the VPN that Inazuma.co uses to access internal resources. It seems to be intermittently dropping connections, which is affecting my ability to work on engineering projects remotely. Could you please assist in resolving this issue at your earliest convenience? Thank you. - Praveen Chandy, Engineering Associate.",
+      "Resolution": "Hi Praveen, this is Zain from the IT department. I understand the importance of seamless connectivity to maintain productivity, especially when collaborating on engineering projects. To address the VPN connectivity issues you're facing, I recommend starting by checking your network settings to ensure they match the configuration requirements of Inazuma.co\u2019s VPN. Additionally, please try restarting your router and reconnecting to the VPN. If the issue persists, I can assist you with a remote session to diagnose and resolve this problem. Please let me know your availability for a more in-depth troubleshooting session. Thank you for your patience. - Zain Ahmed, Junior Software Developer."
+    },
+    {
+      "id": "77286",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0911",
+      "assigned_date": "2020-03-24",
+      "emp_id": "emp_0163",
+      "Issue": "Hello IT team, I'm Edward Franklin from the Engineering department, and I'm currently experiencing issues with VPN connectivity. This problem is hindering my ability to access the servers crucial for supporting our development projects at Inazuma.co. Could you please assist in resolving this as soon as possible? Thank you.",
+      "Resolution": "Hi Edward, this is Miguel Santiago from the IT department. I understand the importance of VPN connectivity for accessing our Inazuma.co servers. To resolve this issue, please ensure that your VPN client is updated to the latest version compatible with our system. Additionally, check your network settings to confirm they align with the VPN configuration guidelines provided by Inazuma.co. If the issue persists, please restart your device and try reconnecting. Should you need further assistance, feel free to reach out. We're committed to ensuring you have seamless access to the resources necessary for your projects."
+    },
+    {
+      "id": "80361",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0514",
+      "assigned_date": "2020-01-17",
+      "emp_id": "emp_0945",
+      "Issue": "Hello IT team, I hope you're doing well. I'm experiencing a VPN connectivity problem which is affecting my ability to access certain resources within Inazuma.co's portal. I attempted to log in using the VPN provided by Inazuma.co, but I keep receiving an error message that prevents me from connecting. As a Junior Management Associate, it's crucial for me to access these resources for my ongoing projects. Could you please assist me in resolving this issue? Thank you! - Abhishek Dubey, emp_0514",
+      "Resolution": "Hi Abhishek, thank you for reaching out. I understand the importance of accessing Inazuma.co's resources for your management projects. To resolve the VPN connectivity issue, please ensure that your VPN client is up-to-date and check your internet connection for stability. If the issue persists, try restarting your computer and attempting to connect again. Additionally, make sure that you are using the correct VPN credentials provided to you. If you continue to experience difficulties, please let me know and I'll assist you further with a more detailed troubleshooting session. Best regards, Rohan Joshi, IT Manager, emp_0945"
+    },
+    {
+      "id": "80391",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0117",
+      "assigned_date": "2012-03-19",
+      "emp_id": "emp_0247",
+      "Issue": "Hello IT Team, I'm Swati Sharma from the Engineering department. I've been experiencing issues with VPN connectivity. Every time I try to connect, it fails to establish a secure connection. This is affecting my ability to access internal resources needed for my projects. Could you please assist in resolving this matter urgently? Given our focus on delivering seamless experiences at Inazuma.co, it's crucial for me to have uninterrupted access to our systems. Thank you!",
+      "Resolution": "Hi Swati, thank you for reaching out. I'm Ananya Deshpande from the IT department. I understand the importance of maintaining a stable VPN connection for seamless access, especially in a dynamic environment like Inazuma.co. To resolve this, please try the following steps: 1. Ensure your VPN client is updated to the latest version. 2. Check your internet connection stability. 3. Restart your device and attempt reconnecting to the VPN. If the issue persists, please let me know, and I will escalate it for further investigation to ensure you can continue contributing effectively to our projects. Thank you for your patience!"
+    },
+    {
+      "id": "82358",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0634",
+      "assigned_date": "2022-05-16",
+      "emp_id": "emp_0389",
+      "Issue": "Hi IT Team, This is Favas Ahmed from the Engineering department. I'm currently experiencing a VPN connectivity problem while trying to access the servers at Inazuma.co. It seems the connection is unstable and frequently disconnects, which is affecting my ability to coordinate with my team and manage ongoing projects. Could you please assist in resolving this issue at the earliest? Thank you.",
+      "Resolution": "Hello Favas Ahmed, Thank you for bringing this issue to our attention. My name is Priya Srinivas, and I will assist you with the VPN connectivity problem. We have identified a temporary disruption in the VPN service that Inazuma.co uses for secure access to our servers. Our team is actively working to restore full functionality. In the meantime, I recommend restarting your VPN client and checking if your internet connection is stable. Feel free to reach out if the issue persists or if you need further assistance. We appreciate your patience and understanding. Best regards, Priya Srinivas."
+    },
+    {
+      "id": "84974",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0057",
+      "assigned_date": "2013-08-09",
+      "emp_id": "emp_0436",
+      "Issue": "Hello IT team, this is Alee Oliver from the Sales department. I'm experiencing issues with VPN connectivity. I need to access our internal resources remotely to coordinate an upcoming event, but I'm unable to connect to the VPN that Inazuma.co uses. Could you please assist with resolving this issue? Thank you!",
+      "Resolution": "Hi Alee, this is Surya Reddy from the IT department. I understand the importance of accessing internal resources for your event coordination. Let's start by ensuring your VPN client is updated to the latest version. If you are still facing connectivity issues, please check your internet connection stability or restart your device. Additionally, ensure that your login credentials are correctly entered and that your account has the necessary permissions. If the problem persists, please reach out, and we can further diagnose the issue. Thanks for your patience!"
+    },
+    {
+      "id": "85220",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0532",
+      "assigned_date": "2017-09-21",
+      "emp_id": "emp_0594",
+      "Issue": "Hello IT Support, I'm Ashish Kumar from the Finance department, and I'm facing an issue accessing my email account. Every time I try to log in, I receive an error message stating that my account is locked. Given the importance of email communication in maintaining effective consumer relationships at Inazuma.co, I need urgent assistance to resolve this matter. Please help me unlock my account at the earliest.",
+      "Resolution": "Hi Ashish, this is Nishant Rathore from the IT department. I understand the critical role email communication plays in Inazuma.co's operations. I've unlocked your account and ensured that you can access your email without any issues. Please try logging in now. If you encounter any further problems, let me know, and we'll investigate other potential causes. Additionally, we recommend reviewing the security protocols on the Inazuma.co portal to ensure your account remains secure. Thank you for your patience."
+    },
+    {
+      "id": "87866",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0004",
+      "assigned_date": "2022-05-24",
+      "emp_id": "emp_0462",
+      "Issue": "Hello, this is Alexander Morgan from the Arts department. I'm experiencing a VPN connectivity problem while trying to access the Inazuma.co portal from my laptop. The VPN seems to be unstable and disconnects frequently, making it difficult for me to coordinate with my team on ongoing projects. Could you please assist in resolving this issue?",
+      "Resolution": "Hi Alexander, this is Ethan Turner from the IT department. I understand the importance of seamless connectivity for your project coordination. To resolve the VPN connectivity problem, I would recommend checking the network settings on your laptop and ensuring that the VPN client is up to date. Sometimes, outdated software can cause instability. Additionally, please verify if there are any firewall settings that might be blocking the connection. If the issue persists, I can remotely assist you with a more thorough diagnosis. Let's get this sorted out so you can continue delivering creative and functional designs for Inazuma.co. Please let me know a convenient time for this."
+    },
+    {
+      "id": "88806",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0462",
+      "assigned_date": "2021-12-22",
+      "emp_id": "emp_0667",
+      "Issue": "Hi, this is Ethan Turner from the IT department. I'm experiencing a VPN connectivity problem, which is impacting my ability to access the servers at Inazuma.co for project coordination tasks. The VPN client seems to be failing to establish a secure connection. I've attempted basic troubleshooting steps like restarting the application and verifying network settings, but the issue persists. Could you please assist?",
+      "Resolution": "Hello Ethan, this is Tariq Ahmad from IT Support. I understand the importance of VPN connectivity for accessing Inazuma.co's servers. Let's start by checking if the VPN client is updated to the latest version, as outdated software can sometimes cause connectivity issues. Additionally, ensure that your firewall settings are not blocking the VPN. If these steps don't resolve the problem, I recommend resetting your network configurations temporarily to clear any potential conflicts. Please let me know if you need further assistance or if the issue persists after these steps."
+    },
+    {
+      "id": "90006",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0289",
+      "assigned_date": "2022-09-22",
+      "emp_id": "emp_1048",
+      "Issue": "Hello IT team, this is Keith Thompson from the Engineering department. I am currently experiencing an account lockout issue that is preventing me from accessing my email and collaboration tools. As you know, seamless communication is vital for maintaining project momentum and ensuring we adhere to technical specifications and standards. Could you please assist in unlocking my account at the earliest? My employee ID is emp_0289, and you can reach me at keith.thompson@inazuma.com.",
+      "Resolution": "Hi Keith, thank you for bringing this issue to our attention. I understand the importance of maintaining uninterrupted access to your email and collaboration tools, especially in a dynamic environment like Inazuma.co where agility and innovation are key. I have reset your account credentials and unlocked the account. You should be able to access your email and collaboration tools now. If you encounter any further issues, please don't hesitate to reach out. Best, Zain Ahmed from IT."
+    },
+    {
+      "id": "90615",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0512",
+      "assigned_date": "2019-08-23",
+      "emp_id": "emp_0694",
+      "Issue": "Hi IT Team, I'm experiencing a VPN Connectivity Problem. Whenever I try to connect to the VPN that Inazuma.co uses, I'm getting a connection error. It's crucial for me to access the engineering resources remotely to support ongoing projects. Could you please assist in resolving this issue? Thanks, Santosh Reddy.",
+      "Resolution": "Hello Santosh, thank you for reaching out. I'm here to assist you with your VPN Connectivity Problem. Please ensure that your network settings are correctly configured and the VPN client is updated to the latest version. Sometimes, a simple restart of your router or computer can resolve connection errors. If the issue persists, please let me know, and we can schedule a remote session to troubleshoot further. Your seamless access to engineering resources is important for maintaining the agility and innovation we strive for at Inazuma.co. Regards, Kevin Anderson."
+    },
+    {
+      "id": "91948",
+      "priority": "high",
+      "raised_by_emp_id": "emp_1252",
+      "assigned_date": "2020-10-29",
+      "emp_id": "emp_0325",
+      "Issue": "Hello, IT team. I am Kiran Shetty, a Junior Consultant in the Consulting department. I've been experiencing problems accessing my email account. Despite entering the correct credentials, the system keeps prompting me for a password reset. This issue is affecting my ability to communicate effectively with clients. Could you assist me in resolving this as soon as possible? My email is kiran.shetty@inazuma.com.",
+      "Resolution": "Hi Kiran, this is Raghav Pillai from the IT department. I understand how crucial email access is for your client communication. It seems the Inazuma.co email server might have flagged your account for a password reset due to recent security protocols we've implemented. I've reset your password and sent the new credentials to your registered phone number. Please try logging in with the new password and let me know if the issue persists. We're committed to ensuring seamless communication across all channels, so don't hesitate to reach out if you encounter any more problems. Thanks!"
+    },
+    {
+      "id": "95756",
+      "priority": "low",
+      "raised_by_emp_id": "emp_0295",
+      "assigned_date": "2017-01-17",
+      "emp_id": "emp_1177",
+      "Issue": "Hi IT team, I'm Charlotte Evans, a Junior Aeronautical Engineer in the Aviation department. I'm experiencing trouble accessing my email, which is crucial for my ongoing projects related to aerodynamics and flight operations. It seems like my email account is locked, and I'm unable to receive any important updates or communications. Could you please assist me in resolving this issue? My employee ID is emp_0295, and my email is charlotte.evans@inazuma.com. Thank you!",
+      "Resolution": "Hello Charlotte, thank you for reaching out. I'm Rajesh Mohan from the IT department at Inazuma.co. I understand the importance of email access for your projects. To resolve the account lockout issue, I've unlocked your email account and ensured that all access permissions are correctly configured. Please try logging in again. If you continue to face any issues, do not hesitate to contact me directly at rajesh.mohan@inazuma.com. We strive to maintain seamless communications for all departments to support our mission in transforming consumer experiences. Have a great day!"
+    },
+    {
+      "id": "95786",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0430",
+      "assigned_date": "2014-08-05",
+      "emp_id": "emp_0816",
+      "Issue": "Hello IT Team, I'm Sneha Saxena from the Engineering department, and I'm experiencing a problem with VPN connectivity. I am unable to connect to the VPN that Inazuma.co uses for secure access to internal resources. This is affecting my ability to collaborate on ongoing engineering projects. Could you please assist me in resolving this issue at the earliest? Thank you.",
+      "Resolution": "Hi Sneha, this is Arjun Nair from the IT department. I understand the critical nature of VPN connectivity for your engineering projects at Inazuma.co. To resolve this issue, please ensure that your VPN client is updated to the latest version. Also, check your network settings to ensure no firewall or antivirus is blocking the VPN connection. If the problem persists, kindly provide the error message you are encountering, and I will guide you further. Let me know if there's anything else I can assist you with."
+    },
+    {
+      "id": "96135",
+      "priority": "high",
+      "raised_by_emp_id": "emp_0660",
+      "assigned_date": "2014-04-16",
+      "emp_id": "emp_0686",
+      "Issue": "Hello IT Team, this is Anita Kapoor from the Business Development department. I'm currently experiencing issues with accessing my email account. I rely heavily on email communication for coordinating our business development strategies and managing vendor relationships, but I am unable to log in to my Inazuma.co email account. I've tried resetting the password but still can't gain access. Could you assist me with resolving this issue at the earliest?",
+      "Resolution": "Hi Anita, this is Rahul Chatterjee from the IT department. I understand the urgency of accessing your email for business development purposes. Let's start with clearing your browser cache and cookies, which often resolve such access issues. If that doesn't work, I will reset your account settings on our Inazuma.co email server. Please try logging in after these changes. If the issue persists, we might need to investigate further into account permissions. Feel free to reach out if you need further assistance."
+    },
+    {
+      "id": "98678",
+      "priority": "medium",
+      "raised_by_emp_id": "emp_0241",
+      "assigned_date": "2016-02-16",
+      "emp_id": "emp_0642",
+      "Issue": "Hello IT team, this is Amitabh Sengupta from the Engineering department. I'm currently facing a VPN connectivity problem that is preventing me from accessing important resources for my projects. This issue is impacting my ability to oversee engineering projects and ensure the strategic alignment with organizational goals here at Inazuma.co. Could someone assist me with resolving this connectivity problem at the earliest? Thank you.",
+      "Resolution": "Hi Amitabh, this is Arvind Sharma from the IT department. I understand the importance of your work and the need for seamless access to resources. To resolve the VPN connectivity issue, please ensure that you're using the latest version of the VPN client that Inazuma.co supports. If you're already using the latest version, try resetting your network settings and reconnecting. Additionally, make sure that your firewall settings are allowing VPN traffic. If the issue persists, feel free to reach out, and I can guide you through further troubleshooting steps or escalate the issue to our network team. Thank you for your patience."
+    }
+  ]
+  

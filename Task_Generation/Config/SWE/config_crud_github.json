@@ -1,0 +1,17 @@
+{
+    "source_paths": {
+      "GitHub": "Workspace/GitHub/GitHub.json",
+      "Enterprise Mail System": "Enterprise_mail_system/emails.json",
+      "Conversations": "Collaboration_tools/conversations.json",
+      "Employee Data": "Human_Resource_Management/Employees/employees.json"
+    },
+    "goal_templates": [
+      "Create a repo [Repo details] and Send an email[email details] to my lead[recipient details].",
+      "Create a repo [Repo details]",
+      "Delete the Issue [Issue details]",
+      "Open/Create a new issue [issue details] in a [repository Name]",
+      "Modify an [issue details] in a [repository Name] and notify [recipient details] regarding it",
+      "Revise a license of repo [Repo Name] to [MIT, apache-2.0 etc.]",
+      "Update the metadata for a [repository]"
+    ]
+}

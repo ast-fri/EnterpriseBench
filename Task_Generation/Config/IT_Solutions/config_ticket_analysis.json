@@ -1,0 +1,12 @@
+{
+    "source_paths": {
+      "Employee Data": "Human_Resource_Management/Employees/employees.json",
+      "IT Service Management": "IT_Service_Management/it_tickets.json"
+    },
+    "goal_templates": [
+      "Fetch the ticket ID for [Short description of Issue]",
+      "List all tickets assigned to me on [date] with `high` priority, including IDs",
+      "Retrieve my assigned tickets between [Date] and [Date]",
+      "Fetch tickets raised by [employee Id of issue raised by]"
+    ]
+  }

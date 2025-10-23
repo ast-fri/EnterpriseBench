@@ -1,0 +1,21 @@
+{
+    "source_paths": {
+      "GitHub": "Workspace/GitHub/GitHub.json",
+      "Employee Data": "Human_Resource_Management/Employees/employees.json"
+    },
+    "goal_templates_old": [
+      "What is the description of Issue [Issue Id or Issue Title] in GitHub repository [GitHub repository]?",
+      "List the titles of all GitHub repositories owned by the user",
+      "List all issues associated with [GitHub Repository]",
+      "Provide the path for [Issue Title or GitHub repository name]",
+      "Describe the [Function name] in the code of [GitHub repo name]",
+      "What programming language is used in [GitHub Repository]?"
+    ],
+    "goal_templates": [
+      "List all my repositories that have [open/closed] issues",
+      "Can you fetch all my [MIT, apache 2.0] licensed repositories",
+      "Give me the path of [file name].py file in repo [Repo Name]",
+      "Which file has [Issue Title/Name]",
+      "Which repository have I most recently created?"
+    ]
+}

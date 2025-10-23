@@ -1,0 +1,16 @@
+{
+    "source_paths": {
+      "Enterprise Mail System": "Enterprise_mail_system/emails.json",
+      "Conversations": "Collaboration_tools/conversations.json",
+      "Employee Data": "Human_Resource_Management/Employees/employees.json"
+    },
+    "goal_templates":[
+     "Provide the Conversation ID for the discussion about [short summary of conv] on date [data]",
+      "Retrieve the Email thread ID for the email about [short Email summary]",
+      "Fetch me the message about [message topic] with [recipient name]",
+      "Fetch me the most recent mail with [Recipient Name]",
+      "Have I received an email regarding [Email Subject] from [Sender's Name]",
+      "Search my inbox for [Email Subject]",
+      "Fetch the Email subject for the email thread about [short Email summary]"
+    ]
+  }

@@ -1,0 +1,10 @@
+{
+    "source_paths": {
+       "Employee Data": "Human_Resource_Management/Employees/employees.json",
+      "Enterprise Mail System": "Enterprise_mail_system/emails.json",
+      "GitHub": "Workspace/GitHub/GitHub.json"
+    },
+    "goal_templates": [
+       "Send an email[email details] to [recipient details] regarding [subject]."
+    ]
+}

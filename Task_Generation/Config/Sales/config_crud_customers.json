@@ -1,0 +1,12 @@
+{
+    "source_paths": {
+      "Customers": "/mnt/home-ldap/vkharsh_ldap/Research/EnterpriseBench/Customer_Relation_Management/customers.json",
+      "Product Sentiments": "/mnt/home-ldap/vkharsh_ldap/Research/EnterpriseBench/Customer_Relation_Management/Product Sentiment/product_sentiment.json"
+    },
+    "goal_templates":[
+      "Register a new customer [Customer Details].",
+      "Change the Customer Name of [Customer Details] to [New Customer Details].",
+      "Add a new product review [Product Sentiment details] by [Customer Details] on product [Product Details].",
+      "Update the product review [Product Sentiment details] by [Customer Details] on product [Product Details] to [New Product Sentiment details]."
+    ]
+}

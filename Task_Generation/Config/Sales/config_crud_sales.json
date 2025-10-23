@@ -1,0 +1,13 @@
+{
+    "source_paths": {
+      "Sales": "Customer_Relation_Management/sales.json",
+      "Employee Data": "Human_Resource_Management/Employees/employees.json"
+      
+    },
+    "goal_templates":[
+      "Record a new sale with [Sales details]",
+      "Adjust the Discounted Price for [product details] to [discount price details].",
+      "Correct the Purchase Date of [Product details] to [New Purchase date].",
+      "Delete a sales [sales details] record."
+    ]
+}

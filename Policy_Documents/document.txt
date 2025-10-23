@@ -1,0 +1,48 @@
+
+## 3. Password Creation Requirements
+To ensure consistency and reduce vulnerability, all passwords must adhere to the following standards:
+
+| **Requirement**          | **Minimum Standard**                                                        |
+|--------------------------|------------------------------------------------------------------------------|
+| **Length**               | At least 12 characters                                                         |
+| **Character Variety**    | Must include uppercase, lowercase, number, and special character              |
+| **Dictionary Words**     | Must not contain dictionary words or usernames                               |
+| **Repeat Passwords**     | Cannot reuse the last 5 passwords                                            |
+| **Password Expiry**      | Must be changed every 90 days                                                |
+| **Common Passwords**     | Use of any password on the global blacklist is prohibited                     |
+
+### 3.1 Examples of Strong Passwords:
+- G7r@2#uLpXq9
+- Z!3vMk@20rPf
+- B!u3Rain&Tx#17
+
+### 3.2 Prohibited Passwords:
+- password123
+- Welcome@2023
+- admin01
+- qwerty!@#
+
+### 3.3 Password Suggestions:
+Use a passphrase technique by stringing unrelated words and symbols together. Example:
+- Correct@Horse1Staple!
+- Tree#Lamp$Cloud9&Moon
+
+---
+
+## 4. Password Management
+
+### 4.1 Storage and Transmission
+- Passwords must never be written down or stored in plain text.
+- Use of sticky notes, notebooks, or email drafts to store credentials is strictly forbidden.
+- Passwords must be stored only in company-approved encrypted password management solutions.
+- Passwords must not be transmitted via unsecured platforms (e.g., chat apps, personal email).
+
+### 4.2 Change Protocol
+- Mandatory password changes every 90 days for standard accounts.
+- High-privilege accounts must change passwords every 30 days.
+- Immediate password reset is required after suspected compromise or termination of employment.
+
+### 4.3 Multi-Factor Authentication (MFA)
+- MFA is mandatory for all critical systems including HRMS, CRM, codebase, financial, and admin dashboards.
+- Second-factor options include biometrics, authenticator apps, and hardware tokens.
+- SMS-based MFA is discouraged due to known vulnerabilities.

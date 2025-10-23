@@ -1,0 +1,28 @@
+{
+    "source_paths": {
+      "Employee Data": "Human_Resource_Management/Employees/employees.json"      
+    },
+    "goal_templates": [
+      "Show me my team reporting structure",
+      "What is my current Performance Rating? (Provide the rating value)",
+      "How many Casual Leaves do I have left?",
+      "Retrieve details of my Sick and Vacation Leave balances.",
+      "What is the total number of leaves I’ve taken so far?",
+      "What is my current salary?",
+      "Am I an active employee or have I left the company? (Active/Left)",
+      "What is my current Department and Level?",
+      "Provide my Date of Joining (DOJ) and Date of Leaving (DOL), if applicable.",
+      "What certifications or skills are listed in my profile?",
+      "Is there a record of me being a certified career coach or Hogan assessor? (YES/NO)",
+      "What is my official email address in HR records?",
+      "Am I listed as a valid employee in the system? (TRUE/FALSE)",
+      "Retrieve my current Marital Status and Age from HR records.",
+      "Which HR programs related to Talent Management or Workforce Planning have I participated in?",
+      "Provide my remaining leave balances for all categories (Casual, Sick, Vacation).",
+      "How many years of experience are recorded in my HR profile?",
+      "Was I involved in any Succession Planning or Leadership Development programs?",
+      "What key skills are listed in my profile?",
+      "Is my organizational structure responsibility noted in my profile? (YES/NO)"
+    ]
+
+  }

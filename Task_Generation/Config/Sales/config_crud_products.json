@@ -1,0 +1,12 @@
+{
+    "source_paths": {
+      "Products": "Customer_Relation_Management/products.json"
+    },
+    "goal_templates":[
+      "Register a new product [Product Details].",
+      "Change the Product Name of [Product Details] to [New Product Details].",
+      "Fix the price of [Product Name] from [before_actual price] to [after actual_price].",
+      "Revise the dicounted_price of [Product Name]",
+      "Remove a product entry of [Product ID]."
+    ]
+}

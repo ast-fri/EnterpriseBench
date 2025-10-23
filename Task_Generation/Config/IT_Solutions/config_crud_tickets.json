@@ -1,0 +1,12 @@
+{
+    "source_paths": {
+      "IT Service Management": "IT_Service_Management/it_tickets.json",
+      "Employee Data": "Human_Resource_Management/Employees/employees.json"
+      
+    },
+    "goal_templates": [
+      "Create a new it ticket[Ticket details]",
+      "Change the `priority` of [Ticket details] to [new Priority]",
+      "Remove a specific ticket [Ticket details]"
+    ]
+}

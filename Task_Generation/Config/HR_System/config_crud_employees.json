@@ -1,0 +1,16 @@
+{
+    "source_paths": {
+       "Enterprise Mail System": "Enterprise_mail_system/emails.json",
+        "Employee Data": "Human_Resource_Management/Employees/employees.json"
+    },
+    "goal_templates": [
+      "Register a new employee [Employee Details] and send an email [Email details] to my lead [Recipient details] notifying the same",
+      "Register a new employee [Employee Details]",
+      "Adjust the salary of an employee [employee details] to [New Salary Details].",
+      "Update the remaining Casual and Sick Leaves for [Employee Details] to [New Leaves].",
+      "Modify the [Department, Level] of [Employee Details] due to an internal transfer to [New Department, New Level].",
+      "Revise the Performance Rating after an annual review for [Employee Details] to [New Rating].",
+      "Change the Marital Status or Age details for [Employee Details] to [New Status].",
+      "Remove the record of [Employee Details]."
+    ]
+}

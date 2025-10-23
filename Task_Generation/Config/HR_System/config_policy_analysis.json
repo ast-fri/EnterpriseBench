@@ -1,0 +1,10 @@
+{
+    "source_paths": {
+    "Inazuma.co Password Policy Document":"Policy_Documents/document.txt",
+    "IT Service Management": "IT_Service_Management/it_tickets.json"
+
+    },
+    
+
+    "goal_templates": ["Is the solution provided to ticket compliance with policy document, Provide the issue id?"]
+  }

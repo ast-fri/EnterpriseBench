@@ -1,0 +1,13 @@
+{
+    "source_paths": {
+      "Customer Support Chats": "Customer_Relation_Management/Customer Support/customer_support_chats.json",
+      "Customers": "/mnt/home-ldap/vkharsh_ldap/Research/EnterpriseBench/Customer_Relation_Management/customers.json",
+      "Products": "Customer_Relation_Management/products.json",
+      "Product Sentiment": "Customer_Relation_Management/Product Sentiment/product_sentiment.json"
+    },
+    "goal_templates":
+    [
+       "Register a new complaint[Customer Support Chat Details] by Customer [Customer Details] for product [Product Details]",
+        "Delete the complaint [Customer Support Chat Details] by Customer [Customer Details] for product [Product Details]"
+    ] 
+  }
