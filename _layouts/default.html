@@ -5,23 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title | default: site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header class="site-header">
-            <h1 class="site-title">{{ site.title }}</h1>
-            <p class="site-description">{{ site.description }}</p>
+    <div class="page-wrapper">
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <div class="hero-background"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">{{ site.title }}</h1>
+                    <p class="hero-description">{{ site.description }}</p>
+                    <div class="hero-badges">
+                        <span class="badge">🏢 Enterprise AI</span>
+                        <span class="badge">🤖 LLM Agents</span>
+                        <span class="badge">📊 Benchmarking</span>
+                    </div>
+                </div>
+            </div>
         </header>
         
-        <main class="content">
-            {{ content }}
+        <main class="main-content">
+            <div class="container">
+                {{ content }}
+            </div>
         </main>
         
         <footer class="site-footer">
-            <p>&copy; {{ 'now' | date: "%Y" }} EnterpriseBench. All rights reserved.</p>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>EnterpriseBench</h3>
+                        <p>Evaluating LLM Agents in Enterprise Environments</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="https://github.com/ast-fri/EnterpriseBench"><i class="fab fa-github"></i> GitHub</a></li>
+                            <li><a href="https://huggingface.co/datasets/AST-FRI/EnterpriseBench"><i class="fas fa-database"></i> Dataset</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contact</h4>
+                        <p>Fujitsu Research India</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; {{ 'now' | date: "%Y" }} EnterpriseBench. All rights reserved.</p>
+                </div>
+            </div>
         </footer>
     </div>
 </body>

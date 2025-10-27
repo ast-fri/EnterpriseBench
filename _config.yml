@@ -1,5 +1,4 @@
-title: "Can LLMs Help You at Work? 
-    A Sandbox for Evaluating LLM Agents in Enterprise Environments"
+title: "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterprise Environments"
 description: "A comprehensive framework for evaluating Large Language Model agents within realistic enterprise environments"
 url: "https://ast-fri.github.io"
 baseurl: "/EnterpriseBench"

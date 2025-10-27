@@ -3,39 +3,47 @@ layout: default
 title: "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterprise Environments"
 ---
 
+<!-- Author Section -->
+<div class="author-section">
+  <div class="author-list-formal">
+    <div class="author-names">
+      Harsh Vishwakarma<sup>1,*</sup>,  
+      Ankush Agarwal<sup>1,*</sup>,  
+      Ojas Patil<sup>1</sup>,  
+      Chaitanya Devaguptapu<sup>1</sup>,  
+      Mahesh Chandran<sup>1</sup>
+    </div>
+    <div class="affiliations">
+      <sup>1</sup>Fujitsu Research India
+    </div>
+    <div class="author-footnote">
+      <sup>*</sup>Equal contribution
+    </div>
+    <div class="links-section">
+      <a href="https://github.com/ast-fri/EnterpriseBench" class="link-button github">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      <a href="https://huggingface.co/datasets/AST-FRI/EnterpriseBench" class="link-button huggingface">
+        <i class="fas fa-database"></i> Dataset
+      </a>
+      <!-- <a href="https://aclanthology.org/2025.acl-long.1152/" class="link-button arxiv">
+        <i class="fas fa-file-alt"></i> Paper
+      </a> -->
+    </div>
+  </div>
+</div>
+
+<!-- Navigation Menu -->
 <div class="nav-menu">
-<header class="header">
-      <div class="author-list-formal">
-        <div class="author-names">
-          Harsh Vishwakarma<sup>1,*</sup>,  
-          Ankush Agarwal<sup>1,*</sup>,  
-          Ojas Patil<sup>1</sup>,  
-          Chaitanya Devaguptapu<sup>1</sup>,  
-          Mahesh Chandran<sup>1</sup>
-        </div>
-        <div class="affiliations">
-          <sup>1</sup>Fujitsu Research India &nbsp;&nbsp;
-        </div>
-        <div class="author-footnote">
-          <sup>*</sup>Equal contribution &nbsp;&nbsp;
-        </div>
-      </div>
-      <div class="links-section">
-        <a href="https://github.com/ast-fri/EnterpriseBench" class="link-button github"><span>📄</span> GitHub</a>
-        <a href="https://huggingface.co/datasets/AST-FRI/EnterpriseBench" class="link-button huggingface"><span>🤗</span> Hugging Face</a>
-        <!-- <a href="https://aclanthology.org/2025.acl-long.1152/" class="link-button arxiv"><span>📚</span> Paper </a> -->
-      </div>
-    </header>
   <ul>
-    <li><a href="#abstract">Abstract</a></li>
-    <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#framework">EnterpriseBench Framework</a></li>
-    <li><a href="#domains">Supported Domains</a></li>
-    <li><a href="#evaluation">Evaluation Methods</a></li>
-    <li><a href="#demos">Interactive Demos</a></li>
-    <li><a href="#implementation">Implementation</a></li>
-    <li><a href="#authors">Authors</a></li>
-    <li><a href="#citation">Citation</a></li>
+    <li><a href="#abstract"><i class="fas fa-file-text"></i> Abstract</a></li>
+    <li><a href="#introduction"><i class="fas fa-lightbulb"></i> Introduction</a></li>
+    <li><a href="#framework"><i class="fas fa-cogs"></i> Framework</a></li>
+    <li><a href="#domains"><i class="fas fa-building"></i> Domains</a></li>
+    <li><a href="#evaluation"><i class="fas fa-chart-line"></i> Evaluation</a></li>
+    <li><a href="#demos"><i class="fas fa-play-circle"></i> Demos</a></li>
+    <li><a href="#authors"><i class="fas fa-users"></i> Authors</a></li>
+    <li><a href="#citation"><i class="fas fa-quote-right"></i> Citation</a></li>
   </ul>
 </div>
 
@@ -84,31 +92,90 @@ EnterpriseBench consists of three core components working together to provide co
 - **Scalable Infrastructure**: Supports various task types and complexity levels
 - **Privacy-Compliant**: Synthetic data ensures privacy while maintaining realism
 
-#### 2. **Dual Evaluation Framework**
+#### 2. **Comprehensive Task Suite**
 - **Search Tasks**: Information retrieval, conversation analysis, and database queries
 - **CRUD Tasks**: Create, Read, Update, Delete operations on enterprise data
-- **Performance Metrics**: Comprehensive evaluation criteria for agent assessment
-- **Interactive Interfaces**: Streamlit-powered demos for real-time evaluation
+- **Multi-Domain Coverage**: Tasks spanning HR, IT, Sales, and Engineering departments
+- **Realistic Complexity**: Enterprise-grade scenarios with authentic data relationships
 
-#### 3. **Dual Evaluation Framework**
-- **Search Tasks**: Information retrieval, conversation analysis, and database queries
-- **CRUD Tasks**: Create, Read, Update, Delete operations on enterprise data
-- **Performance Metrics**: Comprehensive evaluation criteria for agent assessment
-- **Interactive Interfaces**: Streamlit-powered demos for real-time evaluation
+#### 3. **Advanced Evaluation System**
+- **Automated Assessment**: AI-powered evaluation with multiple scoring criteria
+- **Performance Metrics**: Comprehensive evaluation framework for agent capabilities
+- **Interactive Interfaces**: Streamlit-powered demos for real-time testing
+- **Comparative Analysis**: Benchmarking across different LLM architectures
 
 
 ## Supported Domains {#domains}
 
 EnterpriseBench covers comprehensive business domains with authentic data and realistic task scenarios:
 
-| Domain | Description | Task Types | Data Sources |
-|--------|-------------|------------|--------------|
-| **🏢 Human Resources** | Employee management, recruitment, policies | Search, CRUD, Communication | Employee records, resumes, policies |
-| **💻 IT Service Management** | Helpdesk, incident management, system administration | Search, CRUD, Troubleshooting | Tickets, incident reports, system logs |
-| **🤝 Customer Relations** | Customer support, sales, relationship management | Search, CRUD, Analysis | Support conversations, orders, reviews |
-| **⚙️ Software Engineering** | Code management, issue tracking, collaboration | Search, CRUD, Code Review | GitHub repositories, issues, discussions |
-| **📊 Business Operations** | Project management, partnerships, strategic planning | Search, CRUD, Analysis | Client records, partnerships, POCs |
-| **📧 Enterprise Communications** | Email systems, collaboration tools, social platforms | Search, CRUD, Communication | Email threads, chat logs, social posts |
+<div class="domains-grid">
+  <div class="domain-card">
+    <div class="domain-icon">🏢</div>
+    <h3>Human Resources</h3>
+    <p>Employee management, recruitment, and policy administration</p>
+    <div class="domain-features">
+      <span class="feature-tag">Search</span>
+      <span class="feature-tag">CRUD</span>
+      <span class="feature-tag">Communication</span>
+    </div>
+  </div>
+  
+  <div class="domain-card">
+    <div class="domain-icon">💻</div>
+    <h3>IT Service Management</h3>
+    <p>Helpdesk operations, incident management, and system administration</p>
+    <div class="domain-features">
+      <span class="feature-tag">Search</span>
+      <span class="feature-tag">CRUD</span>
+      <span class="feature-tag">Troubleshooting</span>
+    </div>
+  </div>
+  
+  <div class="domain-card">
+    <div class="domain-icon">🤝</div>
+    <h3>Customer Relations</h3>
+    <p>Customer support, sales processes, and relationship management</p>
+    <div class="domain-features">
+      <span class="feature-tag">Search</span>
+      <span class="feature-tag">CRUD</span>
+      <span class="feature-tag">Analysis</span>
+    </div>
+  </div>
+  
+  <div class="domain-card">
+    <div class="domain-icon">⚙️</div>
+    <h3>Software Engineering</h3>
+    <p>Code management, issue tracking, and development collaboration</p>
+    <div class="domain-features">
+      <span class="feature-tag">Search</span>
+      <span class="feature-tag">CRUD</span>
+      <span class="feature-tag">Code Review</span>
+    </div>
+  </div>
+  
+  <div class="domain-card">
+    <div class="domain-icon">📊</div>
+    <h3>Business Operations</h3>
+    <p>Project management, partnerships, and strategic planning</p>
+    <div class="domain-features">
+      <span class="feature-tag">Search</span>
+      <span class="feature-tag">CRUD</span>
+      <span class="feature-tag">Analysis</span>
+    </div>
+  </div>
+  
+  <div class="domain-card">
+    <div class="domain-icon">📧</div>
+    <h3>Enterprise Communications</h3>
+    <p>Email systems, collaboration tools, and social platforms</p>
+    <div class="domain-features">
+      <span class="feature-tag">Search</span>
+      <span class="feature-tag">CRUD</span>
+      <span class="feature-tag">Communication</span>
+    </div>
+  </div>
+</div>
 
 
 
