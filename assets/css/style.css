@@ -76,7 +76,8 @@ body {
     font-weight: 800;
     margin-bottom: 1.5rem;
     line-height: 1.1;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-description {
@@ -538,6 +539,96 @@ img + em {
     border: 1px solid var(--primary-color);
 }
 
+/* Demo Videos Grid */
+.demos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.demo-card.task-generation {
+    grid-column: 1 / -1; /* Span full width for first row */
+}
+
+.demo-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.demo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
+}
+
+.demo-card h3 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.demo-card .demo-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.demo-card p {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.demo-card .video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.demo-card .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.demo-features {
+    list-style: none;
+    padding: 0;
+}
+
+.demo-features li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.demo-features li:last-child {
+    border-bottom: none;
+}
+
+.demo-features li strong {
+    color: var(--text-color);
+}
+
 /* Footer */
 .site-footer {
     background: var(--bg-light);
@@ -663,6 +754,14 @@ img + em {
     }
     
     .domain-card {
+        padding: 1.5rem;
+    }
+    
+    .demos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .demo-card {
         padding: 1.5rem;
     }
 }

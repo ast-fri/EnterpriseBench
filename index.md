@@ -346,72 +346,68 @@ EnterpriseBench covers comprehensive business domains with authentic data and re
 
 ## Interactive Demos {#demos}
 
-EnterpriseBench provides three interactive Streamlit applications for hands-on agent evaluation:
+EnterpriseBench provides interactive Streamlit applications for hands-on agent evaluation across different enterprise scenarios:
 
-### 🎲 Task Generation Demo
-
-Experience automated task creation across different enterprise domains:
-
-<div class="card">
-  <h4>Task Generation Features:</h4>
-  <ul>
-    <li><strong>Department Selection:</strong> Choose from 6 major business domains</li>
-    <li><strong>Complexity Control:</strong> Adjust task difficulty and scope</li>
-    <li><strong>Real-time Generation:</strong> Create tasks dynamically based on parameters</li>
-    <li><strong>JSON Export:</strong> Download generated tasks for evaluation</li>
-  </ul>
-  
-  <div class="video-container">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/nKsPsowAugA" 
-            title="EnterpriseBench Task Generation" frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen></iframe>
+<div class="demos-grid">
+  <!-- First Row: Task Generation (spans full width) -->
+  <div class="demo-card task-generation">
+    <h3><span class="demo-icon">🎲</span> Task Generation</h3>
+    <p>Experience automated task creation across different enterprise domains with configurable complexity and real-time generation.</p>
+    
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/nKsPsowAugA"
+              title="EnterpriseBench Task Generation" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
+    
+    <ul class="demo-features">
+      <li><strong>Department Selection:</strong> Choose from 6 major business domains</li>
+      <li><strong>Complexity Control:</strong> Adjust task difficulty and scope</li>
+      <li><strong>Real-time Generation:</strong> Create tasks dynamically based on parameters</li>
+      <li><strong>JSON Export:</strong> Download generated tasks for evaluation</li>
+    </ul>
   </div>
-  <p><strong>Demo Video:</strong> Watch how EnterpriseBench automatically generates Search-type tasks for the Engineering department using GitHub data sources.</p>
-</div>
 
-### 🔍 Search Evaluation Demo
-
-Test agent capabilities on information retrieval and analysis tasks:
-
-<div class="card">
-  <h4>Search Evaluation Features:</h4>
-  <ul>
-    <li><strong>Multi-Domain Queries:</strong> Search across HR, IT, Sales, and Engineering data</li>
-    <li><strong>Complex Relationships:</strong> Navigate interconnected business data</li>
-    <li><strong>Real-time Results:</strong> See agent performance in real-time</li>
-    <li><strong>Performance Analytics:</strong> Detailed metrics and failure analysis</li>
-  </ul>
-  
-  <div class="video-container">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/abiH1fzN3CE" 
-            title="Simulating the Enterprise: LLM Agents at Work" frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen></iframe>
+  <!-- Second Row: Search Evaluation (left column) -->
+  <div class="demo-card">
+    <h3><span class="demo-icon">🔍</span> Search Evaluation</h3>
+    <p>Test agent capabilities on information retrieval and analysis tasks across interconnected business data sources.</p>
+    
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/abiH1fzN3CE"
+              title="Simulating the Enterprise: LLM Agents at Work" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
+    
+    <ul class="demo-features">
+      <li><strong>Multi-Domain Queries:</strong> Search across HR, IT, Sales, and Engineering data</li>
+      <li><strong>Complex Relationships:</strong> Navigate interconnected business data</li>
+      <li><strong>Real-time Results:</strong> See agent performance in real-time</li>
+      <li><strong>Performance Analytics:</strong> Detailed metrics and failure analysis</li>
+    </ul>
   </div>
-  <p><strong>Demo Video:</strong> See an agent formulate plans, select tools, and complete search tasks within the enterprise simulation.</p>
-</div>
 
-### 📝 CRUD Evaluation Demo
-
-Evaluate agent performance on standard business operations:
-
-<div class="card">
-  <h4>CRUD Evaluation Features:</h4>
-  <ul>
-    <li><strong>Business Operations:</strong> Create, read, update, and delete enterprise records</li>
-    <li><strong>Data Integrity:</strong> Ensure operations maintain business rules</li>
-    <li><strong>Multi-Step Tasks:</strong> Complex operations requiring multiple actions</li>
-    <li><strong>Error Handling:</strong> Test agent responses to edge cases and errors</li>
-  </ul>
-  
-  <div class="video-container">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/TmHOhBErRCE" 
-            title="Simulating the Enterprise: LLM Agents Sending a Mail" frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen></iframe>
+  <!-- Second Row: Email Communication (right column) -->
+  <div class="demo-card">
+    <h3><span class="demo-icon">📧</span> Email Communication</h3>
+    <p>Watch agents handle enterprise communication tasks, including drafting and sending emails for business operations.</p>
+    
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/TmHOhBErRCE"
+              title="Simulating the Enterprise: LLM Agents Sending a Mail" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
+    
+    <ul class="demo-features">
+      <li><strong>Email Drafting:</strong> Automated composition of professional emails</li>
+      <li><strong>Context Awareness:</strong> Understanding business context and requirements</li>
+      <li><strong>Multi-Step Process:</strong> Complete workflow from analysis to action</li>
+      <li><strong>Business Integration:</strong> Seamless integration with enterprise systems</li>
+    </ul>
   </div>
-  <p><strong>Demo Video:</strong> Watch an IT employee use an agent to draft and send an email regarding a ticket issue, demonstrating CRUD operations in action.</p>
 </div>
 
 
