@@ -4,41 +4,12 @@ description: "A comprehensive framework for evaluating Large Language Model agen
 url: "https://ast-fri.github.io"
 baseurl: "/EnterpriseBench"
 
-# Build settings
 markdown: kramdown
-highlighter: rouge
-theme: minima
 
-# Plugins
+# SCSS Configuration
+sass:
+  sass_dir: _sass
+  style: compressed
+
 plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-
-# Exclude from processing
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-  - Code/
-  - Data/
-  - .gitignore
-  - LICENSE
-  - README.md
-
-# Collections
-collections:
-  pages:
-    output: true
-    permalink: /:name/
-
-# Default layouts
-defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "default"
+  - jekyll-seo-tag

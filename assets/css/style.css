@@ -1,8 +1,6 @@
 ---
 ---
 
-@import "{{ site.theme }}";
-
 /* Reset and Base Styles */
 * {
   box-sizing: border-box;
@@ -16,6 +14,12 @@ body {
   color: #333;
   background: #ffffff;
   font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: block;
 }
 
 /* Page Container */
@@ -52,9 +56,18 @@ h3 {
   color: #2a2a2a;
 }
 
+h4 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #333;
+}
+
 p {
   margin-bottom: 1.2em;
   color: #4a4a4a;
+  line-height: 1.8;
 }
 
 /* Author Section */
@@ -67,6 +80,7 @@ p {
   font-size: 1.1em;
   margin-bottom: 0.8em;
   color: #333;
+  line-height: 1.6;
 }
 
 .affiliations {
@@ -78,10 +92,13 @@ p {
 .equal-contrib {
   font-size: 0.9em;
   color: #888;
+  font-style: italic;
 }
 
 sup {
-  font-size: 0.8em;
+  font-size: 0.75em;
+  vertical-align: super;
+  line-height: 0;
 }
 
 /* Button Group */
@@ -97,13 +114,18 @@ sup {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 24px;
+  padding: 12px 28px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95em;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.btn span {
+  font-size: 1.2em;
 }
 
 .btn-github {
@@ -115,6 +137,7 @@ sup {
   background: #1a1f23;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(36, 41, 46, 0.3);
+  text-decoration: none;
 }
 
 .btn-huggingface {
@@ -126,6 +149,7 @@ sup {
   background: #e68a00;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 157, 0, 0.3);
+  text-decoration: none;
 }
 
 /* Horizontal Rule */
@@ -183,17 +207,20 @@ hr {
   height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 auto;
 }
 
 .video-container {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   margin-bottom: 1em;
+  background: #000;
 }
 
 .video-container iframe {
@@ -202,6 +229,7 @@ hr {
   left: 0;
   width: 100%;
   height: 100%;
+  border: 0;
   border-radius: 12px;
 }
 
@@ -211,6 +239,7 @@ hr {
   font-style: italic;
   margin-top: 1em;
   text-align: center;
+  line-height: 1.6;
 }
 
 /* Results Section */
@@ -224,6 +253,7 @@ hr {
   border-collapse: collapse;
   margin: 1.5em 0;
   font-size: 0.9em;
+  background: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   overflow: hidden;
@@ -232,32 +262,34 @@ hr {
 .results-section th,
 .results-section td {
   padding: 12px 15px;
-  text-align: left;
   border-bottom: 1px solid #e9ecef;
 }
 
-.results-section th {
+.results-section thead th {
   background-color: #f8f9fa;
   font-weight: 600;
   color: #333;
   text-align: center;
+  border-bottom: 2px solid #dee2e6;
 }
 
-.results-section tr:hover {
+.results-section tbody tr:hover {
   background-color: #f8f9fa;
 }
 
-.results-section tr:last-child td {
+.results-section tbody tr:last-child td {
   border-bottom: none;
 }
 
 .results-section td:first-child {
   font-weight: 600;
+  text-align: left;
 }
 
 .results-section td:not(:first-child) {
   text-align: center;
-  font-family: "Courier New", monospace;
+  font-family: "Courier New", Consolas, monospace;
+  font-size: 0.95em;
 }
 
 /* Code Blocks */
@@ -268,31 +300,35 @@ pre {
   padding: 20px;
   overflow-x: auto;
   margin: 1.5em 0;
-  font-size: 0.9em;
+  font-size: 0.88em;
   line-height: 1.6;
 }
 
 code {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;
   background: #f6f8fa;
   padding: 2px 6px;
   border-radius: 3px;
   font-size: 0.9em;
+  color: #24292e;
 }
 
 pre code {
   background: none;
   padding: 0;
+  border-radius: 0;
 }
 
 /* Lists */
 ul, ol {
   margin: 1em 0 1.5em 2em;
+  padding: 0;
 }
 
 li {
   margin-bottom: 0.5em;
   color: #4a4a4a;
+  line-height: 1.6;
 }
 
 /* Links */
@@ -307,6 +343,26 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Strong/Bold */
+strong {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* Emphasis */
+em {
+  font-style: italic;
+}
+
+/* Blockquotes */
+blockquote {
+  margin: 1.5em 0;
+  padding: 0.5em 0 0.5em 1.5em;
+  border-left: 4px solid #e1e4e8;
+  color: #666;
+  font-style: italic;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .page-container {
@@ -314,20 +370,27 @@ a:hover {
   }
   
   h1 {
-    font-size: 2em;
+    font-size: 1.8em;
   }
   
   h2 {
-    font-size: 1.5em;
+    font-size: 1.4em;
+    margin-top: 2em;
+  }
+  
+  h3 {
+    font-size: 1.2em;
   }
   
   .feature-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
   
   .button-group {
     flex-direction: column;
     align-items: center;
+    gap: 12px;
   }
   
   .btn {
@@ -337,6 +400,34 @@ a:hover {
   }
   
   .results-section {
-    font-size: 0.8em;
+    font-size: 0.75em;
+  }
+  
+  .results-section table {
+    font-size: 0.85em;
+  }
+  
+  .results-section th,
+  .results-section td {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    padding: 30px 12px;
+  }
+  
+  h1 {
+    font-size: 1.5em;
+  }
+  
+  h2 {
+    font-size: 1.25em;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9em;
   }
 }
