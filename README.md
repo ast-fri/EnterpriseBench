@@ -7,7 +7,7 @@
 EnterpriseBench is a comprehensive framework designed to evaluate Large Language Model (LLM) agents within realistic enterprise environments. It provides a complete ecosystem for generating, simulating, and evaluating enterprise tasks across multiple business domains including HR, IT, Sales, Software Engineering, and Business Operations.
 
 <p align="center">
-  <img src="assets/images/workflow.png" alt="EnterpriseBench Workflow" width="800"/>
+  <img src="assets/images/EnterpriseWorkflow.gif" alt="EnterpriseBench Workflow" width="800"/>
 </p>
 
 ## 🌟 Key Features
