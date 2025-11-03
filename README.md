@@ -185,14 +185,25 @@ For questions, issues, or collaboration opportunities:
 If you use EnterpriseBench in your research, please cite our paper:
 
 ```bibtex
-@inproceedings{vishwakarma2025enterprisebench,
-  title = "Can LLMs Help You at Work? A Sandbox for Evaluating LLM Agents in Enterprise Environments",
-  author = "Vishwakarma, Harsh and Agarwal, Ankush and Ojas, F, Patil and Devaguptapu, Chaitanya and Chandran, Mahesh",
-  booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
-  month = nov,
-  year = "2025",
-  address = "Suzhou, China",
-  publisher = "Empirical Methods in Natural Language Processing"
+@inproceedings{vishwakarma-etal-2025-llms,
+    title = "Can {LLM}s Help You at Work? A Sandbox for Evaluating {LLM} Agents in Enterprise Environments",
+    author = "Vishwakarma, Harsh  and
+      Agarwal, Ankush  and
+      Patil, Ojas  and
+      Devaguptapu, Chaitanya  and
+      Chandran, Mahesh",
+    editor = "Christodoulopoulos, Christos  and
+      Chakraborty, Tanmoy  and
+      Rose, Carolyn  and
+      Peng, Violet",
+    booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2025",
+    address = "Suzhou, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.emnlp-main.466/",
+    pages = "9178--9212",
+    ISBN = "979-8-89176-332-6",
 }
 ```
 
