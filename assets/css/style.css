@@ -826,7 +826,14 @@ img + em {
   margin: 0.3em 0;
   transition: all 0.3s ease;
 }
-
+/* Make navbar icons compact */
+.navbar .icon img,
+.navbar .icon .fa {
+    height: var(--icon-size);
+    width: auto;
+    font-size: var(--icon-size);
+    line-height: 1;
+}
 .navbar-burger.is-active span:nth-child(1) {
   transform: rotate(45deg) translate(0.6em, 0.5em);
 }
