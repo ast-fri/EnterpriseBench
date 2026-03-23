@@ -3,7 +3,7 @@ import secrets
 from typing import Any, Dict, List, Optional
 import fnmatch
 from Task_Generation_sft_batch2_copy.Factories.llm_factory import LLM_factory
-
+import os
 class Tools:
     def __init__(self):
         arguments = None
@@ -21,7 +21,28 @@ class Tools:
                 output = f"The tool call is invalid, error {tool}:  {error}"
             context_parts.append({"tool_name": {tool["tool_name"]}, "tool_arguments": tool["tool_arguments"],  "tool_output": output})
         return context_parts
+    def save_json(file_path: str, data):
+        """Save data to JSON file. If file exists and contains a list, append to it."""
+        
+        # Create directory if needed
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        
+        # Load existing data if file exists
+        if os.path.exists(file_path):
+            with open(file_path, 'r') as f:
+                existing = json.load(f)
             
+            # If existing is a list, append
+            if isinstance(existing, list):
+                existing.append(data)
+                data = existing
+        else:
+            # Start new list
+            data = [data]
+        
+        # Save
+        with open(file_path, 'w') as f:
+            json.dump(data, f, indent=2)
     def load_json(self, path: str = "") -> List[Dict[str, Any]]:
         if path == "":
             return []

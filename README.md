@@ -59,9 +59,26 @@ EnterpriseBench is a comprehensive framework designed to evaluate Large Language
 ### Running the Demo
 
 Generate enterprise tasks dynamically across different departments:
+#### Using Command-line
+```bash
+python -m Task_Generation.runner
+```
+#### Using streamlit app
 ```bash
 cd Task_Generation
 streamlit run task_gen_app.py
+```
+### Evaluating the model
+1. Create .env using .env.example
+2. Select the mode of evaluation
+3. run evaluation
+```bash
+"For batch evaluation"
+python -m Evaluate.client 
+
+"For interactive session"
+python -m Evaluate.client -i
+
 ```
 
 ## 📁 Repository Structure
