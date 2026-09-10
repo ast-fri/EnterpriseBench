@@ -1,0 +1,806 @@
+{
+  "contract": "task_generation.database_schema.v1",
+  "database_name": "EnterpriseBench",
+  "tables": [
+    {
+      "table_name": "GitHub",
+      "columns": [
+        {
+          "name": "code",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "copies",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "creation_date",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "emp_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "employees",
+            "references_column": "emp_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "hash",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "issues",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "language",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "license",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "path",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "repo_name",
+          "type": "TEXT",
+          "primary_key": true,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "size",
+          "type": "INTEGER",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        }
+      ],
+      "primary_key": "repo_name",
+      "record_count": 750
+    },
+    {
+      "table_name": "conversations",
+      "columns": [
+        {
+          "name": "conversation_id",
+          "type": "TEXT",
+          "primary_key": true,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "date",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "recipient_emp_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "employees",
+            "references_column": "emp_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "sender_emp_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "employees",
+            "references_column": "emp_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "text",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        }
+      ],
+      "primary_key": "conversation_id",
+      "record_count": 2897
+    },
+    {
+      "table_name": "emails",
+      "columns": [
+        {
+          "name": "body",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "category",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "date",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "email_id",
+          "type": "TEXT",
+          "primary_key": true,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "importance",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "recipient_email",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "recipient_emp_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "employees",
+            "references_column": "emp_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "recipient_name",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "sender_email",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "sender_emp_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "employees",
+            "references_column": "emp_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "sender_name",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "signature",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "subject",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "thread_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "it_tickets",
+            "references_column": "id"
+          },
+          "nullable": true
+        }
+      ],
+      "primary_key": "email_id",
+      "record_count": 11928
+    },
+    {
+      "table_name": "customer_support",
+      "columns": [
+        {
+          "name": "chat_id",
+          "type": "INTEGER",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "it_tickets",
+            "references_column": "id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "customer_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "customers",
+            "references_column": "customer_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "customer_name",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "emp_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "employees",
+            "references_column": "emp_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "interaction_date",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "product_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "products",
+            "references_column": "product_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "product_name",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "text",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        }
+      ],
+      "primary_key": null,
+      "record_count": 1000
+    },
+    {
+      "table_name": "products",
+      "columns": [
+        {
+          "name": "about_product",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "actual_price",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "category",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "discounted_price",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "product_id",
+          "type": "TEXT",
+          "primary_key": true,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "product_name",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "rating",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        }
+      ],
+      "primary_key": "product_id",
+      "record_count": 1351
+    },
+    {
+      "table_name": "customers",
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "TEXT",
+          "primary_key": true,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "customer_name",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "invoice_paths",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "purchase_order_paths",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "shipping_order_paths",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        }
+      ],
+      "primary_key": "customer_id",
+      "record_count": 90
+    },
+    {
+      "table_name": "product_sentiment",
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "customers",
+            "references_column": "customer_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "product_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "products",
+            "references_column": "product_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "review_content",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "review_date",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "sentiment_id",
+          "type": "INTEGER",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "it_tickets",
+            "references_column": "id"
+          },
+          "nullable": true
+        }
+      ],
+      "primary_key": null,
+      "record_count": 13510
+    },
+    {
+      "table_name": "sales",
+      "columns": [
+        {
+          "name": "Date_of_Purchase",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "actual_price",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "customer_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "customers",
+            "references_column": "customer_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "discount_percentage",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "discounted_price",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "product_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "products",
+            "references_column": "product_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "sales_record_id",
+          "type": "INTEGER",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "it_tickets",
+            "references_column": "id"
+          },
+          "nullable": true
+        }
+      ],
+      "primary_key": null,
+      "record_count": 13510
+    },
+    {
+      "table_name": "it_tickets",
+      "columns": [
+        {
+          "name": "Issue",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Resolution",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "assigned_date",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "emp_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "employees",
+            "references_column": "emp_id"
+          },
+          "nullable": true
+        },
+        {
+          "name": "id",
+          "type": "TEXT",
+          "primary_key": true,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "priority",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "raised_by_emp_id",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": {
+            "references_table": "employees",
+            "references_column": "emp_id"
+          },
+          "nullable": true
+        }
+      ],
+      "primary_key": "id",
+      "record_count": 163
+    },
+    {
+      "table_name": "employees",
+      "columns": [
+        {
+          "name": "Age",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "DOJ",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "DOL",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Description",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Experience",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Gender",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Level",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Marital Status",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Name",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Performance Rating",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Remaining Casual Leaves",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Remaining Sick Leaves",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Remaining Vacation Leaves",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Salary",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Total Casual Leaves",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Total Leaves Taken",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Total Sick Leaves",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "Total Vacation Leaves",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "category",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "description",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "email",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "emp_id",
+          "type": "TEXT",
+          "primary_key": true,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "index",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "is_valid",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "reportees",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "reports_to",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        },
+        {
+          "name": "skills",
+          "type": "TEXT",
+          "primary_key": false,
+          "foreign_key": null,
+          "nullable": true
+        }
+      ],
+      "primary_key": "emp_id",
+      "record_count": 1260
+    }
+  ],
+  "metadata": {
+    "source": "generated_from_json_files",
+    "table_count": 10
+  }
+}
