@@ -1211,8 +1211,246 @@ CLARIFICATION MODE: ENABLED
     
     builder.add_edge("clarify", "action")
     builder.add_edge("final", END)
-    
+
     return builder.compile(checkpointer=MemorySaver())
 
-__all__ = ["build_react_agent_graph", "AgentState", "TrajectoryStep", "save_trajectory_to_file", 
-           "load_local_model", "load_vllm_model"]
+
+# ============================================================================
+# CodeAct evaluation rollout (eval_mode="codeact")
+# ============================================================================
+# Self-contained CodeAct resolver_v2 turn loop, replicating the exact
+# prompt/parser/resolver/termination-taxonomy strategy used in training
+# (EnterprisePlatform/train/agentic_training_original/rollout_manager.py's
+# CodeAct handling) as a plain imperative loop rather than a LangGraph
+# StateGraph, since CodeAct's "one response -> resolver decides" shape
+# doesn't fit the think/action/observe node split used above. Fully
+# additive: does not read from or modify build_react_agent_graph or any
+# node function above.
+
+from codeact_parser import truncate_response
+from codeact_runtime import (
+    CodeActResolver, RuntimeLimits, ToolCallReady, FinalAnswer,
+    ResolverError, LocalResult,
+)
+from prompt_builder import PromptBuilder
+from data_structures import (
+    CompletedTrajectory, TrajectorySegment, ExecutedToolCall, ToolExecutionStatus,
+)
+
+
+def load_codeact_chat_model(model_mode: Optional[str] = None):
+    """
+    Load a chat model for CodeAct rollouts.
+
+    Deliberately separate from build_react_agent_graph's inline dispatch:
+    CodeAct relies on codeact_parser.truncate_response() for boundary
+    enforcement (the model's own <code>/<answer> tags), not ReAct's
+    "\\nObservation" stop-string binding, so no stop sequence is bound here.
+    """
+    mode = (model_mode or MODEL_MODE).strip().lower()
+    if mode == "vllm":
+        llm, model_name = load_vllm_model(VLLM_BASE_URL, VLLM_API_KEY)
+        print(f"🤖 [CodeAct] Using vLLM SERVER mode: {model_name}")
+        return llm
+    if mode == "local":
+        llm = load_local_model(LOCAL_MODEL_PATH)
+        print(f"🤖 [CodeAct] Using LOCAL model mode")
+        return llm
+    if mode == "azure":
+        print(f"🤖 [CodeAct] Using GPT model mode")
+        return load_gpt_model()
+    if mode == "bedrock":
+        print(f"🤖 [CodeAct] Using BEDROCK model mode")
+        return load_bedrock_model()
+    if mode == "gemini":
+        print(f"🤖 [CodeAct] Using GEMINI model mode")
+        return load_gemini_model()
+    raise ValueError(f"Unknown model mode: {mode}. Use 'local', 'vllm', 'azure', 'bedrock', or 'gemini'")
+
+
+def _codeact_messages(history: List[Dict[str, str]]) -> List[Any]:
+    """Convert a plain role/content history into LangChain message objects."""
+    converted = []
+    for turn in history:
+        role, content = turn["role"], turn["content"]
+        if role == "system":
+            converted.append(SystemMessage(content=content))
+        elif role == "assistant":
+            converted.append(AIMessage(content=content))
+        else:
+            converted.append(HumanMessage(content=content))
+    return converted
+
+
+def _codeact_observation_text(tool_name: str, args: Dict[str, Any], result) -> str:
+    """Mirrors training rollout_manager._format_artist_observation exactly."""
+    payload = {
+        "tool": tool_name,
+        "args": args,
+        "status": str(result.status),
+        "output": result.output,
+        "error_message": result.error_message,
+    }
+    return f"<tool_result>{json.dumps(payload, sort_keys=True, ensure_ascii=True)}</tool_result>"
+
+
+def _codeact_feedback_text(turn: int, max_turns: int, num_tool_calls: int, message: str,
+                            max_chars: int = 6000) -> str:
+    """Mirrors training rollout_manager._codeact_feedback's turn-indicator wrapper."""
+    next_turn = f"Next CodeAct turn {turn + 2}/{max_turns}." if turn + 1 < max_turns else "Turn budget exhausted."
+    if len(message) > max_chars:
+        message = message[:max_chars] + "\n[... output truncated ...]"
+    return (f"[CodeAct turn {turn + 1}/{max_turns}; executed tool calls: "
+            f"{num_tool_calls}; {next_turn}]\n" + message)
+
+
+def run_codeact_task(
+    llm,
+    tool_env,
+    query: str,
+    task_id: str = "task",
+    max_turns: int = 8,
+    codeact_max_corrections: int = 2,
+    codeact_max_local_turns: int = 2,
+    limits: Optional["RuntimeLimits"] = None,
+) -> "CompletedTrajectory":
+    """
+    Run one task through the CodeAct resolver_v2 strategy — the same
+    prompt/parser/resolver/termination-taxonomy contract training uses —
+    reimplemented as a self-contained loop with no runtime dependency on
+    the training repo.
+
+    `tool_env` must expose:
+      - .get_tools() -> List[{"name", "description", "args_schema"}]
+      - .execute(tool_name, args) -> ToolExecutionResult
+    (see enterprise_tool_environment.py::EnterpriseBenchToolEnvironment)
+    """
+    t_start = time.time()
+    available_tools = tool_env.get_tools()
+    system_prompt = PromptBuilder(available_tools).build_prompt(
+        prompt_mode="codeact", codeact_runtime="resolver_v2",
+    )
+
+    history: List[Dict[str, str]] = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": query},
+    ]
+    segments = [
+        TrajectorySegment(text=system_prompt, is_trainable=False, segment_type="system"),
+        TrajectorySegment(text=query, is_trainable=False, segment_type="user"),
+    ]
+    indicator = f"\n\n[CodeAct turn 1/{max_turns}; executed tool calls: 0; no bound variables yet.]"
+    history[1]["content"] += indicator
+    segments[1].text += indicator
+
+    tool_names = [t["name"] for t in available_tools]
+    resolver = CodeActResolver(tool_names, limits or RuntimeLimits(), task_id)
+    executed_calls: List[ExecutedToolCall] = []
+    codeact_errors = codeact_locals = 0
+    termination_reason = "unknown"
+
+    for turn in range(max_turns):
+        try:
+            response = llm.invoke(_codeact_messages(history))
+            response_text = truncate_response(response.content)
+        except Exception as exc:
+            print(f"❌ [CodeAct] Generation failed on turn {turn + 1}: {exc}")
+            termination_reason = "generation_error"
+            break
+
+        history.append({"role": "assistant", "content": response_text})
+        segments.append(TrajectorySegment(text=response_text, is_trainable=True, segment_type="thought_and_action"))
+
+        event = resolver.resolve(response_text, len(segments) - 1, turn)
+
+        if isinstance(event, FinalAnswer):
+            termination_reason = "success"
+            break
+
+        if isinstance(event, ToolCallReady):
+            codeact_errors = codeact_locals = 0
+            result = tool_env.execute(event.tool_name, event.args)
+            executed_calls.append(ExecutedToolCall(
+                tool_name=event.tool_name,
+                args=event.args,
+                status=str(result.status),
+                output=result.output,
+                error_message=result.error_message,
+                execution_time_ms=result.execution_time_ms,
+                source_segment_index=len(segments) - 1,
+                planner_turn_index=turn,
+                call_id=event.call_id,
+                executed_code=event.executed_code,
+            ))
+            success = result.status == ToolExecutionStatus.SUCCESS
+            try:
+                resolver.bind_result(event, result.output, success, str(result.status))
+            except (ValueError, TypeError, RecursionError) as exc:
+                message = (f"Tool {event.tool_name} executed with status {result.status}, "
+                           f"but result binding failed: {exc}. Stopping; do not replay this call.")
+                feedback = _codeact_feedback_text(turn, max_turns, len(executed_calls), message)
+                history.append({"role": "system", "content": feedback})
+                segments.append(TrajectorySegment(text=feedback, is_trainable=False, segment_type="observation"))
+                termination_reason = "codeact_binding_error"
+                break
+
+            observation = _codeact_observation_text(event.tool_name, event.args, result)
+            if event.bind_variable and success:
+                binding = f"Bound {event.bind_variable} to this real tool output."
+            elif event.bind_variable:
+                binding = f"Call failed; {event.bind_variable} is unbound. Inspect the error before retrying."
+            else:
+                binding = "No variable assigned to this output."
+            message = f"{observation}\n{binding}"
+            if event.stdout:
+                message += "\nLocal stdout before the tool:\n" + event.stdout
+            feedback = _codeact_feedback_text(turn, max_turns, len(executed_calls), message)
+            history.append({"role": "system", "content": feedback})
+            segments.append(TrajectorySegment(text=feedback, is_trainable=False, segment_type="observation"))
+            continue
+
+        if isinstance(event, ResolverError):
+            codeact_errors += 1
+            codeact_locals = 0
+            message = (f"Resolver error [{event.error_kind}] at line {event.line}, column {event.column}: "
+                       f"{event.message}\nNo tool executed. Local changes from this response were rolled back. "
+                       "Correct the code using real prior bindings; no arguments were guessed.")
+            feedback = _codeact_feedback_text(turn, max_turns, len(executed_calls), message)
+            history.append({"role": "system", "content": feedback})
+            segments.append(TrajectorySegment(text=feedback, is_trainable=False, segment_type="observation"))
+            if codeact_errors > codeact_max_corrections:
+                termination_reason = "codeact_correction_budget"
+                break
+            continue
+
+        if isinstance(event, LocalResult):
+            codeact_locals += 1
+            codeact_errors = 0
+            message = ("Local code completed; no tool executed and the task is not automatically finished.\n"
+                       f"Changed bindings (previews): {event.previews}\nCaptured stdout:\n{event.stdout}")
+            feedback = _codeact_feedback_text(turn, max_turns, len(executed_calls), message)
+            history.append({"role": "system", "content": feedback})
+            segments.append(TrajectorySegment(text=feedback, is_trainable=False, segment_type="observation"))
+            if codeact_locals >= codeact_max_local_turns:
+                termination_reason = "codeact_local_budget"
+                break
+            continue
+    else:
+        # Loop exhausted max_turns without ever hitting a `break` above.
+        termination_reason = "max_turns_reached"
+
+    return CompletedTrajectory(
+        query_id=task_id,
+        segments=segments,
+        num_tool_calls=len(executed_calls),
+        total_tokens=0,
+        generation_time_ms=(time.time() - t_start) * 1000,
+        termination_reason=termination_reason,
+        executed_tool_calls=executed_calls,
+        metadata={"prompt_mode": "codeact", "codeact_runtime": "resolver_v2"},
+    )
+
+
+__all__ = ["build_react_agent_graph", "AgentState", "TrajectoryStep", "save_trajectory_to_file",
+           "load_local_model", "load_vllm_model",
+           "load_codeact_chat_model", "run_codeact_task"]

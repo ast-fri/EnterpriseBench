@@ -6,6 +6,7 @@ Batch Task Executor with EnterpriseBench Tools Integration
 ✅ Interactive and batch modes supported
 """
 
+import argparse
 import asyncio
 import json
 import os
@@ -24,13 +25,18 @@ from langchain_core.messages import HumanMessage
 from langgraph.graph.message import REMOVE_ALL_MESSAGES
 
 # Your graph imports
-from graph import build_react_agent_graph, AgentState, get_base_prompt
+from graph import (
+    build_react_agent_graph, AgentState, get_base_prompt,
+    load_codeact_chat_model, run_codeact_task,
+)
 # from graph_llama import build_react_agent_graph, AgentState, get_base_prompt
+from enterprise_tool_environment import create_enterprise_tool_environment
 
 
 DEFAULT_MAX_STEPS = 10
 TASKS_FILE = "Task_Generation/tasks.json"
 ENTERPRISE_BENCH_PATH = ""  # Adjust to your path
+EVAL_MODE = os.getenv("EVAL_MODE", "legacy").strip().lower()  # "legacy" | "codeact"
 
 
 class Colors:
@@ -347,6 +353,165 @@ def save_all_trajectories_to_file(all_results: list, batch_id: str):
     return filepath
 
 
+def _extract_query(task: dict) -> str:
+    """Pull the user query out of a task record (same convention as run_task_batch)."""
+    messages = task.get("messages", [])
+    user_content = next((msg["content"] for msg in messages if msg.get("role") == "user"), None)
+    return user_content if user_content else task.get("query", "")
+
+
+def _trajectory_to_dict(trajectory) -> List[Dict[str, Any]]:
+    """Serialize a CompletedTrajectory's segments + executed tool calls into
+    plain JSON-able turns, in chronological order."""
+    turns = []
+    call_by_segment = {
+        call.source_segment_index: call for call in trajectory.executed_tool_calls
+    }
+    for index, segment in enumerate(trajectory.segments):
+        turn = {
+            "segment_type": segment.segment_type,
+            "is_trainable": segment.is_trainable,
+            "text": segment.text,
+        }
+        call = call_by_segment.get(index)
+        if call is not None:
+            turn["tool_call"] = {
+                "tool_name": call.tool_name,
+                "args": call.args,
+                "status": call.status,
+                "output": call.output,
+                "error_message": call.error_message,
+                "execution_time_ms": call.execution_time_ms,
+            }
+        turns.append(turn)
+    return turns
+
+
+async def run_codeact_task_batch(task: dict, llm, task_index: int, total_tasks: int) -> dict:
+    """Execute a single task with the CodeAct resolver_v2 strategy and collect the trajectory."""
+    query = _extract_query(task)
+    max_steps = task.get("max_steps", DEFAULT_MAX_STEPS)
+
+    print(f"\n{Colors.CYAN}{'='*80}{Colors.END}")
+    print(f"{Colors.CYAN}{Colors.BOLD}📋 TASK {task_index}/{total_tasks} (codeact){Colors.END}")
+    print(f"{Colors.CYAN}{'='*80}{Colors.END}")
+    print(f"{Colors.YELLOW}Query: {Colors.END}{query}")
+    print(f"{Colors.YELLOW}Max Turns: {Colors.END}{max_steps}")
+    print(f"{Colors.CYAN}{'='*80}{Colors.END}")
+
+    tool_env = create_enterprise_tool_environment()
+    try:
+        trajectory = run_codeact_task(
+            llm, tool_env, query,
+            task_id=f"task_{task_index}",
+            max_turns=max_steps,
+        )
+    except Exception as e:
+        print(f"{Colors.RED}❌ ERROR: {e}{Colors.END}")
+        import traceback
+        traceback.print_exc()
+        return {
+            "task_index": task_index,
+            "query": query,
+            "max_steps": max_steps,
+            "status": "error",
+            "error": str(e),
+            "trajectory": [],
+        }
+    finally:
+        tool_env.reset()
+
+    status = "success" if trajectory.termination_reason == "success" else "failed"
+    print(f"{Colors.GREEN if status == 'success' else Colors.RED}"
+          f"{'✅' if status == 'success' else '❌'} Task {task_index}: "
+          f"termination_reason={trajectory.termination_reason}, "
+          f"tool_calls={trajectory.num_tool_calls}{Colors.END}")
+
+    return {
+        "task_index": task_index,
+        "query": query,
+        "max_steps": max_steps,
+        "status": status,
+        "termination_reason": trajectory.termination_reason,
+        "trajectory_length": trajectory.num_tool_calls,
+        "generation_time_ms": trajectory.generation_time_ms,
+        "trajectory": _trajectory_to_dict(trajectory),
+    }
+
+
+def save_codeact_trajectories_to_file(all_results: list, batch_id: str):
+    """Save all CodeAct trajectories from batch execution to a single JSON file."""
+    os.makedirs("trajectories", exist_ok=True)
+    filepath = os.path.join("trajectories", f"codeact_trajectories_{batch_id}.json")
+
+    batch_data = {
+        "batch_id": batch_id,
+        "eval_mode": "codeact",
+        "timestamp": datetime.now().isoformat(),
+        "default_max_steps": DEFAULT_MAX_STEPS,
+        "total_tasks": len(all_results),
+        "successful_tasks": sum(1 for r in all_results if r["status"] == "success"),
+        "failed_tasks": sum(1 for r in all_results if r["status"] != "success"),
+        "tasks": all_results,
+    }
+
+    with open(filepath, "w") as f:
+        json.dump(batch_data, f, indent=2)
+
+    print(f"\n{Colors.GREEN}📁 All trajectories saved to: {filepath}{Colors.END}")
+    return filepath
+
+
+async def interactive_codeact_mode(llm):
+    """Interactive terminal mode for eval_mode=codeact - ask questions one by one."""
+    print(f"\n{Colors.PURPLE}{Colors.BOLD}")
+    print("╔═══════════════════════════════════════════════════════════╗")
+    print("║ 💬 INTERACTIVE MODE (codeact)                             ║")
+    print("║ Type your queries, press Enter to execute                ║")
+    print("║ Commands: 'quit' or 'exit' to stop                       ║")
+    print("╚═══════════════════════════════════════════════════════════╝")
+    print(f"{Colors.END}")
+    print(f"{Colors.CYAN}🎯 Max turns per query: {DEFAULT_MAX_STEPS}{Colors.END}\n")
+
+    session_id = datetime.now().strftime('%Y%m%d_%H%M%S')
+    results = []
+    task_number = 1
+
+    while True:
+        try:
+            print(f"{Colors.BOLD}{Colors.CYAN}You [{task_number}]: {Colors.END}", end="")
+            user_input = input().strip()
+
+            if not user_input:
+                print(f"{Colors.YELLOW}⚠️ Empty input, please try again{Colors.END}")
+                continue
+
+            if user_input.lower() in ['quit', 'exit', 'q']:
+                print(f"\n{Colors.YELLOW}👋 Exiting interactive mode...{Colors.END}")
+                break
+
+            task = {"messages": [{"role": "user", "content": user_input}], "max_steps": DEFAULT_MAX_STEPS}
+            result = await run_codeact_task_batch(task, llm, task_number, "∞")
+            results.append(result)
+            task_number += 1
+
+        except KeyboardInterrupt:
+            print(f"\n\n{Colors.YELLOW}⚠️ Interrupted by user{Colors.END}")
+            break
+        except EOFError:
+            print(f"\n{Colors.YELLOW}👋 End of input{Colors.END}")
+            break
+
+    if results:
+        print(f"\n{Colors.CYAN}💾 Saving session trajectories...{Colors.END}")
+        filepath = save_codeact_trajectories_to_file(results, session_id)
+
+        success_count = sum(1 for r in results if r['status'] == 'success')
+        print(f"\n{Colors.GREEN}✅ Queries executed: {len(results)}{Colors.END}")
+        print(f"{Colors.GREEN}✅ Successful: {success_count}{Colors.END}")
+        print(f"{Colors.GREEN}📁 Saved to: {filepath}{Colors.END}")
+
+
 async def run_task_batch(task: dict, graph, config: dict, task_index: int, total_tasks: int, tools:list,  use_persistent_thread: bool = False):
     """Execute a single task and collect trajectory"""
     messages = task.get("messages", [])
@@ -545,13 +710,23 @@ async def interactive_mode(graph, config: dict, tools:list, tools_count: int):
         print(f"{Colors.GREEN}📁 Saved to: {filepath}{Colors.END}")
 
 
+def _parse_args():
+    parser = argparse.ArgumentParser(description="EnterpriseBench Task Executor")
+    parser.add_argument("--interactive", "-i", action="store_true", help="Run in interactive mode")
+    parser.add_argument(
+        "--eval_mode", choices=["legacy", "codeact"], default=EVAL_MODE,
+        help="'legacy' = existing ReAct+JSON LangGraph strategy (default). "
+             "'codeact' = CodeAct resolver_v2 strategy. Defaults to the EVAL_MODE env var, else 'legacy'.",
+    )
+    return parser.parse_args()
+
+
 async def main():
     """Main batch execution function"""
-    # Check for interactive mode
-    interactive = False
-    if len(sys.argv) > 1 and sys.argv[1] in ['--interactive', '-i']:
-        interactive = True
-    
+    args = _parse_args()
+    interactive = args.interactive
+    eval_mode = args.eval_mode
+
     print(f"{Colors.CYAN}{Colors.BOLD}")
     print("╔═══════════════════════════════════════════════════════════╗")
     if interactive:
@@ -560,14 +735,63 @@ async def main():
         print("║ 🤖 Batch Task Executor (EnterpriseBench)                 ║")
     print("╚═══════════════════════════════════════════════════════════╝")
     print(f"{Colors.END}")
-    
+
     print(f"{Colors.CYAN}Configuration:{Colors.END}")
     print(f"  Mode: {Colors.BOLD}{'INTERACTIVE' if interactive else 'BATCH'}{Colors.END}")
+    print(f"  Eval strategy: {Colors.BOLD}{eval_mode}{Colors.END}")
     print(f"  Default max_steps: {DEFAULT_MAX_STEPS}")
     if not interactive:
         print(f"  Tasks file: {TASKS_FILE}")
     print(f"  EnterpriseBench path: {ENTERPRISE_BENCH_PATH}")
-    
+
+    # ------------------------------------------------------------------
+    # eval_mode="codeact": separate path, no LangGraph / EnterpriseBenchConnector.
+    # ------------------------------------------------------------------
+    if eval_mode == "codeact":
+        llm = load_codeact_chat_model()
+
+        if interactive:
+            await interactive_codeact_mode(llm)
+            return
+
+        if not os.path.exists(TASKS_FILE):
+            print(f"\n{Colors.RED}❌ ERROR: {TASKS_FILE} not found{Colors.END}")
+            return
+        try:
+            with open(TASKS_FILE, 'r') as f:
+                tasks = json.load(f)
+            print(f"\n{Colors.GREEN}✅ Loaded {len(tasks)} tasks from {TASKS_FILE}{Colors.END}")
+        except json.JSONDecodeError as e:
+            print(f"{Colors.RED}❌ ERROR: Invalid JSON in {TASKS_FILE}: {e}{Colors.END}")
+            return
+        if not tasks:
+            print(f"{Colors.YELLOW}⚠️ No tasks found in {TASKS_FILE}{Colors.END}")
+            return
+
+        batch_id = datetime.now().strftime('%Y%m%d_%H%M%S')
+        print(f"\n{Colors.CYAN}{'='*80}{Colors.END}")
+        print(f"{Colors.CYAN}{Colors.BOLD}🚀 STARTING BATCH EXECUTION (codeact){Colors.END}")
+        print(f"{Colors.CYAN}{'='*80}{Colors.END}")
+
+        results = []
+        for i, task in enumerate(tasks, 1):
+            result = await run_codeact_task_batch(task, llm, i, len(tasks))
+            results.append(result)
+            filepath = save_codeact_trajectories_to_file(results, batch_id)
+
+        print(f"\n{Colors.CYAN}{'='*80}{Colors.END}")
+        print(f"{Colors.CYAN}{Colors.BOLD}📊 BATCH EXECUTION SUMMARY{Colors.END}")
+        print(f"{Colors.CYAN}{'='*80}{Colors.END}")
+        success_count = sum(1 for r in results if r['status'] == 'success')
+        print(f"{Colors.GREEN}✅ Successful: {success_count}/{len(results)}{Colors.END}")
+        print(f"{Colors.RED}❌ Failed: {len(results) - success_count}/{len(results)}{Colors.END}")
+        print(f"\n{Colors.GREEN}{Colors.BOLD}📁 Single file output: {filepath}{Colors.END}")
+        return
+
+    # ------------------------------------------------------------------
+    # eval_mode="legacy": unchanged behavior below.
+    # ------------------------------------------------------------------
+
     # Load tasks only for batch mode
     tasks = []
     if not interactive:
