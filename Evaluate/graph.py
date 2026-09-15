@@ -32,7 +32,9 @@ import uuid
 from datetime import datetime
 from dotenv import load_dotenv
 import torch
+import httpx
 from openai import OpenAI
+from pathlib import Path
 
 load_dotenv()
 
@@ -43,9 +45,16 @@ TOOL_EXAMPLES_PATH = os.getenv("TOOL_EXAMPLES_PATH", "tool_examples.json")
 VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "")
 VLLM_API_KEY = os.getenv("VLLM_API_KEY", "")
 
+# Takane Configuration
+TAKANE_BASE_URL = os.getenv("TAKANE_BASE_URL", "https://api-management.kozuchi.css.fujitsu.com/takane-3/v1")
+TAKANE_API_KEY = os.getenv("TAKANE_API_KEY", "")
+TAKANE_MODEL = os.getenv("TAKANE_MODEL", "takane-v3-koba-20260630")
+
 # Modes: "local" or "vllm"
-MODEL_MODE = os.getenv("MODEL_MODE", "vllm")  # azure/vllm/local/bedrock/gemini
+MODEL_MODE = os.getenv("MODEL_MODE", "vllm")  # azure/vllm/local/bedrock/gemini/takane
 DEBUG_MODE = os.getenv("DEBUG_MODE", "True").lower() == "true"
+
+TOOL_CALLING_PROMPT_PATH = Path(__file__).resolve().parent / "tool_calling_prompt.txt"
 
 class TrajectoryStep(BaseModel):
     step_number: int
@@ -70,6 +79,18 @@ class AgentState(BaseModel):
     subtasks_identified: List[str] = []
     subtasks_completed: List[str] = []
     pending_subtasks: List[str] = []
+
+def extract_tool_calls_from_trajectory(trajectory: List[TrajectoryStep]) -> List[Dict[str, Any]]:
+    """Extract the ordered list of {tool_name, tool_arguments} actually executed by the agent."""
+    calls = []
+    for step in trajectory:
+        if step.step_type == "action" and step.tool_used:
+            calls.append({
+                "tool_name": step.tool_used,
+                "tool_arguments": step.tool_input or {}
+            })
+    return calls
+
 
 def save_trajectory_to_file(trajectory: List[TrajectoryStep], query: str, final_answer: str = ""):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -194,6 +215,41 @@ def load_vllm_model(base_url: str, api_key: str):
         print(f"❌ Failed to connect to vLLM server: {e}")
         print(f"   Make sure vLLM is running on {base_url}")
         raise
+def load_takane_model():
+    """Load Takane (Fujitsu) model via its OpenAI-compatible endpoint"""
+    if not TAKANE_API_KEY:
+        raise ValueError("TAKANE_API_KEY is not set. Add it to your .env file.")
+
+    print(f"🔄 Connecting to Takane at: {TAKANE_BASE_URL}")
+    from langchain_openai import ChatOpenAI
+
+    # Takane is a reasoning model behind a corporate gateway - it can take well over a
+    # minute per call (hidden <think> tokens included). httpx's default 5s connect/read
+    # timeout was silently killing requests mid-generation, which then got retried by
+    # BOTH the openai SDK's own retry logic AND the 5x retry loop in think_node/action_node,
+    # compounding into very long effective waits. Give it a generous timeout and let only
+    # the graph-level retry loop handle retries (max_retries=0 here) to avoid double-retrying.
+    takane_timeout = httpx.Timeout(180.0, connect=30.0)
+
+    llm = ChatOpenAI(
+        model=TAKANE_MODEL,
+        openai_api_base=TAKANE_BASE_URL,
+        openai_api_key=TAKANE_API_KEY,
+        temperature=0.2,
+        max_tokens=8192,
+        timeout=takane_timeout,
+        max_retries=0,
+        default_headers={
+            "Authorization": f"Bearer {TAKANE_API_KEY}",
+            "Ocp-Apim-Subscription-Key": TAKANE_API_KEY,
+        },
+        http_client=httpx.Client(verify=False, timeout=takane_timeout),
+        http_async_client=httpx.AsyncClient(verify=False, timeout=takane_timeout),
+    )
+    print(f"✅ Connected to Takane model: {TAKANE_MODEL}")
+    return llm
+
+
 def load_gpt_model():
     api_key = os.getenv("AZURE_API_KEY")
     api_base = os.getenv("AZURE_API_ENDPOINT")
@@ -210,89 +266,54 @@ def load_gpt_model():
         )
     # llm_with_tools = llm.bind_tools(tools) if tools else llm
     return llm
-# ... [Keep all existing helper functions: get_tool_schema_safe, get_tool_schema_description, 
-#      extract_json_from_text, validate_tool_input_with_correction, 
-#      parse_with_multiple_strategies, filter_messages_for_local_model] ...
 
 def get_tool_schema_description(tool: BaseTool) -> str:
-    """Enhanced tool description with few-shot examples for ALL 83 tools"""
-    # if(tool.name=="create_issue"):
-    # print(tool)
-    # with open(TOOL_EXAMPLES_PATH, 'r') as f:
-    #     TOOL_EXAMPLES = json.load(f)
-    TOOL_EXAMPLES={}
-    # Complete examples mapping for all 83 tools
-     
-    
-    # Main formatting logic
-    tool_desc = f"\n{'='*60}\n"
-    tool_desc += f"🔧 Tool: {tool.name}\n"
-    tool_desc += f"{'='*60}\n"
-    tool_desc += f"Description: {tool.description}\n"
-    
-    # Get schema information
+    """Compact tool description: one line per parameter, no decorative padding.
+
+    This is resent as part of the system prompt on every single LLM call (think AND
+    action node, every ReAct step), so its token count multiplies directly into total
+    latency/cost across a batch - keep it dense, not pretty.
+    """
     schema = get_tool_schema_safe(tool)
-    
+    lines = [f"### {tool.name}", tool.description.strip()]
+
     if schema and 'properties' in schema:
-        required = schema.get('required', [])
-        
-        # Add parameter details
-        tool_desc += f"\n📋 Parameters:\n"
-        tool_desc += f"{'-'*60}\n"
-        
+        declared_required = set(schema.get('required', []))
+
+        def is_required(name: str, desc: str) -> bool:
+            return name in declared_required or desc.startswith("[REQUIRED]")
+
+        param_lines = []
+        required_params = {}
         for param_name, param_info in schema['properties'].items():
             param_type = param_info.get('type', 'string')
-            param_desc = param_info.get('description', 'No description')
+            raw_desc = param_info.get('description', '')
+            req = is_required(param_name, raw_desc)
+            desc = raw_desc[len("[REQUIRED] "):] if raw_desc.startswith("[REQUIRED] ") else raw_desc
             default_val = param_info.get('default', None)
             enum_vals = param_info.get('enum', None)
-            
-            req_marker = "✓ REQUIRED" if param_name in required else "○ optional"
-            
-            tool_desc += f"\n  • {param_name} ({param_type}) [{req_marker}]\n"
-            tool_desc += f"    └─ {param_desc}\n"
-            
+
+            extra = ""
             if default_val is not None:
-                tool_desc += f"    └─ Default: {default_val}\n"
-            
+                extra += f", default={default_val}"
             if enum_vals:
-                tool_desc += f"    └─ Allowed values: {', '.join(map(str, enum_vals))}\n"
-        
-        # Add few-shot examples if available
-        
-        if tool.name in TOOL_EXAMPLES:
-            
-            example_data = TOOL_EXAMPLES[tool.name]
-            
-            tool_desc += f"\n\n💡 Usage Notes:\n"
-            tool_desc += f"{'-'*60}\n"
-            tool_desc += f"{example_data['notes']}\n"
-            
-            tool_desc += f"\n\n📝 Example Usage:\n"
-            tool_desc += f"{'-'*60}\n"
-            
-            for idx, example in enumerate(example_data['examples'], 1):
-                tool_desc += f"\nExample {idx}:\n"
-                example_json = {
-                    "action": tool.name,
-                    "action_input": example
-                }
-                tool_desc += f"{json.dumps(example_json, indent=2)}\n"
-        else:
-            # Generic example with required parameters only
-            required_params = {k: f"<{schema['properties'][k].get('type', 'string')}>" 
-                             for k in required}
-            if required_params:
-                tool_desc += f"\n\n📝 Example Usage:\n"
-                tool_desc += f"{'-'*60}\n"
-                example_json = {
-                    "action": tool.name,
-                    "action_input": required_params
-                }
-                tool_desc += f"{json.dumps(example_json, indent=2)}\n"
-    
-    tool_desc += f"\n{'='*60}\n"
-    
-    return tool_desc
+                extra += f", one of {list(map(str, enum_vals))}"
+
+            tag = "required" if req else "optional"
+            param_lines.append(f"  - {param_name} ({param_type}, {tag}{extra}): {desc}")
+
+            if req:
+                required_params[param_name] = f"<{param_type}>"
+
+        if param_lines:
+            lines.append("Parameters:")
+            lines.extend(param_lines)
+
+        if required_params:
+            example = {"action": tool.name, "action_input": required_params}
+            lines.append(f"Example: {json.dumps(example)}")
+
+    return "\n".join(lines) + "\n"
 
 
 def get_tool_schema_safe(tool: BaseTool) -> dict:
@@ -423,74 +444,20 @@ def validate_tool_input_with_correction(tool_name: str, tool_args: Dict[str, Any
     except Exception as e:
         print(f"  ⚠️ Error: {e}")
         return {}, False
-def parse_with_multiple_strategies(result: dict) -> Optional[tuple]:
-    """✅ Multi-strategy parsing with fallbacks"""
-        
-    print(f"  Strategy: ReActJsonOutputParser")
-    try:
-        # ✅ Check for action/name with fallback
-        action = result.get("action") or result.get("name", "")
-        
-        # ✅ Check for action_input/arguments with fallback
-        action_input = result.get("action_input") or result.get("arguments", {})
-        
-        # Check if it's the final answer
-        if action == "Final Answer":
-            return ('finish', {'tool': action, 'input': action_input})
-        
-        return ('action', {'tool': action, 'input': action_input})
-        
-    except Exception as e:
-        return ('action', {'tool': 'Tool Call failed', 'input': {}})
+def load_tool_calling_prompt_template() -> str:
+    with open(TOOL_CALLING_PROMPT_PATH, "r") as f:
+        return f.read()
 
 
+def get_base_prompt(tools: List[BaseTool]) -> str:
+    """Build the merged think+action system prompt from tool_calling_prompt.txt.
 
-def get_base_prompt(tool_descriptions: str):
-    base_prompt = f"""You are a ReAct reasoning agent. Follow this EXACT format:
-
-        AVAILABLE TOOLS:
-        {tool_descriptions}
-
-        RESPONSE FORMAT:
-        Step 1: THINK NODE
-        - Perform granular thinking (subtask decomposition)
-        - Think about what you need to do next
-        - Based on the previous actions taken (if any), generate a string of next best step.
-        - 
-        - FOR THINK NODE(wrap in json block): 
-        {{
-            "thought": ......
-        }}
-        Step 2: ACTION NODE 
-        - Output the best action
-        - Use ONE of these actions:
-        FOR TOOL CALL (wrap in json block):
-            {{
-            "action": "<tool_name>",
-            "action_input": {{"param1": "value1", "param2": "value2"}}
-            }}
-
-            FOR FINAL ANSWER (after completing ALL steps):
-            {{
-            "action": "Final Answer",
-            "action_input": "Your complete response"
-            }}
-
-        CRITICAL RULES:
-        1. Use EXACT tool names from above
-        2. Use EXACT parameter names (see Parameter Details)
-        3. ALWAYS wrap JSON in triple backticks with json marker
-        4. For multi-step tasks, call tools FIRST, answer AFTER seeing results
-        5. NEVER guess - use tools to get information
-        6: Provide the complete Final Answer when done, do not leave it incomplete and miss details
-        
-        JSON FORMATTING RULES:
-        - Escape all newlines as \\n (not literal newlines)
-        - Escape all quotes inside strings
-        - Use double quotes for all strings
-        - Ensure all braces are properly closed
-        """
-    return base_prompt
+    Substitution is a plain string.replace() rather than str.format() because the
+    template itself contains other literal `{...}` JSON braces (the <tool> example).
+    """
+    tool_descriptions = "".join([get_tool_schema_description(tool) for tool in tools]) if tools else "No tools available."
+    template = load_tool_calling_prompt_template()
+    return template.replace("{tools}", tool_descriptions)
 def build_react_agent_graph(tools: List[BaseTool], enable_clarification: bool = True,
                            model_mode: Optional[str] = None):
     """
@@ -506,90 +473,46 @@ def build_react_agent_graph(tools: List[BaseTool], enable_clarification: bool = 
     print("CURRENT MODE of EVALUATION", mode)
     if tools:
         print(f"\n📚 Loading {len(tools)} tools...")
-        
-        tool_descriptions = "".join([get_tool_schema_description(tool) for tool in tools])
-        # print("Tools: ", tool_descriptions)
-        base_prompt = f"""You are a ReAct reasoning agent. Follow this EXACT format:
 
-        AVAILABLE TOOLS:
-        {tool_descriptions}
+    # Merged think+action prompt from tool_calling_prompt.txt (see get_base_prompt).
+    # `enable_clarification` is accepted for backward API compatibility but the merged
+    # prompt template has no clarification mode - callers should treat this as unused.
+    system_prompt = get_base_prompt(tools)
 
-        RESPONSE FORMAT:
-        Step 1: THINK NODE
-        - Perform granular thinking (subtask decomposition)
-        - Think about what you need to do next
-        - Based on the previous actions taken (if any), generate a string of next best step.
-        - 
-        - FOR THINK NODE(wrap in json block): 
-        {{
-            "thought": ......
-        }}
-        Step 2: ACTION NODE 
-        - Output the best action
-        - Use ONE of these actions:
-        FOR TOOL CALL (wrap in json block):
-            {{
-            "action": "<tool_name>",
-            "action_input": {{"param1": "value1", "param2": "value2"}}
-            }}
-
-            FOR FINAL ANSWER (after completing ALL steps):
-            {{
-            "action": "Final Answer",
-            "action_input": "Your complete response"
-            }}
-
-        CRITICAL RULES:
-        1. Use EXACT tool names from above
-        2. Use EXACT parameter names (see Parameter Details)
-        3. ALWAYS wrap JSON in triple backticks with json marker
-        4. For multi-step tasks, call tools FIRST, answer AFTER seeing results
-        5. NEVER guess - use tools to get information
-        6: Provide the complete Final Answer when done, do not leave it incomplete and miss details
-        """
-        
-        if enable_clarification:
-            system_prompt = base_prompt + """
-CLARIFICATION MODE: ENABLED
-- If requirements are unclear, respond:
-  {"action": "clarify", "action_input": {"question": "What specifically do you mean by X?"}}
-"""
-        else:
-            system_prompt = base_prompt
-    else:
-        system_prompt = "You are a ReAct agent."
-    
     # ✅ Load model based on mode
     if mode == "vllm":
         llm, vllm_model_name = load_vllm_model(VLLM_BASE_URL, VLLM_API_KEY)
         print(f"🤖 Using vLLM SERVER mode: {vllm_model_name}")
-        llm_with_stop = llm.bind(stop=["\nObservation", "\nObservation:", "Observation:"])
+        llm_with_stop = llm.bind(stop=["<tool_result>"])  # stop before the model can hallucinate a fake tool result
         use_local_parser = True  # vLLM uses same parsing as local
     elif mode == "local":
         llm = load_local_model(LOCAL_MODEL_PATH)
         print(f"🤖 Using LOCAL model mode")
-        llm_with_stop = llm.bind(stop=["\nObservation", "\nObservation:", "Observation:"])
+        llm_with_stop = llm.bind(stop=["<tool_result>"])  # stop before the model can hallucinate a fake tool result
         use_local_parser = True
     elif mode == "azure":
         llm = load_gpt_model()
         print(f"🤖 Using GPT model mode")
-        llm_with_stop = llm.bind(stop=["\nObservation", "\nObservation:", "Observation:"])
+        llm_with_stop = llm.bind(stop=["<tool_result>"])  # stop before the model can hallucinate a fake tool result
         use_local_parser = False
     elif mode == "bedrock":
         llm = load_bedrock_model()
         print(f"🤖 Using BEDROCK model mode")
-        llm_with_stop = llm.bind(stop=["\nObservation", "\nObservation:", "Observation:"])
+        llm_with_stop = llm.bind(stop=["<tool_result>"])  # stop before the model can hallucinate a fake tool result
         use_local_parser = False
     elif mode == "gemini":
         llm = load_gemini_model()
         print(f"🤖 Using GEMINI model mode")
-        llm_with_stop = llm.bind(stop=["\nObservation", "\nObservation:", "Observation:"])
+        llm_with_stop = llm.bind(stop=["<tool_result>"])  # stop before the model can hallucinate a fake tool result
+        use_local_parser = False
+    elif mode == "takane":
+        llm = load_takane_model()
+        print(f"🤖 Using TAKANE model mode")
+        llm_with_stop = llm.bind(stop=["<tool_result>"])  # stop before the model can hallucinate a fake tool result
         use_local_parser = False
     else:
-        raise ValueError(f"Unknown model mode: {mode}. Use 'local' or 'vllm'")
+        raise ValueError(f"Unknown model mode: {mode}. Use one of 'local', 'vllm', 'azure', 'bedrock', 'gemini', 'takane'")
     
-    # ... [Keep all existing node functions: think_node, action_node, observe_node, 
-    #      clarify_node, final_node, and routing functions] ...
     def parse_thinking(text: str):
         if "<think>" in text and "</think>" in text:
             start = text.find("<think>")
@@ -650,6 +573,32 @@ CLARIFICATION MODE: ENABLED
                             print(f"Parsing failed for string {json_str[:200]}... with error: {final_error}")
                             return {"action": "Tool Call failed", "action_input": {}}
 
+    def parse_agent_action(text: str):
+        """Parse a merged think+action response per tool_calling_prompt.txt's
+        <reasoning>...</reasoning> + either <tool>{...}</tool> or <answer>...</answer> format.
+
+        Returns (reasoning, kind, payload):
+          kind == "tool"   -> payload = {"tool": name, "input": args}
+          kind == "answer" -> payload = the answer text
+          kind is None      -> neither tag was found; payload is the raw text as a fallback
+        """
+        reasoning_match = re.search(r"<reasoning>(.*?)</reasoning>", text, re.DOTALL)
+        reasoning = reasoning_match.group(1).strip() if reasoning_match else ""
+
+        tool_match = re.search(r"<tool>(.*?)</tool>", text, re.DOTALL)
+        if tool_match:
+            tool_json = parse_json(tool_match.group(1).strip())
+            name = tool_json.get("name") or tool_json.get("action", "")
+            args = tool_json.get("args")
+            if args is None:
+                args = tool_json.get("action_input", {})
+            return reasoning, "tool", {"tool": name, "input": args}
+
+        answer_match = re.search(r"<answer>(.*?)</answer>", text, re.DOTALL)
+        if answer_match:
+            return reasoning, "answer", answer_match.group(1).strip()
+
+        return reasoning, None, text
 
     def filter_messages_for_local_model(messages: List, current_query: str = "", include_system_prompt: bool = True) -> List:
         """
@@ -679,27 +628,25 @@ CLARIFICATION MODE: ENABLED
                     filtered.append(msg)
             
             elif isinstance(msg, AIMessage):
+                # msg.content is already <reasoning>...</reasoning> (+ <answer>...</answer>
+                # for finished turns) from agent_node - only tool-call turns need the
+                # matching <tool>{...}</tool> tag appended, since that part lives in
+                # msg.tool_calls rather than msg.content.
                 if hasattr(msg, 'tool_calls') and msg.tool_calls:
                     tool_name = msg.tool_calls[0].get('name', 'unknown')
                     tool_args = msg.tool_calls[0].get('args', {})
+                    tool_tag = json.dumps({"name": tool_name, "args": tool_args})
                     formatted_msg = AIMessage(
-                        content=f"Action: Using {tool_name} with args: {json.dumps(tool_args)}",
+                        content=f"{msg.content}<tool>{tool_tag}</tool>",
                         tool_calls=msg.tool_calls
                     )
                     filtered.append(formatted_msg)
                 elif msg.content:
-                    try:
-                        parsed = json.loads(msg.content) if isinstance(msg.content, str) and msg.content.startswith('{') else None
-                        if parsed and 'thought' in parsed:
-                            filtered.append(AIMessage(content=f"Thought: {parsed['thought']}"))
-                        else:
-                            filtered.append(msg)
-                    except:
-                        filtered.append(msg)
-            
+                    filtered.append(msg)
+
             elif isinstance(msg, ToolMessage):
                 filtered.append(
-                    HumanMessage(content=f"Observation: Tool '{msg.name}' returned: {msg.content}")
+                    HumanMessage(content=f"<tool_result>{msg.content}</tool_result>")
                 )
         
         # Add system prompt at the beginning if not already added and requested
@@ -734,214 +681,110 @@ CLARIFICATION MODE: ENABLED
         return "\n".join(summary_parts[-5:])  # Last 5 steps only
 
 
-    def think_node(state: AgentState) -> AgentState:
-        step_num = len([s for s in state.trajectory if s.step_type == "thought"]) + 1
-        # print(state.messages)
+    def agent_node(state: AgentState) -> AgentState:
+        """Merged think+action step: one LLM call produces <reasoning> plus either a
+        <tool> call or an <answer>, instead of the old two-call think_node/action_node
+        pair. Halves the number of LLM round-trips (and repeated system-prompt tokens)
+        per ReAct step."""
+        step_num = len([s for s in state.trajectory if s.step_type == "action"]) + 1
         if DEBUG_MODE:
             print(f"\n{'='*80}")
-            print(f"🧠 THINK NODE - Step {step_num}")
+            print(f"🤖 AGENT NODE - Step {step_num}/{state.max_steps}")
             print(f"{'='*80}")
-        
-        if state.subtasks_identified:
-            progress = f"Completed: {len(state.subtasks_completed)}/{len(state.subtasks_identified)}"
-        else:
-            progress = "Analyzing task..."
-        
-        # Build conversation summary
+
         conversation_summary = build_conversation_summary(state)
-        
-        think_prompt = f"""
-            Current Query: {state.current_query}
-            Conversation Summary: {conversation_summary}
 
-            Status: {progress}
-           
-            Think: What should I do next based on the Current to complete the task?
-            Respond in JSON format: {{"thought": "your reasoning here"}}"""
-        
-         # ✅ CRITICAL FIX: Handle messages differently for GPT vs Local
-        if use_local_parser:
-            # Local/vLLM mode: filter and convert ToolMessages
-            filtered_messages = filter_messages_for_local_model(state.messages, state.current_query)
-            messages = filtered_messages + [HumanMessage(content=think_prompt)]
-        else:
-            # ✅ GPT mode: Keep ALL messages intact for OpenAI API
-            messages = state.messages + [HumanMessage(content=think_prompt)]
-        # print("Think Node Conversation: ", messages)
-        if DEBUG_MODE:
-            print(f"📊 Message count: {len(messages)}")
-        # print("Thinking message: ",messages)
-        steps=0
-        while(steps<5):
-            steps+=1
-            try:
-                response = llm.invoke(messages)
-            except Exception as e:
-                time.sleep(15*steps)
-                print(f"Retrying due to error: {e}")
-                continue
-        thinking, _remainder = parse_thinking(response.content)
-        parsed_thought = _remainder
-        
-        if DEBUG_MODE:
-            try:
-                print(f"📝 Thought: {parsed_thought['thought']}")
-            except:
-                print(f"📝 Thought: {parsed_thought}")
-        
-        thought_step = TrajectoryStep(
-            step_number=len(state.trajectory),
-            step_type="thought",
-            content=json.dumps(parsed_thought) if isinstance(parsed_thought, dict) else str(parsed_thought),
-            timestamp=datetime.now().isoformat()
-        )
-        
-        # ✅ Add AIMessage with thought content (not the prompt)
-        thought_message = AIMessage(content=json.dumps(parsed_thought) if isinstance(parsed_thought, dict) else str(parsed_thought))
-        
-        return AgentState(
-            messages=state.messages + [thought_message],
-            trajectory=state.trajectory + [thought_step],
-            current_step=state.current_step,
-            max_steps=state.max_steps,
-            task_completed=state.task_completed,
-            current_query=state.current_query,
-            final_answer=state.final_answer,
-            needs_clarification=state.needs_clarification,
-            clarification_question=state.clarification_question,
-            enable_clarification=state.enable_clarification,
-            subtasks_identified=state.subtasks_identified,
-            subtasks_completed=state.subtasks_completed,
-            pending_subtasks=state.pending_subtasks
-        )
+        agent_prompt = f"""Current Query: {state.current_query}
+Conversation Summary:
+{conversation_summary}
 
+Continue the task: produce exactly one <reasoning> block followed by either one <tool> call
+or one <answer>, per the system instructions."""
 
-    def action_node(state: AgentState) -> AgentState:
-        step_num = len([s for s in state.trajectory if s.step_type == "action"]) + 1
-        print(f"\n{'='*80}")
-        print(f"⚡ ACTION NODE - Step {step_num}/{state.max_steps}")
-        print(f"{'='*80}")
-        
-        # Build conversation summary
-        conversation_summary = build_conversation_summary(state)
-        
-        action_prompt = f"""Current Query: {state.current_query}
-    Conversation Summary:   
-    {conversation_summary}
-
-    Based on your previous thought, select and execute the most appropriate action.
-
-    INSTRUCTIONS: 
-    - Select the best tool from available tools
-    - Check Argument Schema carefully for each parameter type
-    - Provide ALL REQUIRED arguments
-    - Use EXACT parameter names
-    - Use the appropriate tool based on the server_name in the description in [], e.g., [gitlab], [plane], [rocketchat], etc.
-    Respond with JSON format:
-    
-    For tool call: {{"action": "<tool_name>", "action_input": {{"param1": "value1"}}}}
-    For final answer: {{"action": "Final Answer", "action_input": "your complete response"}}"""
-        
         # ✅ CRITICAL FIX: Handle messages differently for GPT vs Local
         if use_local_parser:
             # Local/vLLM mode: filter and convert ToolMessages
             filtered_messages = filter_messages_for_local_model(state.messages, state.current_query)
-            messages = filtered_messages + [HumanMessage(content=action_prompt)]
+            messages = filtered_messages + [HumanMessage(content=agent_prompt)]
         else:
             # ✅ GPT mode: Keep ALL messages intact for OpenAI API
-            messages = state.messages + [HumanMessage(content=action_prompt)]
-        # print("Action Conversation messages: ", messages)
+            messages = state.messages + [HumanMessage(content=agent_prompt)]
         if DEBUG_MODE:
             print(f"📊 Message count: {len(messages)}")
-        # print("Action Node Message: ", messages)
-        steps=0
-        while(steps<5):
-            steps+=1
+
+        response = None
+        steps = 0
+        while(steps < 5):
+            steps += 1
             try:
                 response = llm_with_stop.invoke(messages)
+                break
             except Exception as e:
-                time.sleep(15*steps)
+                time.sleep(15 * steps)
                 print(f"Retrying due to error: {e}")
-        if len(response.content) > 400 and not response.content.rstrip().endswith('}'):
-            print(f"⚠️ WARNING: Response appears truncated!")
-            print(f"Last 100 chars: {response.content[-100:]}")
-        thinking, _remainder = parse_thinking(response.content)
-        # Handle response content
-        parsed_action = parse_json(_remainder)
-        print("Action Output: ", parsed_action)
-        # ✅ Check for clarification action
-        if isinstance(parsed_action, dict) and parsed_action.get('action') == 'clarify':
-            clarification_q = parsed_action.get('action_input', {}).get('question', 'Could you clarify?')
-            action_step = TrajectoryStep(
-                step_number=len(state.trajectory),
-                step_type="action",
-                content=str(parsed_action),
-                timestamp=datetime.now().isoformat()
-            )
-            return AgentState(
-                messages=state.messages + [AIMessage(content=json.dumps(parsed_action))],
-                trajectory=state.trajectory + [action_step],
-                current_step=state.current_step,
-                max_steps=state.max_steps,
-                task_completed=False,
-                current_query=state.current_query,
-                final_answer="",
-                needs_clarification=True,  # ✅ Set this flag
-                clarification_question=clarification_q,  # ✅ Store the question
-                enable_clarification=state.enable_clarification,
-                subtasks_identified=state.subtasks_identified,
-                subtasks_completed=state.subtasks_completed,
-                pending_subtasks=state.pending_subtasks
-            )
+        if response is None:
+            response = AIMessage(content="<reasoning>Unable to reach the model.</reasoning><answer>Error: model unreachable.</answer>")
 
-        parsed = parse_with_multiple_strategies(parsed_action)
-        
-        tool_calls_detected = False
+        _model_thinking, remainder = parse_thinking(response.content)
+        reasoning, kind, payload = parse_agent_action(remainder)
+
+        if DEBUG_MODE:
+            print(f"📝 Reasoning: {reasoning}")
+            print(f"🔀 Parsed kind: {kind}")
+
+        thought_step = TrajectoryStep(
+            step_number=len(state.trajectory),
+            step_type="thought",
+            content=reasoning,
+            timestamp=datetime.now().isoformat()
+        )
+
         task_completed = False
         final_answer = ""
-        validated_tool_call = None
         ai_message = None
-        
-        if parsed:
-            action_type, action_data = parsed
-            if action_type == 'finish':
-                task_completed = True
-                final_answer = action_data.get('input', action_data) if isinstance(action_data, dict) else action_data
-                ai_message = AIMessage(content=str(final_answer))
-                
-            elif action_type == 'action':
-                tool_name = action_data['tool'] 
-                tool_input = action_data['input']
-                
-                validated_args,validation_match = validate_tool_input_with_correction(tool_name, tool_input, tools)
-                # print("Validated Arguments Content",validated_args)
-                if validation_match:
-                    tool_calls_detected = True
-                    validated_tool_call = {
-                        'name': tool_name,
-                        'args': validated_args,
-                        'id': f"call_{uuid.uuid4().hex[:8]}",
-                        'type': 'tool_call'
-                    }
-                    
-                    ai_message = AIMessage(
-                        content="",
-                        tool_calls=[validated_tool_call]
-                    )
-                    
-                    print(f"\n🔧 Tool Call Created: {tool_name}")
-                    print(f"📥 Arguments: {validated_args}")
-                else:
-                    # Validation failed due to missing required fields
-                    ai_message = AIMessage(content=str(validated_args))
-                                       
-        
+        tool_calls_detected = False
+        validated_tool_call = None
+        action_content = remainder
+
+        if kind == "answer":
+            task_completed = True
+            final_answer = payload
+            ai_message = AIMessage(content=f"<reasoning>{reasoning}</reasoning><answer>{payload}</answer>")
+            action_content = str(final_answer)
+
+        elif kind == "tool":
+            tool_name = payload["tool"]
+            tool_input = payload["input"]
+
+            validated_args, validation_match = validate_tool_input_with_correction(tool_name, tool_input, tools)
+            if validation_match:
+                tool_calls_detected = True
+                validated_tool_call = {
+                    'name': tool_name,
+                    'args': validated_args,
+                    'id': f"call_{uuid.uuid4().hex[:8]}",
+                    'type': 'tool_call'
+                }
+                ai_message = AIMessage(
+                    content=f"<reasoning>{reasoning}</reasoning>",
+                    tool_calls=[validated_tool_call]
+                )
+                print(f"\n🔧 Tool Call Created: {tool_name}")
+                print(f"📥 Arguments: {validated_args}")
+            else:
+                # Missing required args - surface the validator's message and loop back
+                # to the agent (same as the old code's behaviour on validation failure).
+                ai_message = AIMessage(content=f"<reasoning>{reasoning}</reasoning>{validated_args}")
+                action_content = str(validated_args)
+
         if ai_message is None:
-            ai_message = AIMessage(content=str(parsed_action))
-        
+            # Neither <tool> nor <answer> could be parsed - keep the raw text in context
+            # and let routing send us back to the agent to retry, rather than guessing.
+            ai_message = AIMessage(content=response.content)
+
         if tool_calls_detected and validated_tool_call:
             action_step = TrajectoryStep(
-                step_number=len(state.trajectory),
+                step_number=len(state.trajectory) + 1,
                 step_type="action",
                 content=f"Using {validated_tool_call['name']}: {validated_tool_call['args']}",
                 timestamp=datetime.now().isoformat(),
@@ -950,17 +793,16 @@ CLARIFICATION MODE: ENABLED
             )
         else:
             action_step = TrajectoryStep(
-                step_number=len(state.trajectory),
+                step_number=len(state.trajectory) + 1,
                 step_type="action",
-                content=str(parsed_action),
+                content=action_content,
                 timestamp=datetime.now().isoformat()
             )
-        
-        # ✅ Only add AIMessage (no prompt)
+
         return AgentState(
             messages=state.messages + [ai_message],
-            trajectory=state.trajectory + [action_step],
-            current_step=state.current_step ,
+            trajectory=state.trajectory + [thought_step, action_step],
+            current_step=state.current_step,
             max_steps=state.max_steps,
             task_completed=task_completed,
             current_query=state.current_query,
@@ -1059,60 +901,13 @@ CLARIFICATION MODE: ENABLED
         )
 
     
-    def clarify_node(state: AgentState) -> AgentState:
-        print(f"\n{'='*80}")
-        print(f"❓ CLARIFY NODE")
-        print(f"{'='*80}")
-        
-        # Extract clarification question from last action
-        clarification_question = state.clarification_question
-        
-        if not clarification_question:
-            # Fallback: try to extract from last message
-            try:
-                last_msg = state.messages[-1]
-                if isinstance(last_msg.content, str):
-                    parsed = json.loads(last_msg.content)
-                    if 'action' in parsed and parsed['action'] == 'clarify':
-                        clarification_question = parsed.get('action_input', {}).get('question', '')
-            except:
-                clarification_question = "Could you provide more details about your request?"
-        
-        print(f"📢 Question to user: {clarification_question}")
-        
-        # Create clarification message
-        clarification_message = f"❓ {clarification_question}"
-        
-        clarify_step = TrajectoryStep(
-            step_number=len(state.trajectory) + 1,
-            step_type="clarification",
-            content=clarification_message,
-            timestamp=datetime.now().isoformat()
-        )
-        
-        # ✅ Return state with clarification request
-        # The execution will pause here, waiting for the next user input
-        return AgentState(
-            messages=state.messages + [AIMessage(content=clarification_message)],
-            trajectory=state.trajectory + [clarify_step],
-            current_step=state.current_step + 1,
-            max_steps=state.max_steps,
-            task_completed=False,
-            current_query=state.current_query,
-            final_answer="",
-            needs_clarification=True,  # ✅ Keep this True until user responds
-            clarification_question=clarification_question,
-            enable_clarification=state.enable_clarification,
-            subtasks_identified=state.subtasks_identified,
-            subtasks_completed=state.subtasks_completed,
-            pending_subtasks=state.pending_subtasks
-        )
-    
     def final_node(state: AgentState) -> AgentState:
+        # Not writing a per-task trajectory_*.json here: client.py already persists every
+        # run's full trajectory (incrementally, with task/eval context) into
+        # trajectories/eval_results_<batch_id>.json[l] - a duplicate side-write here just
+        # littered the directory with hundreds of redundant, context-free files.
         print(f"\n🏁 FINAL NODE")
-        if state.trajectory:
-            save_trajectory_to_file(state.trajectory, state.current_query, state.final_answer)
-        
+
         # from langgraph.graph.message import REMOVE_ALL_MESSAGES
         # messages = state.messages
         # if(len(state.messages)>30):
@@ -1136,83 +931,59 @@ CLARIFICATION MODE: ENABLED
 
 
     
-    def should_continue_from_think(state: AgentState) -> Literal["action", "clarify", "final"]:
-        if state.current_step >= state.max_steps:
-            return "final"
-        if state.enable_clarification and state.needs_clarification:
-            return "clarify"
-        return "action"
-    
-    def should_continue_from_action(state: AgentState) -> Literal["tools", "think", "final"]:
-        """Route after action - CRITICAL FIX"""
-        print(f"\n🔀 ROUTING from action:")
+    def should_continue_from_agent(state: AgentState) -> Literal["tools", "agent", "final"]:
+        """Route after the merged agent step."""
+        print(f"\n🔀 ROUTING from agent:")
         print(f"  Current step: {state.current_step}/{state.max_steps}")
         print(f"  Task completed: {state.task_completed}")
-        
-        # ✅ Check if task is completed first
+
         if state.task_completed:
             print("  → Going to FINAL (task completed)")
             return "final"
-        
-        # ✅ CRITICAL: Check for tool_calls in the LAST message
+
         if state.messages:
             last_msg = state.messages[-1]
-            print(f"  Last message type: {type(last_msg).__name__}")
-            
-            if isinstance(last_msg, AIMessage):
-                if hasattr(last_msg, 'tool_calls') and last_msg.tool_calls:
-                    print(f"  ✅ Tool calls detected: {[tc['name'] for tc in last_msg.tool_calls]}")
-                    print("  → Going to TOOLS")
-                    return "tools"  # ✅ MUST go to tools to execute and create ToolMessage
-                else:
-                    print("  No tool calls in AIMessage")
-        
-        # ✅ Check max steps
+            if isinstance(last_msg, AIMessage) and getattr(last_msg, 'tool_calls', None):
+                print(f"  ✅ Tool calls detected: {[tc['name'] for tc in last_msg.tool_calls]}")
+                print("  → Going to TOOLS")
+                return "tools"
+
         if state.current_step >= state.max_steps:
             print("  → Going to FINAL (max steps)")
             return "final"
-        
-        # ✅ Default: continue thinking
-        print("  → Going to THINK (no tools, continue reasoning)")
-        return "think"
 
-    
-    def should_continue_from_observe(state: AgentState) -> Literal["think", "final"]:
-        return "final" if (state.current_step >= state.max_steps or state.task_completed) else "think"
-    
+        print("  → Going to AGENT (no tool call yet, retry)")
+        return "agent"
+
+    def should_continue_from_observe(state: AgentState) -> Literal["agent", "final"]:
+        return "final" if (state.current_step >= state.max_steps or state.task_completed) else "agent"
+
     # Build graph
     builder = StateGraph(AgentState)
-    builder.add_node("think", think_node)
-    builder.add_node("action", action_node)
+    builder.add_node("agent", agent_node)
     builder.add_node("observe", observe_node)
-    builder.add_node("clarify", clarify_node)
     builder.add_node("final", final_node)
-    
+
     if tools:
         builder.add_node("tools", ToolNode(tools))
-    
-    builder.add_edge(START, "think")
-    builder.add_conditional_edges("think", should_continue_from_think, {
-        "action": "action",
-        "clarify": "clarify",
-        "final": "final"
-    })
-    
+
+    builder.add_edge(START, "agent")
+
     if tools:
-        builder.add_conditional_edges("action", should_continue_from_action, {
-            "tools": "tools", "think": "think", "final": "final"
+        builder.add_conditional_edges("agent", should_continue_from_agent, {
+            "tools": "tools", "agent": "agent", "final": "final"
         })
         builder.add_edge("tools", "observe")
-        builder.add_conditional_edges("observe", should_continue_from_observe, {"think": "think", "final": "final"})
+        builder.add_conditional_edges("observe", should_continue_from_observe, {"agent": "agent", "final": "final"})
     else:
-        builder.add_conditional_edges("action", should_continue_from_action, {
-            "think": "think", "final": "final"
+        builder.add_conditional_edges("agent", should_continue_from_agent, {
+            "agent": "agent", "final": "final"
         })
-    
-    builder.add_edge("clarify", "action")
+
     builder.add_edge("final", END)
-    
+
     return builder.compile(checkpointer=MemorySaver())
 
-__all__ = ["build_react_agent_graph", "AgentState", "TrajectoryStep", "save_trajectory_to_file", 
-           "load_local_model", "load_vllm_model"]
+__all__ = ["build_react_agent_graph", "AgentState", "TrajectoryStep", "save_trajectory_to_file",
+           "extract_tool_calls_from_trajectory", "get_tool_schema_description",
+           "load_local_model", "load_vllm_model", "load_takane_model"]
