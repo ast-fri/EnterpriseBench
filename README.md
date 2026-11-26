@@ -226,4 +226,4 @@ If you use EnterpriseBench in your research, please cite our paper:
 
 ---
 
-**EnterpriseBench** - Bridging the gap between LLM capabilities and enterprise reality.
+**EnterpriseBench** - Bridging the gap between LLM capabilities and enterprise reality. Evaluate your sota models and agents.
